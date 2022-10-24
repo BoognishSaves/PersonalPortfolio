@@ -99,9 +99,9 @@ const projects = [
   {
     // Add image in './styles/images.css' in #project3
     id: "project3",
-    name: "Project 3",
-    skills: ["HTML, CSS, JS"],
-    url: "https://github.com/kaustubhai",
+    name: "Guitar Collector",
+    skills: ["Python, Django, Bulma"],
+    url: "https://github.com/BoognishSaves/guitar_collector",
   },
   {
     // Add image in './styles/images.css' in #project4
