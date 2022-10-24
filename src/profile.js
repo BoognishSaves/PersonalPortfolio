@@ -120,9 +120,9 @@ const projects = [
   {
     // Add image in './styles/images.css' in #project6
     id: "project6",
-    name: "Project 6",
-    skills: ["HTML, CSS, JS"],
-    url: "https://github.com/kaustubhai",
+    name: "Three JS Portfolio",
+    skills: ["HTML, CSS, JS, ThreeJS"],
+    url: "https://github.com/BoognishSaves/threejsportfolio",
   },
 ];
 // Edit your Miscellaneous Activities, its name and the url.
