@@ -133,8 +133,8 @@ const miscellaneous = [
   {
     // Add image in './styles/images.css' in #misc1
     id: "misc1",
-    name: "Miscellaneous 1",
-    url: "https://github.com/kaustubhai",
+    name: "Drone Note Media",
+    url: "https://www.dronenotemedia.com/",
   },
   {
     // Add image in './styles/images.css' in #misc2
