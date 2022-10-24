@@ -139,14 +139,14 @@ const miscellaneous = [
   {
     // Add image in './styles/images.css' in #misc2
     id: "misc2",
-    name: "Miscellaneous 2",
-    url: "https://github.com/kaustubhai",
+    name: "Musician",
+    url: "https://youtu.be/WTkLmrjbQes",
   },
   {
     // Add image in './styles/images.css' in #misc3
     id: "misc3",
-    name: "Miscellaneous 3",
-    url: "https://github.com/kaustubhai",
+    name: "Television",
+    url: "https://www.youtube.com/watch?v=Q196-9MxOMw&list=PLqnTw__THC4MrlBxGZ0vGjXhclfNHU5YV",
   },
 ];
 // Contact form text, and Formspree link(to send a submit contact through their API as in contact.js)
@@ -155,7 +155,7 @@ const miscellaneous = [
 const section5Title = "Get in Touch";
 const contact = {
   pitch:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris nunc congue nisi vitae.",
+    "Whether it be for employment, collaboration, or friendship I would love to hear from you. Thank you for visiting my site!",
   copyright: "John Paul Haddad",
   contactUrl: "https://formspree.io/f/xkneqgqb",
 };
