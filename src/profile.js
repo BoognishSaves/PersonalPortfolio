@@ -9,7 +9,7 @@ const animation = {
 };
 // Change your display name on tha landing display
 const header = {
-  name: "a Human",
+  name: "John Paul Haddad",
 };
 const background = {
   // Options: Snow or Particle
@@ -20,7 +20,7 @@ const background = {
 const section2title = "About Me";
 const about = {
   paragraph:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris nunc congue nisi vitae suscipit tellus mauris a diam. ",
+    "A team-oriented product manager with a background in insurance, construction, and software engineering. Developing launch plans and market strategies for small businesses has elevated my appreciation for the big picture regardless of the task. My positive attitude and strong communication skills help empower those I work with to achieve goals beyond their expectations. My software engineering knowledge aids in finding the voice of  the customer and conveying it to team members during the development life cycle.",
 };
 // Edit your skill and the percentage you know about it
 // To Add a skill, copy any one below and paste it after the last comma
@@ -42,9 +42,9 @@ const skillsBar = [
     faClass: "fab fa-js",
   },
   {
-    name: "SASS",
+    name: "React",
     // svg: '',
-    faClass: "fab fa-sass",
+    faClass: "fab fa-react",
   },
   {
     name: "Node",
@@ -57,14 +57,14 @@ const skillsBar = [
     faClass: "fab fa-python",
   },
   {
-    name: "Java",
+    name: "MongoDB",
     // svg: '',
-    faClass: "fab fa-java",
+    faClass: "fa fa-leaf",
   },
   {
-    name: "PHP",
+    name: "Django",
     // svg: '',
-    faClass: "fab fa-php",
+    faClass: "fa fa-diamond",
   },
   {
     name: "Database",
@@ -156,18 +156,18 @@ const section5Title = "Get in Touch";
 const contact = {
   pitch:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris nunc congue nisi vitae.",
-  copyright: "Kaustubh Mishra",
-  contactUrl: "",
+  copyright: "John Paul Haddad",
+  contactUrl: "https://formspree.io/f/xkneqgqb",
 };
 // Paste your respective social media links. You can omit any if you dont have it
 // Upload your resume in your drive, get the shaareable link and paste it in the resume section
 const social = {
-  github: "https://github.com",
-  facebook: "https://facebook.com",
+  github: "https://github.com/BoognishSaves",
+  facebook: "https://www.facebook.com/john.p.haddad",
   // twitter: "https://twitter.com",
-  instagram: "https://instagram.com",
-  linkedin: "https://linkedin.com",
-  resume: "https://novoresume.com/",
+  instagram: "https://www.instagram.com/haddadaddah/?hl=en",
+  linkedin: "https://www.linkedin.com/in/john-paul-haddad/",
+  resume: "https://docs.google.com/document/d/1d9cG8bo4wlM_uGPV_aLxo1zLDSWDHdxyV2_fNMGkSns/edit?usp=sharing",
 };
 // Dont change anything here
 export {
