@@ -93,7 +93,7 @@ const projects = [
     // Add image in './styles/images.css' in #project2
     id: "project2",
     name: "Healthy Homemade",
-    skills: ["React, Express, MongoDB, Node, CSS, JS"],
+    skills: ["React, Express, Bootstrap, MongoDB, Node, CSS, JS"],
     url: "https://github.com/tjphillips08/co-healthy-homemade-frontend",
   },
   {
@@ -113,9 +113,9 @@ const projects = [
   {
     // Add image in './styles/images.css' in #project5
     id: "project5",
-    name: "Project 5",
-    skills: ["HTML, CSS, JS"],
-    url: "https://github.com/kaustubhai",
+    name: "Ranter",
+    skills: ["Node, Express, MongoDB, HTML, CSS, JS"],
+    url: "https://github.com/BoognishSaves/Ranter",
   },
   {
     // Add image in './styles/images.css' in #project6
