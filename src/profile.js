@@ -85,16 +85,16 @@ const projects = [
   {
     // Add image in './styles/images.css' in #project1
     id: "project1",
-    name: "Project 1",
-    skills: ["HTML, CSS, JS"],
-    url: "https://github.com/kaustubhai",
+    name: "Garden Buddy",
+    skills: ["React, Express, MongoDB, Node, CSS, JS"],
+    url: "https://github.com/BoognishSaves/gb-frontend",
   },
   {
     // Add image in './styles/images.css' in #project2
     id: "project2",
-    name: "Project 2",
-    skills: ["HTML, CSS, JS"],
-    url: "https://github.com/kaustubhai",
+    name: "Healthy Homemade",
+    skills: ["React, Express, MongoDB, Node, CSS, JS"],
+    url: "https://github.com/tjphillips08/co-healthy-homemade-frontend",
   },
   {
     // Add image in './styles/images.css' in #project3
