@@ -106,9 +106,9 @@ const projects = [
   {
     // Add image in './styles/images.css' in #project4
     id: "project4",
-    name: "Project 4",
+    name: "Mario Matcher",
     skills: ["HTML, CSS, JS"],
-    url: "https://github.com/kaustubhai",
+    url: "https://github.com/BoognishSaves/Mario-Matcher",
   },
   {
     // Add image in './styles/images.css' in #project5
