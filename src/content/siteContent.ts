@@ -254,7 +254,7 @@ export const siteContent: SiteContent = {
       era: "06 · Another leap",
       title: "Roofing → software engineering",
       thread: "Learning",
-      description: "When the career I expected to retire from stopped looking viable, I moved into roofing and construction, then made another uncomfortable bet on myself. I left work for General Assembly's full-stack engineering program. Twelve intense weeks later, they hired me to help teach software engineering.",
+      description: "After years in insurance, I stepped outside the industry and into roofing and construction. That distance gave me room to think differently about where I wanted to go next. I eventually made another uncomfortable bet on myself, leaving work for General Assembly's full-stack engineering program. Twelve intense weeks later, they hired me to help teach software engineering.",
     },
     {
       era: "07 · Finding the name for it",
