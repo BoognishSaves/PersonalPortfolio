@@ -242,7 +242,7 @@ export const siteContent: SiteContent = {
       era: "04 · Systems in the real world",
       title: "Growing → automation",
       thread: "Systems",
-      description: "Along the way, my brother and I moved into what I think of as future farming: controlled-environment agriculture, consulting, and automated growing systems designed to operate efficiently at scale. I worked across soilless and soil-based systems and used programmable logic controllers to reduce labor through automation. I didn't know it then, but I was already learning to think in systems.",
+      description: "Along the way, my brother and I moved into what I think of as future farming. My focus was building and operating controlled-environment farms — learning the plants, soilless growing, and how to design efficient systems, including a low-energy greenhouse that used thermal banking to grow year-round. My brother took the technical lead on automation, working with an electrician to learn programmable logic controllers — an experience that helped inspire his path into electrical engineering. We came away with different expertise, but I learned how biological, physical, and automated systems could work together at scale.",
     },
     {
       era: "05 · The domain",
