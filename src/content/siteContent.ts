@@ -116,7 +116,9 @@ export const siteContent: SiteContent = {
     },
     {
       name: "Them Mules",
-      relationship: "member",
+      relationship: "trumpet · slide guitar · mandolin",
+      description:
+        "Gothic Americana built around a low-register lead vocal, three-part harmonies, banjo, bass, a small drum kit, and a deliberately dark visual world.",
       artwork: "/TMLogo.PNG",
       media: [
         {
