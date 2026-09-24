@@ -64,7 +64,7 @@ export const siteContent: SiteContent = {
     eyebrow: "Product leader · Builder · Musician · Entrepreneur",
     intro: "I build products, businesses, teams, and occasionally songs.",
     story:
-      "My path runs through insurance, entrepreneurship, software engineering, and product leadership. I learned to build software because I wanted to understand the thing I was asking people to build.",
+      "My path runs through insurance, entrepreneurship, software engineering, and product leadership. I learned to build software because technology was changing an industry I knew deeply, and I wanted to understand how to be part of what came next.",
   },
 
   paths: [
