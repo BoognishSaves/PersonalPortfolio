@@ -114,7 +114,18 @@ export const siteContent: SiteContent = {
         },
       ],
     },
-    { name: "Them Mules", relationship: "member", media: [] },
+    {
+      name: "Them Mules",
+      relationship: "member",
+      artwork: "/TMLogo.PNG",
+      media: [
+        {
+          type: "social",
+          platform: "Instagram",
+          url: "https://www.instagram.com/themmules",
+        },
+      ],
+    },
     {
       name: "The Barefoot Boys",
       relationship: "former member",
