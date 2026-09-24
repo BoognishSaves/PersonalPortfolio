@@ -251,19 +251,26 @@ export const siteContent: SiteContent = {
       description: "After 12 years in catastrophe work, I spent another four as a field-staff adjuster. Insurance became more than a job; it became deep subject-matter expertise in the people, workflows, constraints, and problems I would eventually come back to solve.",
     },
     {
-      era: "06 · Another leap",
+      era: "06 · Building with technology",
+      title: "Insurance → Drone Note Media",
+      thread: "Experimentation",
+      description:
+        "Near the end of my time as a field adjuster, I was sent to drone flight school and earned my FAA Part 107 certification. I came home and started Drone Note Media, initially using aerial technology for property inspections, commercial work, and real estate. When COVID changed how insurance inspections could be performed, the business adapted to meet that need. It has continued evolving with me ever since, becoming a home for occasional technology, media, and engineering projects.",
+    },
+    {
+      era: "07 · Another leap",
       title: "Roofing → software engineering",
       thread: "Learning",
       description: "After years in insurance, I stepped outside the industry and into roofing and construction. That distance gave me room to think differently about where I wanted to go next. I eventually made another uncomfortable bet on myself, leaving work for General Assembly's full-stack engineering program. Twelve intense weeks later, they hired me to help teach software engineering.",
     },
     {
-      era: "07 · Finding the name for it",
+      era: "08 · Finding the name for it",
       title: "Engineering → product",
       thread: "Recognition",
       description: "Learning to code showed me that engineering wasn't the destination. It gave me another language. I went to General Assembly believing I was becoming a software engineer. A career coach saw something different. Looking across the businesses I'd built, the industries I'd worked in, and the problems I'd learned to solve, she pointed out that I'd already been practicing product management for years. Engineering wasn't another identity to adopt; it gave me the technical fluency to add to everything I already knew.",
     },
     {
-      era: "08 · The threads reconnect",
+      era: "09 · The threads reconnect",
       title: "Product → insurance technology",
       thread: "Connection",
       description: "Then an opportunity brought me back to insurance technology. The industry I had spent years inside collided with the technical and product skills I had built after leaving it. What had looked like a collection of career detours became the exact combination I needed. Today, I lead product in the space I once worked in from the field.",
