@@ -66,10 +66,8 @@ export default function Home() {
           {active.id === "music" && <div className="musicExperience">
             {music.filter((project) => project.name === "Gentleman Deluxe").map((project) => (
               <article className="musicFeature" key={project.name}>
-                <div className="musicPoster" aria-hidden="true">
-                  <span>GENTLEMAN</span>
-                  <span>DELUXE</span>
-                  <i>GD</i>
+                <div className="musicPoster">
+                  {project.artwork ? <img src={project.artwork} alt="Gentleman Deluxe artwork" /> : null}
                 </div>
                 <div className="musicFeatureCopy">
                   <p className="musicKicker">Currently playing with</p>
