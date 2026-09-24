@@ -1053,3 +1053,87 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .wake-3 .markStage::before { animation: none; }
 }
+
+
+/* Wake v2: circuitry grows into an ornamental, paisley-like organism. */
+.rootNetwork { opacity: 1; }
+.rootNetwork > i:not(.growth) { display: none; }
+.circuitField { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.circuit {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.circuit path { vector-effect: non-scaling-stroke; }
+.circuit circle { fill: var(--paper); stroke: var(--blue); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; }
+.wake-1 .circuitA { opacity: .13; }
+.wake-2 .circuitA { opacity: .26; }
+.wake-2 .circuitB { opacity: .12; }
+.wake-3 .circuitA { opacity: .38; }
+.wake-3 .circuitB { opacity: .27; }
+.wake-3 .circuitC { opacity: .12; }
+.wake-4 .circuitA, .wake-4 .circuitB { opacity: .48; }
+.wake-4 .circuitC { opacity: .31; }
+.wake-5 .circuitA, .wake-5 .circuitB, .wake-5 .circuitC { opacity: .62; }
+
+.growth {
+  position: absolute;
+  display: block;
+  width: 180px;
+  height: 280px;
+  border: 1px solid rgba(64,184,238,.45);
+  border-radius: 68% 32% 62% 38% / 58% 42% 58% 42%;
+  opacity: 0;
+  transform: scale(.3) rotate(24deg);
+  transition: opacity 1.1s ease, transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.growth::before, .growth::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(64,184,238,.34);
+  border-radius: 62% 38% 65% 35% / 55% 45% 55% 45%;
+}
+.growth::before { inset: 24px; transform: rotate(-19deg); }
+.growth::after { inset: 58px 42px; transform: rotate(32deg); }
+.g1 { top: 20%; right: -40px; }
+.g2 { top: 43%; left: -65px; transform: scale(.3) rotate(-35deg); }
+.g3 { top: 67%; right: 5%; }
+.g4 { top: 84%; left: 8%; transform: scale(.3) rotate(-18deg); }
+.wake-3 .g1 { opacity: .16; transform: scale(.72) rotate(24deg); }
+.wake-4 .g1, .wake-4 .g2 { opacity: .24; transform: scale(.9) rotate(8deg); }
+.wake-5 .growth { opacity: .32; transform: scale(1) rotate(0deg); }
+
+/* Full wake should feel populated, but content remains the foreground. */
+.wake-5 .explorerIntro,
+.wake-5 .pathPanel,
+.wake-5 .heroCopy { position: relative; }
+.wake-5 .explorerIntro::after,
+.wake-5 .pathStatement::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  box-shadow:
+    24px 16px 0 -3px var(--paper), 24px 16px 0 -2px rgba(64,184,238,.65),
+    52px -8px 0 -3px var(--paper), 52px -8px 0 -2px rgba(64,184,238,.42);
+  opacity: .72;
+  pointer-events: none;
+}
+.wake-5 .explorerIntro::after { right: 4%; bottom: 18px; }
+.wake-5 .pathStatement::after { left: 41%; bottom: -22px; }
+.wake-5 .pathTab:not(.isActive):hover { background: rgba(64,184,238,.09); }
+.wake-5 .storyMarker span { box-shadow: 0 0 0 5px rgba(64,184,238,.06); }
+
+@media (max-width: 760px) {
+  .circuitField { width: 150%; left: -25%; }
+  .growth { width: 120px; height: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .growth, .circuit { transition: none; }
+}
