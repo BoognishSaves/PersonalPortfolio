@@ -1,8 +1,8 @@
-# HaddadAddah 2.0
+# HaddadaddaH 2.0
 
 ## Product brief
 
-HaddadAddah is John Paul Haddad's living digital identity, not a resume and not a developer portfolio.
+HaddadaddaH is John Paul Haddad's living digital identity, not a resume and not a developer portfolio.
 
 The primary experience starts when someone meets JP, receives a guitar-pick business card, scans its QR code, and wants to understand who he is and how to stay connected.
 
