@@ -99,7 +99,7 @@ export const siteContent: SiteContent = {
     },
     {
       name: "The High Desert",
-      relationship: "member",
+      relationship: "vocals · guitar · mandolin",
       artwork: "/HD%20Logo.JPEG",
       media: [
         {
@@ -116,9 +116,9 @@ export const siteContent: SiteContent = {
     },
     {
       name: "Them Mules",
-      relationship: "trumpet · slide guitar · mandolin",
+      relationship: "vocals · guitar · mandolin · trumpet · slide guitar",
       description:
-        "Gothic Americana built around a low-register lead vocal, three-part harmonies, banjo, bass, a small drum kit, and a deliberately dark visual world.",
+        "Dark American roots music built around old stories, old fears, and the things people invent to give them shape. Low-register lead vocals and three-part harmonies carried songs that looked backward without trying to live there.",
       artwork: "/TMLogo.PNG",
       media: [
         {
