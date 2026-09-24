@@ -242,7 +242,7 @@ export const siteContent: SiteContent = {
       era: "04 · Systems in the real world",
       title: "Growing → automation",
       thread: "Systems",
-      description: "Along the way, my brother and I moved into automated agricultural systems. We worked across soil and soilless growing, integrated pest management, automation, and consulting — testing different ways to make controlled environments more efficient and scalable. My focus was on the agricultural systems themselves, while my brother developed much of the technical automation expertise. It was another lesson in how different disciplines can come together to solve a complex problem.",
+      description: "Along the way, my brother and I moved into controlled-environment agriculture with a belief that more food could be grown closer to where it was consumed. We worked across soil and soilless growing systems, integrated pest management, environmental controls, and automation, while also consulting on agricultural systems. My focus was cultivation and farm design; my brother developed much of the technical automation expertise. It was an early lesson in designing interconnected systems around efficiency, scale, and a real-world constraint.",
     },
     {
       era: "05 · The domain",
