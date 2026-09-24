@@ -172,7 +172,27 @@ export default function Home() {
         </aside>
       )}
       <div className="rootNetwork" aria-hidden="true">
-        <i /><i /><i /><i /><i /><i />
+        <svg className="circuitField" viewBox="0 0 1200 1800" preserveAspectRatio="none">
+          <g className="circuit circuitA">
+            <path d="M-40 170 H180 Q240 170 240 230 V330 Q240 390 300 390 H470 Q530 390 530 450 V520" />
+            <path d="M70 520 H180 Q230 520 230 570 V680 Q230 735 285 735 H410" />
+            <path d="M240 330 C350 270 390 190 330 115 C285 58 190 92 205 160 C218 220 320 215 355 165" />
+            <circle cx="530" cy="520" r="7" /><circle cx="410" cy="735" r="7" />
+          </g>
+          <g className="circuit circuitB">
+            <path d="M1240 470 H1040 Q980 470 980 530 V640 Q980 700 920 700 H760 Q700 700 700 760 V850" />
+            <path d="M1130 850 H1010 Q955 850 955 905 V1010 Q955 1065 900 1065 H790" />
+            <path d="M980 640 C870 580 825 500 875 425 C920 355 1025 390 1008 460 C994 520 900 520 862 470" />
+            <circle cx="700" cy="850" r="7" /><circle cx="790" cy="1065" r="7" />
+          </g>
+          <g className="circuit circuitC">
+            <path d="M-30 1110 H150 Q210 1110 210 1170 V1280 Q210 1340 270 1340 H445 Q505 1340 505 1400 V1500" />
+            <path d="M1230 1370 H1080 Q1020 1370 1020 1430 V1530 Q1020 1590 960 1590 H815" />
+            <path d="M505 1400 C600 1335 630 1240 570 1185 C515 1135 430 1170 445 1235 C460 1295 555 1295 590 1240" />
+            <circle cx="505" cy="1500" r="7" /><circle cx="815" cy="1590" r="7" />
+          </g>
+        </svg>
+        <i className="growth g1" /><i className="growth g2" /><i className="growth g3" /><i className="growth g4" />
       </div>
     </main>
   );
