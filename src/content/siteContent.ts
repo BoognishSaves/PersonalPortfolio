@@ -15,6 +15,7 @@ export type MusicProject = {
   name: string;
   relationship: string;
   description?: string;
+  artwork?: string;
   releases?: MusicRelease[];
   media: MediaItem[];
 };
@@ -113,6 +114,7 @@ export const siteContent: SiteContent = {
       relationship: "band member for Aaron Howell's solo project",
       description:
         "Aaron Howell's solo-acoustic project, blending satirical and sentimental songwriting across country, folk, power pop, yacht rock, and more.",
+      artwork: "/IMG_7949.JPG",
       releases: [{ title: "Way High", type: "album", year: 2025, tracks: 12 }],
       media: [
         {
