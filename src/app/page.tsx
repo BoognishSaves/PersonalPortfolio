@@ -73,7 +73,7 @@ export default function Home() {
                 <div className="musicFeatureCopy">
                   <p className="musicKicker">{project.name === "Gentleman Deluxe" ? "Currently playing with" : project.name === "The High Desert" ? "The High Desert" : project.name === "Them Mules" ? "Gothic Americana" : "Part of the story"}</p>
                   <h3>{project.name}</h3>
-                  <p className="musicRole">{project.relationship}</p>
+                  <p className="musicRole"><span>Role</span>{project.relationship}</p>
                   {project.description && <p className="musicDescription">{project.description}</p>}
                   {project.releases?.[0] && (
                     <p className="musicRelease"><span>Latest release</span><strong>{project.releases[0].title}</strong><em>{project.releases[0].year}{project.releases[0].tracks ? ` · ${project.releases[0].tracks} tracks` : ""}</em></p>
