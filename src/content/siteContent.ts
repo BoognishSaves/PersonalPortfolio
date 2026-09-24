@@ -259,8 +259,8 @@ export const siteContent: SiteContent = {
     {
       era: "07 · Finding the name for it",
       title: "Engineering → product",
-      thread: "Synthesis",
-      description: "Learning to code showed me that engineering wasn't the destination. It gave me another language. Through that transition I met a mentor who eventually hired me into product. Entrepreneurship, customer empathy, technical fluency, and domain thinking finally had a name and a place to work together.",
+      thread: "Recognition",
+      description: "Learning to code showed me that engineering wasn't the destination. It gave me another language. I went to General Assembly believing I was becoming a software engineer. A career coach saw something different. Looking across the businesses I'd built, the industries I'd worked in, and the problems I'd learned to solve, she pointed out that I'd already been practicing product management for years. Engineering wasn't another identity to adopt; it gave me the technical fluency to add to everything I already knew.",
     },
     {
       era: "08 · The threads reconnect",
