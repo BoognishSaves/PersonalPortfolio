@@ -130,12 +130,14 @@ export const siteContent: SiteContent = {
     },
     {
       name: "The Barefoot Boys",
-      relationship: "former member",
-      media: [{ type: "audio-file", platform: "archive" }],
+      relationship: "vocals · guitar · harmonica · mandolin",
+      description:
+        "A bluegrass band with one foot at the beach — traditional acoustic instrumentation alongside bluegrass takes on the country and coastal songs we loved at the time.",
+      media: [],
     },
     {
       name: "Gentleman Deluxe",
-      relationship: "band member for Aaron Howell's solo project",
+      relationship: "vocals · guitar · mandolin",
       description:
         "Aaron Howell's solo-acoustic project, blending satirical and sentimental songwriting across country, folk, power pop, yacht rock, and more.",
       artwork: "/IMG_7949.JPG",
