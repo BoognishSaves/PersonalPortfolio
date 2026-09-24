@@ -191,8 +191,20 @@ export default function Home() {
             <path d="M505 1400 C600 1335 630 1240 570 1185 C515 1135 430 1170 445 1235 C460 1295 555 1295 590 1240" />
             <circle cx="505" cy="1500" r="7" /><circle cx="815" cy="1590" r="7" />
           </g>
+          <g className="circuit circuitD">
+            <path d="M120 80 V145 Q120 195 170 195 H310 Q365 195 365 250 V300" />
+            <path d="M1080 250 V315 Q1080 365 1030 365 H900 Q845 365 845 420 V470" />
+            <path d="M90 930 H145 Q195 930 195 880 V825 Q195 775 245 775 H330" />
+            <path d="M1110 1190 H1050 Q1000 1190 1000 1240 V1300 Q1000 1350 950 1350 H865" />
+            <circle cx="120" cy="80" r="5" /><circle cx="365" cy="300" r="5" /><circle cx="845" cy="470" r="5" /><circle cx="330" cy="775" r="5" />
+          </g>
+          <g className="circuit circuitPulse">
+            <path pathLength="1" d="M25 610 C180 610 170 470 330 470 S480 610 610 610 S790 480 930 520 S1050 650 1180 650" />
+            <path pathLength="1" d="M80 1640 C230 1540 350 1690 505 1590 S770 1510 910 1610 S1080 1690 1190 1570" />
+          </g>
         </svg>
         <i className="growth g1" /><i className="growth g2" /><i className="growth g3" /><i className="growth g4" />
+        <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
     </main>
   );
