@@ -224,13 +224,13 @@ export const siteContent: SiteContent = {
       era: "01 · The first leap",
       title: "Art school → entrepreneurship",
       thread: "Risk",
-      description: "I wasn't a great student, and art school never quite fit. Gordon saw something in me that I didn't yet know how to use and gave me half of Raptor Management Solutions. I dropped out of college to build it. The business taught me how to sell an idea, operate in business circles, and accept that risk carries both reward and consequence.",
+      description: "I wasn't a great student, and art school never quite fit. An early mentor saw something in me that I didn't yet know how to use and brought me into a business serving the hotel industry through lead generation, training, secret shopping, and other services. I dropped out of college to help build it. The experience taught me how to sell an idea, operate in business circles, and accept that risk carries both reward and consequence.",
     },
     {
       era: "02 · Building businesses",
       title: "Hotels → restaurants",
       thread: "Entrepreneurship",
-      description: "RM Solutions grew from hotel sales leads into training, secret shopping, and consulting. That led us into The Great Lakes Fish House, which we helped open and staff in less than 90 days. Growth came fast, then capital disappeared faster. It was an early education in execution, scale, and what happens when a business gets stretched too thin.",
+      description: "The hotel business grew beyond lead generation into training, secret shopping, consulting, and other services. That work eventually led us into launching a restaurant, which we helped open and staff in less than 90 days. Growth came fast, then capital disappeared faster. It was an early education in execution, scale, and what happens when a business gets stretched too thin.",
     },
     {
       era: "03 · A guitar changes the path",
@@ -242,13 +242,13 @@ export const siteContent: SiteContent = {
       era: "04 · Systems in the real world",
       title: "Growing → automation",
       thread: "Systems",
-      description: "Along the way, my brother and I built Rocky Mountain Organics in Colorado. I focused on controlled-environment agriculture and learned to automate growing systems with programmable logic controllers because labor was expensive. I didn't know it then, but I was already learning to think in systems.",
+      description: "Along the way, my brother and I moved into what I think of as future farming: controlled-environment agriculture, consulting, and automated growing systems designed to operate efficiently at scale. I worked across soilless and soil-based systems and used programmable logic controllers to reduce labor through automation. I didn't know it then, but I was already learning to think in systems.",
     },
     {
       era: "05 · The domain",
       title: "Catastrophe → field staff",
       thread: "Expertise",
-      description: "After 12 years in catastrophe work, I spent another four as a field-staff adjuster at American Family. Insurance became more than a job; it became deep subject-matter expertise in the people, workflows, constraints, and problems I would eventually come back to solve.",
+      description: "After 12 years in catastrophe work, I spent another four as a field-staff adjuster. Insurance became more than a job; it became deep subject-matter expertise in the people, workflows, constraints, and problems I would eventually come back to solve.",
     },
     {
       era: "06 · Another leap",
@@ -260,13 +260,13 @@ export const siteContent: SiteContent = {
       era: "07 · Finding the name for it",
       title: "Engineering → product",
       thread: "Synthesis",
-      description: "Learning to code showed me that engineering wasn't the destination. It gave me another language. Through General Assembly I met Mario Giannini, who eventually hired me into product. Entrepreneurship, customer empathy, technical fluency, and domain thinking finally had a name and a place to work together.",
+      description: "Learning to code showed me that engineering wasn't the destination. It gave me another language. Through that transition I met a mentor who eventually hired me into product. Entrepreneurship, customer empathy, technical fluency, and domain thinking finally had a name and a place to work together.",
     },
     {
       era: "08 · The threads reconnect",
       title: "Product → insurance technology",
       thread: "Connection",
-      description: "Then Verisk reached out. The industry I had spent years inside collided with the technical and product skills I had built after leaving it. What had looked like a collection of career detours became the exact combination I needed. Today, I lead product in the space I once worked in from the field.",
+      description: "Then an opportunity brought me back to insurance technology. The industry I had spent years inside collided with the technical and product skills I had built after leaving it. What had looked like a collection of career detours became the exact combination I needed. Today, I lead product in the space I once worked in from the field.",
     },
   ],
 
