@@ -29,7 +29,6 @@ export default function Home() {
         </div>
         <div className="markStage" aria-label="JP monogram, the J and P combine to form an H">
           <img className="mark" src="/haddadaddah-micro.svg" alt="JP monogram forming an H" />
-          <span className="markHint">J + P / H</span>
         </div>
       </section>
 
