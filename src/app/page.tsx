@@ -75,15 +75,14 @@ export default function Home() {
                   <p className="musicKicker">Currently playing with</p>
                   <h3>{project.name}</h3>
                   <p className="musicRole">{project.relationship}</p>
-                  {"description" in project && <p className="musicDescription">{project.description}</p>}
-                  {"releases" in project && project.releases?.[0] && (
-                    <p className="musicRelease"><span>Latest release</span><strong>{project.releases[0].title}</strong><em>{project.releases[0].year} · {project.releases[0].tracks} tracks</em></p>
+                  {project.description && <p className="musicDescription">{project.description}</p>}
+                  {project.releases?.[0] && (
+                    <p className="musicRelease"><span>Latest release</span><strong>{project.releases[0].title}</strong><em>{project.releases[0].year}{project.releases[0].tracks ? ` · ${project.releases[0].tracks} tracks` : ""}</em></p>
                   )}
                   <div className="musicActions">
-                    {project.media.map((item) => {
-                      const url = "url" in item && typeof item.url === "string" ? item.url : undefined;
-                      return url ? <a key={item.platform} href={url} target="_blank" rel="noreferrer">{item.platform} ↗</a> : null;
-                    })}
+                    {project.media.map((item) => item.url ? (
+                      <a key={item.platform} href={item.url} target="_blank" rel="noreferrer">{item.platform} ↗</a>
+                    ) : null)}
                   </div>
                 </div>
               </article>
