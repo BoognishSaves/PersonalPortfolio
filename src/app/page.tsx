@@ -19,8 +19,10 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const timer = window.setTimeout(() => awaken("time", 1), 120000);
-    return () => window.clearTimeout(timer);
+    const timers = [1, 2, 3, 4, 5].map((minute) =>
+      window.setTimeout(() => awaken(`time-${minute}`, 1), minute * 60000)
+    );
+    return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, []);
 
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
@@ -171,6 +173,9 @@ export default function Home() {
           <button type="button" onClick={() => { discoveries.current.add("shortcut"); setWake(5); }}>Wake it now</button>
         </aside>
       )}
+      <div className="contentVines" aria-hidden="true">
+        <i className="vine v1" /><i className="vine v2" /><i className="vine v3" /><i className="vine v4" />
+      </div>
       <div className="rootNetwork" aria-hidden="true">
         <svg className="circuitField" viewBox="0 0 1200 1800" preserveAspectRatio="none">
           <g className="circuit circuitA">
