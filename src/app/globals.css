@@ -658,3 +658,156 @@ footer {
 .musicFeature.isJoJa .musicDescription {
   max-width: 650px;
 }
+
+
+/* Building: the learning archive — early code shown as evidence of the leap, not polished case studies */
+.buildArchive {
+  border-top: 1px solid var(--line);
+}
+.buildArchiveIntro {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.buildArchiveIntro span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.buildArchiveIntro p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-style: italic;
+}
+.buildGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+.buildCard {
+  position: relative;
+  min-height: 290px;
+  padding: 30px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background .3s ease, color .3s ease;
+}
+.buildCard:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.buildCard::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% -48% 38%;
+  height: 78%;
+  border: 1px solid rgba(64,184,238,.22);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+  z-index: -1;
+}
+.buildCard::after {
+  content: "</>";
+  position: absolute;
+  right: 26px;
+  bottom: 14px;
+  color: rgba(12,20,22,.055);
+  font: 700 clamp(54px,7vw,90px)/1 monospace;
+  letter-spacing: -.12em;
+  transition: color .3s ease, transform .55s cubic-bezier(.2,.8,.2,1);
+  z-index: -1;
+}
+.buildCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 38px;
+}
+.buildChapter {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.buildCardTop b {
+  font-size: 16px;
+  font-weight: 400;
+  transition: transform .25s ease;
+}
+.buildCard > strong {
+  display: block;
+  max-width: 90%;
+  font-size: clamp(28px,3.2vw,42px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+.buildCard > p {
+  max-width: 500px;
+  margin: 18px 0 34px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: color .3s ease;
+}
+.buildStack {
+  display: block;
+  margin-top: auto;
+  color: var(--muted);
+  font: 600 10px/1.4 monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color .3s ease;
+}
+.buildCard:hover,
+.buildCard:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  outline: none;
+}
+.buildCard:hover > p,
+.buildCard:focus-visible > p,
+.buildCard:hover .buildStack,
+.buildCard:focus-visible .buildStack {
+  color: rgba(245,244,239,.68);
+}
+.buildCard:hover::before,
+.buildCard:focus-visible::before {
+  transform: rotate(-5deg) translate(-16px,-12px) scale(1.08);
+}
+.buildCard:hover::after,
+.buildCard:focus-visible::after {
+  color: rgba(64,184,238,.11);
+  transform: translateY(-5px);
+}
+.buildCard:hover .buildCardTop b,
+.buildCard:focus-visible .buildCardTop b {
+  transform: translate(4px,-4px);
+}
+@media (max-width: 760px) {
+  .buildArchiveIntro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .buildGrid {
+    grid-template-columns: 1fr;
+  }
+  .buildCard,
+  .buildCard:nth-child(odd) {
+    min-height: 0;
+    padding: 24px 4px 26px;
+    border-right: 0;
+  }
+  .buildCardTop { margin-bottom: 26px; }
+  .buildCard > strong { font-size: 34px; }
+  .buildCard > p { margin-bottom: 28px; padding-right: 26px; }
+}
