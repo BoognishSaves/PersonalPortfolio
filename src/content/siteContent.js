@@ -62,8 +62,34 @@ export const siteContent = {
     },
     {
       name: "Gentleman Deluxe",
-      relationship: "band member for a friend's solo project",
-      media: [],
+      relationship: "band member for Aaron Howell's solo project",
+      description:
+        "Aaron Howell's solo-acoustic project, blending satirical and sentimental songwriting across country, folk, power pop, yacht rock, and more.",
+      releases: [
+        {
+          title: "Way High",
+          type: "album",
+          year: 2025,
+          tracks: 12,
+        },
+      ],
+      media: [
+        {
+          type: "audio",
+          platform: "Spotify",
+          url: "https://open.spotify.com/artist/6SXjmInzwvXQ8Hjc9dhlgg",
+        },
+        {
+          type: "video",
+          platform: "YouTube",
+          url: "https://youtu.be/sJzNyScgotM",
+        },
+        {
+          type: "social",
+          platform: "Instagram",
+          url: "https://www.instagram.com/gentlemandeluxemusic",
+        },
+      ],
     },
   ],
 
