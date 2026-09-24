@@ -66,12 +66,12 @@ export default function Home() {
 
           {active.id === "music" && <div className="musicExperience">
             {music.filter((project) => project.name === activeMusic).map((project) => (
-              <article className={`musicFeature ${project.name === "The High Desert" ? "isHighDesert" : ""}`} key={project.name}>
+              <article className={`musicFeature ${project.name === "The High Desert" ? "isHighDesert" : project.name === "Them Mules" ? "isThemMules" : ""}`} key={project.name}>
                 <div className="musicPoster">
                   {project.artwork ? <img src={project.artwork} alt={`${project.name} artwork`} /> : <span className="musicPlaceholder">More to come.</span>}
                 </div>
                 <div className="musicFeatureCopy">
-                  <p className="musicKicker">{project.name === "Gentleman Deluxe" ? "Currently playing with" : project.name === "The High Desert" ? "The High Desert" : "Part of the story"}</p>
+                  <p className="musicKicker">{project.name === "Gentleman Deluxe" ? "Currently playing with" : project.name === "The High Desert" ? "The High Desert" : project.name === "Them Mules" ? "Gothic Americana" : "Part of the story"}</p>
                   <h3>{project.name}</h3>
                   <p className="musicRole">{project.relationship}</p>
                   {project.description && <p className="musicDescription">{project.description}</p>}
