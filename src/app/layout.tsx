@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   description:
     "Product leader, builder, entrepreneur, and musician. The living digital identity of John Paul Haddad.",
   metadataBase: new URL("https://haddadaddah.com"),
+  icons: {
+    icon: [{ url: "/haddadaddah-logo.svg", type: "image/svg+xml" }],
+    shortcut: "/haddadaddah-logo.svg",
+    apple: "/haddadaddah-logo.svg",
+  },
   openGraph: {
     title: "John Paul Haddad | HaddadaddaH",
     description: "Product leader. Builder. Entrepreneur. Musician.",
