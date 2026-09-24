@@ -538,3 +538,12 @@ footer {
   border-color: #9fd1cf;
   color: #122126;
 }
+
+
+/* Barefoot Boys artwork is portrait-oriented; preserve the full surfboard silhouette. */
+.musicFeature.isBarefootBoys .musicPoster img {
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(12px, 2vw, 24px);
+  z-index: 1;
+}
