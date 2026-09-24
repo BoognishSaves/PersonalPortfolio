@@ -100,7 +100,7 @@ export const siteContent: SiteContent = {
     {
       name: "The High Desert Band",
       relationship: "member",
-      artwork: "/HD logo.svg",
+      artwork: "/HD%20Logo.JPEG",
       media: [
         {
           type: "audio",
