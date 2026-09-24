@@ -162,59 +162,37 @@ h1 {
   letter-spacing: .12em;
   color: var(--muted);
 }
-.pathGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-bottom: 1px solid var(--line);
-}
-.pathCard {
-  min-height: 150px;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: end;
-  gap: 12px;
-  text-decoration: none;
-  border-right: 1px solid var(--line);
-  transition: background .2s ease;
-}
-.pathCard:last-child { border-right: 0; }
-.pathCard:hover, .pathCard:focus-visible { background: white; }
-.pathNumber { font-size: 10px; color: var(--muted); align-self: start; }
-.pathLabel { font-size: clamp(22px, 2.4vw, 34px); letter-spacing: -.05em; }
-.pathArrow { font-size: 20px; transition: transform .2s ease; }
-.pathCard:hover .pathArrow { transform: translate(4px, 4px); }
-.storyIntro {
-  padding: 88px 0;
-  border-bottom: 1px solid var(--line);
-}
-.storyIntro p {
-  max-width: 920px;
-  margin: 0;
-  font-size: clamp(30px, 4.5vw, 64px);
-  line-height: 1.02;
-  letter-spacing: -.055em;
-}
-.pathDetails { display: grid; grid-template-columns: 1fr 1fr; }
-.pathDetail {
-  min-height: 340px;
-  padding: 48px 36px 56px 0;
-  border-bottom: 1px solid var(--line);
-}
-.pathDetail:nth-child(odd) { border-right: 1px solid var(--line); padding-right: 48px; }
-.pathDetail:nth-child(even) { padding-left: 48px; }
-.pathDetail h2 {
-  margin: 0 0 22px;
-  font-size: clamp(32px, 4vw, 54px);
-  line-height: .98;
-  letter-spacing: -.05em;
-}
-.pathDetail > p:last-child {
-  max-width: 520px;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.5;
-}
+.explorer { border-bottom: 1px solid var(--line); }
+.explorerIntro { padding: 72px 0 52px; max-width: 930px; }
+.explorerIntro > p:last-child { margin: 0; font-size: clamp(28px, 4vw, 54px); line-height: 1.03; letter-spacing: -.05em; }
+.pathTabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.pathTab { min-height: 104px; padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; text-align: left; }
+.pathTab:last-child { border-right: 0; }
+.pathTab span { color: var(--muted); font-size: 10px; }
+.pathTab strong { font-size: clamp(21px, 2.2vw, 30px); letter-spacing: -.045em; }
+.pathTab:hover, .pathTab:focus-visible { background: rgba(255,255,255,.55); }
+.pathTab.isActive { background: var(--ink); color: var(--paper); }
+.pathTab.isActive span { color: var(--blue); }
+.pathPanel { padding: 52px 0 68px; animation: panelIn .32s ease both; }
+@keyframes panelIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.pathStatement { display: grid; grid-template-columns: .42fr 1.15fr 1fr; gap: 32px; align-items: start; margin-bottom: 46px; }
+.pathStatement h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: .94; letter-spacing: -.055em; }
+.pathStatement > p:last-child { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.5; max-width: 500px; }
+.evidenceGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.evidenceGrid article { padding: 24px 28px 0 0; border-right: 1px solid var(--line); min-height: 160px; }
+.evidenceGrid article + article { padding-left: 28px; }
+.evidenceGrid article:last-child { border-right: 0; }
+.evidenceGrid span, .projectRail span, .musicRail span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+.evidenceGrid strong { font-size: 24px; letter-spacing: -.04em; }
+.evidenceGrid p { color: var(--muted); line-height: 1.45; max-width: 310px; }
+.projectRail, .musicRail { border-top: 1px solid var(--line); }
+.projectRail a, .musicRail a, .musicRail > div { display: grid; grid-template-columns: 1fr 1.2fr auto; align-items: center; min-height: 76px; border-bottom: 1px solid var(--line); text-decoration: none; transition: padding .2s ease, background .2s ease; }
+.projectRail a:hover, .musicRail a:hover { padding-left: 12px; background: rgba(255,255,255,.55); }
+.projectRail span, .musicRail span { margin: 0; }
+.projectRail strong, .musicRail strong { font-size: 22px; letter-spacing: -.035em; }
+.projectRail b, .musicRail b { font-size: 12px; font-weight: 500; }
+.storyLine { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; border-top: 1px solid var(--line); padding-top: 28px; font-size: clamp(25px, 4vw, 48px); letter-spacing: -.05em; }
+.storyLine i { color: var(--blue); font-style: normal; }
 footer {
   min-height: 100px;
   display: flex;
@@ -244,19 +222,20 @@ footer {
   }
   .mark { width: 190px; }
   .markHint { bottom: 4px; }
-  .pathGrid { grid-template-columns: 1fr 1fr; }
-  .pathCard { min-height: 112px; padding: 14px; }
-  .pathCard:nth-child(2) { border-right: 0; }
-  .pathCard:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .pathLabel { font-size: 24px; }
-  .storyIntro { padding: 60px 0; }
-  .storyIntro p { font-size: 34px; }
-  .pathDetails { grid-template-columns: 1fr; }
-  .pathDetail, .pathDetail:nth-child(odd), .pathDetail:nth-child(even) {
-    min-height: 0;
-    padding: 46px 0;
-    border-right: 0;
-  }
+  .explorerIntro { padding: 52px 0 36px; }
+  .explorerIntro > p:last-child { font-size: 32px; }
+  .pathTabs { grid-template-columns: 1fr 1fr; }
+  .pathTab { min-height: 84px; }
+  .pathTab:nth-child(2) { border-right: 0; }
+  .pathTab:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .pathPanel { padding: 38px 0 48px; }
+  .pathStatement { grid-template-columns: 1fr; gap: 12px; margin-bottom: 34px; }
+  .pathStatement .sectionLabel { margin-bottom: 2px; }
+  .evidenceGrid { grid-template-columns: 1fr; }
+  .evidenceGrid article, .evidenceGrid article + article { min-height: 0; padding: 22px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .projectRail a, .musicRail a, .musicRail > div { grid-template-columns: 1fr auto; gap: 6px 12px; padding: 15px 0; }
+  .projectRail span, .musicRail span { grid-column: 1 / -1; }
+  .storyLine { font-size: 27px; }
   footer { min-height: 80px; }
 }
 
