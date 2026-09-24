@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import siteContent from "../content/siteContent";
 
 export default function Home() {
@@ -8,12 +8,27 @@ export default function Home() {
   const [brandOpen, setBrandOpen] = useState(false);
   const [activePath, setActivePath] = useState("product");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
+  const [wake, setWake] = useState(0);
+  const [secretOpen, setSecretOpen] = useState(false);
+  const discoveries = useRef(new Set<string>());
+
+  const awaken = (key: string, amount = 1) => {
+    if (discoveries.current.has(key)) return;
+    discoveries.current.add(key);
+    setWake((level) => Math.min(5, level + amount));
+  };
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => awaken("time", 1), 120000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
   return (
-    <main className="shell">
+    <main className={`shell wake wake-${wake}`}>
       <header className="topbar">
-        <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => setBrandOpen((open) => !open)}>
+        <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); awaken("brand"); }}>
           <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
@@ -28,9 +43,9 @@ export default function Home() {
             {socials.map((social) => <a key={social.label} href={social.url} target="_blank" rel="noreferrer">{social.label}</a>)}
           </div>
         </div>
-        <div className="markStage" aria-label="JP monogram, the J and P combine to form an H">
+        <button className="markStage" type="button" aria-label="JP monogram, the J and P combine to form an H" onClick={() => awaken("mark")}>
           <img className="mark" src="/haddadaddah-micro.svg" alt="JP monogram forming an H" />
-        </div>
+        </button>
       </section>
 
       <section className="explorer" aria-labelledby="explore-title">
@@ -41,7 +56,7 @@ export default function Home() {
 
         <div className="pathTabs" role="tablist" aria-label="Explore John Paul's work">
           {paths.map((path, index) => (
-            <button key={path.id} type="button" role="tab" aria-selected={activePath === path.id} className={`pathTab ${activePath === path.id ? "isActive" : ""}`} onClick={() => setActivePath(path.id)}>
+            <button key={path.id} type="button" role="tab" aria-selected={activePath === path.id} className={`pathTab ${activePath === path.id ? "isActive" : ""}`} onClick={() => { setActivePath(path.id); awaken(`path-${path.id}`); }}>
               <span>0{index + 1}</span><strong>{path.label}</strong>
             </button>
           ))}
@@ -105,7 +120,7 @@ export default function Home() {
             <div className="musicArchive">
               <p className="sectionLabel">The music story</p>
               {music.filter((project) => project.name !== activeMusic).map((project) => (
-                <button type="button" key={project.name} onClick={() => setActiveMusic(project.name)}>
+                <button type="button" key={project.name} onClick={() => { setActiveMusic(project.name); awaken(`music-${project.name}`); }}>
                   <span>{project.relationship}</span><strong>{project.name}</strong><b aria-hidden="true">↗</b>
                 </button>
               ))}
@@ -142,7 +157,23 @@ export default function Home() {
         </div>
       </section>
 
-      <footer><span>HaddadaddaH</span><span>John Paul Haddad</span></footer>
+      <footer>
+        <button className="secretSeed" type="button" aria-expanded={secretOpen} onClick={() => { setSecretOpen((open) => !open); awaken("secret", 2); }}>
+          <span>HaddadaddaH</span>
+          <i aria-hidden="true">·</i>
+        </button>
+        <span>John Paul Haddad</span>
+      </footer>
+      {secretOpen && (
+        <aside className="secretNote" aria-live="polite">
+          <span>There is another way through.</span>
+          <strong>Reverse it. Spin it. Walk all four paths.</strong>
+          <button type="button" onClick={() => { discoveries.current.add("shortcut"); setWake(5); }}>Wake it now</button>
+        </aside>
+      )}
+      <div className="rootNetwork" aria-hidden="true">
+        <i /><i /><i /><i /><i /><i />
+      </div>
     </main>
   );
 }
