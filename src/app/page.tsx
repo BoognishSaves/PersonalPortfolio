@@ -1,14 +1,26 @@
+"use client";
+
+import { useState } from "react";
 import siteContent from "../content/siteContent";
 
 export default function Home() {
   const { identity, paths, socials } = siteContent;
+  const [brandOpen, setBrandOpen] = useState(false);
 
   return (
     <main className="shell">
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="HaddadaddaH home">
-          Haddad<span>adda</span>H
-        </a>
+        <button
+          className={`brand ${brandOpen ? "isOpen" : ""}`}
+          type="button"
+          aria-expanded={brandOpen}
+          aria-label="Reveal the HaddadaddaH wordmark"
+          onClick={() => setBrandOpen((open) => !open)}
+        >
+          <span className="brandForward">Haddad</span>
+          <span className="brandAxis" aria-hidden="true" />
+          <span className="brandReverse">daddaH</span>
+        </button>
         <a className="quietLink" href="#connect">Connect</a>
       </header>
 
