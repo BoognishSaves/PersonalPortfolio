@@ -2,6 +2,7 @@ export const siteContent = {
   identity: {
     name: "John Paul Haddad",
     brand: "HaddadaddaH",
+    logoConcept: "JP letterforms combine to form an H",
     eyebrow: "Product leader · Builder · Musician · Entrepreneur",
     intro:
       "I build products, businesses, teams, and occasionally songs.",
