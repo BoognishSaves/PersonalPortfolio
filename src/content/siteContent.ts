@@ -40,6 +40,8 @@ type SiteContent = {
     name: string;
     stack: string[];
     url: string;
+    chapter: string;
+    description: string;
   }>;
   socials: Array<{
     label: string;
@@ -72,7 +74,7 @@ export const siteContent: SiteContent = {
       label: "Building",
       title: "I learned to build the software, too.",
       summary:
-        "Engineering is part of how I became a stronger product leader. These projects mark the transition from insurance into technology.",
+        "After nearly two decades building expertise in insurance, I committed to learning something new. These are the projects from that leap — not polished portfolio pieces, but the actual code from where I started. On the other side, I found the two worlds were more connected than I expected.",
     },
     {
       id: "music",
@@ -166,12 +168,48 @@ export const siteContent: SiteContent = {
   ],
 
   engineeringProjects: [
-    { name: "Garden Buddy", stack: ["React", "Express", "MongoDB", "Node"], url: "https://github.com/BoognishSaves/gb-frontend" },
-    { name: "Healthy Homemade", stack: ["React", "Express", "MongoDB", "Node"], url: "https://github.com/tjphillips08/co-healthy-homemade-frontend" },
-    { name: "Guitar Collector", stack: ["Python", "Django"], url: "https://github.com/BoognishSaves/guitar_collector" },
-    { name: "Mario Matcher", stack: ["HTML", "CSS", "JavaScript"], url: "https://github.com/BoognishSaves/Mario-Matcher" },
-    { name: "Ranter", stack: ["Node", "Express", "MongoDB"], url: "https://github.com/BoognishSaves/Ranter" },
-    { name: "Three JS Portfolio", stack: ["JavaScript", "Three.js"], url: "https://github.com/BoognishSaves/threejsportfolio" },
+    {
+      name: "Mario Matcher",
+      stack: ["HTML", "CSS", "JavaScript"],
+      url: "https://github.com/BoognishSaves/Mario-Matcher",
+      chapter: "01 · First build",
+      description: "A solo flip-card game and the first thing I ever built. Simple, rough, and the point where software stopped being something other people made.",
+    },
+    {
+      name: "Guitar Collector",
+      stack: ["Python", "Django"],
+      url: "https://github.com/BoognishSaves/guitar_collector",
+      chapter: "02 · New language",
+      description: "A solo database exercise and my only Python/Django build — practice in learning a different stack and thinking about data.",
+    },
+    {
+      name: "Ranter",
+      stack: ["Node", "Express", "MongoDB"],
+      url: "https://github.com/BoognishSaves/Ranter",
+      chapter: "03 · Leading the build",
+      description: "A three-person anonymous Twitter-style project that became mostly my build. An early lesson in carrying both the product idea and the team forward.",
+    },
+    {
+      name: "Healthy Homemade",
+      stack: ["React", "Express", "MongoDB", "Node"],
+      url: "https://github.com/tjphillips08/co-healthy-homemade-frontend",
+      chapter: "04 · Real business",
+      description: "A school team project built around my wife's personal-chef business. It never became the tool she needed — which was its own useful lesson about building versus solving.",
+    },
+    {
+      name: "Garden Buddy",
+      stack: ["React", "Express", "MongoDB", "Node"],
+      url: "https://github.com/BoognishSaves/gb-frontend",
+      chapter: "05 · Domain → software",
+      description: "A digital take on integrated pest management for 10,000-square-foot growing facilities: guide a novice to capture useful field observations so a professional could assess garden health at scale.",
+    },
+    {
+      name: "Three JS Portfolio",
+      stack: ["JavaScript", "Three.js"],
+      url: "https://github.com/BoognishSaves/threejsportfolio",
+      chapter: "06 · Follow along",
+      description: "A deliberate YouTube follow-along rather than an original product — a way to learn unfamiliar 3D tools by rebuilding someone else's work.",
+    },
   ],
 
   socials: [
