@@ -7,6 +7,7 @@ export default function Home() {
   const { identity, paths, socials, music, engineeringProjects } = siteContent;
   const [brandOpen, setBrandOpen] = useState(false);
   const [activePath, setActivePath] = useState("product");
+  const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
   return (
@@ -64,13 +65,13 @@ export default function Home() {
           </div>}
 
           {active.id === "music" && <div className="musicExperience">
-            {music.filter((project) => project.name === "Gentleman Deluxe").map((project) => (
-              <article className="musicFeature" key={project.name}>
+            {music.filter((project) => project.name === activeMusic).map((project) => (
+              <article className={`musicFeature ${project.name === "The High Desert Band" ? "isHighDesert" : ""}`} key={project.name}>
                 <div className="musicPoster">
-                  {project.artwork ? <img src={project.artwork} alt="Gentleman Deluxe artwork" /> : null}
+                  {project.artwork ? <img src={project.artwork} alt={`${project.name} artwork`} /> : <span className="musicPlaceholder">More to come.</span>}
                 </div>
                 <div className="musicFeatureCopy">
-                  <p className="musicKicker">Currently playing with</p>
+                  <p className="musicKicker">{project.name === "Gentleman Deluxe" ? "Currently playing with" : "From the archive"}</p>
                   <h3>{project.name}</h3>
                   <p className="musicRole">{project.relationship}</p>
                   {project.description && <p className="musicDescription">{project.description}</p>}
@@ -86,9 +87,11 @@ export default function Home() {
               </article>
             ))}
             <div className="musicArchive">
-              <p className="sectionLabel">Also part of the story</p>
-              {music.filter((project) => project.name !== "Gentleman Deluxe").map((project) => (
-                <div key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong></div>
+              <p className="sectionLabel">The music story</p>
+              {music.filter((project) => project.name !== activeMusic).map((project) => (
+                <button type="button" key={project.name} onClick={() => setActiveMusic(project.name)}>
+                  <span>{project.relationship}</span><strong>{project.name}</strong><b aria-hidden="true">↗</b>
+                </button>
               ))}
             </div>
           </div>}
