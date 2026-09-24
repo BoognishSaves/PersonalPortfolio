@@ -483,3 +483,58 @@ footer {
   font: inherit;
   color: inherit;
 }
+
+/* Barefoot Boys: seagrass, acoustic tradition with a coastal streak */
+.musicFeature.isBarefootBoys {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(125,190,190,.12), transparent 28%),
+    #122126;
+}
+.musicFeature.isBarefootBoys .musicPoster {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(239,221,161,.52), transparent 22%),
+    radial-gradient(circle at 78% 74%, rgba(64,145,151,.42), transparent 30%),
+    linear-gradient(150deg, #d9c88f 0%, #79a9a7 48%, #315e66 100%);
+}
+.musicFeature.isBarefootBoys .musicPoster::before,
+.musicFeature.isBarefootBoys .musicPoster::after {
+  content: "";
+  position: absolute;
+  left: -12%;
+  width: 124%;
+  height: 34%;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.musicFeature.isBarefootBoys .musicPoster::before {
+  bottom: -18%;
+  transform: rotate(4deg);
+}
+.musicFeature.isBarefootBoys .musicPoster::after {
+  bottom: -5%;
+  transform: rotate(-5deg);
+  opacity: .7;
+}
+.musicFeature.isBarefootBoys .musicPlaceholder {
+  z-index: 1;
+  color: #10252a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px,3vw,42px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  text-transform: none;
+}
+.musicFeature.isBarefootBoys .musicKicker,
+.musicFeature.isBarefootBoys .musicRole {
+  color: #9fd1cf;
+}
+.musicFeature.isBarefootBoys .musicDescription {
+  font-family: Georgia, "Times New Roman", serif;
+}
+.musicFeature.isBarefootBoys .musicActions a:hover {
+  background: #9fd1cf;
+  border-color: #9fd1cf;
+  color: #122126;
+}
