@@ -63,12 +63,36 @@ export default function Home() {
             {engineeringProjects.map((project) => <a href={project.url} target="_blank" rel="noreferrer" key={project.name}><span>{project.stack.join(" · ")}</span><strong>{project.name}</strong><b aria-hidden="true">↗</b></a>)}
           </div>}
 
-          {active.id === "music" && <div className="musicRail">
-            {music.map((project) => {
-              const media = project.media.find((item) => "url" in item && typeof item.url === "string");
-              const mediaUrl = media && "url" in media && typeof media.url === "string" ? media.url : undefined;
-              return mediaUrl ? <a href={mediaUrl} target="_blank" rel="noreferrer" key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong><b>Listen ↗</b></a> : <div key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong></div>;
-            })}
+          {active.id === "music" && <div className="musicExperience">
+            {music.filter((project) => project.name === "Gentleman Deluxe").map((project) => (
+              <article className="musicFeature" key={project.name}>
+                <div className="musicPoster" aria-hidden="true">
+                  <span>GENTLEMAN</span>
+                  <span>DELUXE</span>
+                  <i>GD</i>
+                </div>
+                <div className="musicFeatureCopy">
+                  <p className="musicKicker">Currently playing with</p>
+                  <h3>{project.name}</h3>
+                  <p className="musicRole">{project.relationship}</p>
+                  {"description" in project && <p className="musicDescription">{project.description}</p>}
+                  {"releases" in project && project.releases?.[0] && (
+                    <p className="musicRelease"><span>Latest release</span><strong>{project.releases[0].title}</strong><em>{project.releases[0].year} · {project.releases[0].tracks} tracks</em></p>
+                  )}
+                  <div className="musicActions">
+                    {project.media.filter((item) => "url" in item && typeof item.url === "string").map((item) => (
+                      <a key={item.platform} href={"url" in item ? item.url : "#"} target="_blank" rel="noreferrer">{item.platform} ↗</a>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+            <div className="musicArchive">
+              <p className="sectionLabel">Also part of the story</p>
+              {music.filter((project) => project.name !== "Gentleman Deluxe").map((project) => (
+                <div key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong></div>
+              ))}
+            </div>
           </div>}
 
           {active.id === "story" && <div className="storyLine" aria-label="Career path">
