@@ -13,7 +13,7 @@ export default function Home() {
     <main className="shell">
       <header className="topbar">
         <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => setBrandOpen((open) => !open)}>
-          <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">daddaH</span>
+          <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
       </header>
