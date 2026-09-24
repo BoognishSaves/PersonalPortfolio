@@ -600,3 +600,61 @@ footer {
 .musicFeature.isBarefootBoys .musicRole {
   color: #a9d9d2;
 }
+
+
+/* JoJa: two musical paths that keep crossing */
+.musicFeature.isJoJa {
+  background:
+    radial-gradient(circle at 86% 16%, rgba(104,157,171,.14), transparent 28%),
+    linear-gradient(145deg, #17191a, #22282a 58%, #111314);
+}
+.musicFeature.isJoJa .musicPoster {
+  isolation: isolate;
+  background:
+    linear-gradient(115deg, transparent 49.7%, rgba(240,225,187,.22) 50%, transparent 50.3%),
+    linear-gradient(65deg, transparent 49.7%, rgba(240,225,187,.14) 50%, transparent 50.3%),
+    radial-gradient(circle at 50% 50%, #59676a 0%, #303a3d 46%, #171b1c 100%);
+}
+.musicFeature.isJoJa .musicPoster::before,
+.musicFeature.isJoJa .musicPoster::after {
+  content: "";
+  position: absolute;
+  top: -12%;
+  bottom: -12%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(240,225,187,.55), transparent);
+  z-index: 0;
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.musicFeature.isJoJa .musicPoster::before {
+  left: 35%;
+  transform: rotate(18deg);
+}
+.musicFeature.isJoJa .musicPoster::after {
+  right: 35%;
+  transform: rotate(-18deg);
+}
+.musicFeature.isJoJa:hover .musicPoster::before { transform: rotate(10deg) translateX(20px); }
+.musicFeature.isJoJa:hover .musicPoster::after { transform: rotate(-10deg) translateX(-20px); }
+.musicFeature.isJoJa .musicPoster img {
+  inset: 10%;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  padding: 0;
+  z-index: 2;
+  filter: drop-shadow(0 18px 24px rgba(0,0,0,.32));
+}
+.musicFeature.isJoJa:hover .musicPoster img {
+  transform: scale(1.025);
+  filter: drop-shadow(0 22px 30px rgba(0,0,0,.38));
+}
+.musicFeature.isJoJa .musicKicker {
+  color: #d8c18b;
+}
+.musicFeature.isJoJa .musicRole {
+  color: #9fc3ca;
+}
+.musicFeature.isJoJa .musicDescription {
+  max-width: 650px;
+}
