@@ -1,7 +1,7 @@
 export const siteContent = {
   identity: {
     name: "John Paul Haddad",
-    brand: "HaddadAddah",
+    brand: "HaddadaddaH",
     eyebrow: "Product leader · Builder · Musician · Entrepreneur",
     intro:
       "I build products, businesses, teams, and occasionally songs.",
@@ -41,10 +41,29 @@ export const siteContent = {
   ],
 
   music: [
-    { name: "JoJa of the Hill People", type: "band" },
-    { name: "The High Desert Band", type: "band" },
-    { name: "Them Mules", type: "band" },
-    { name: "Gentleman Deluxe", type: "band" },
+    { name: "JoJa of the Hill People", relationship: "member", media: [] },
+    {
+      name: "The High Desert Band",
+      relationship: "member",
+      media: [
+        {
+          type: "audio",
+          platform: "SoundCloud",
+          url: "https://on.soundcloud.com/Gbl73Wmov5x7HDF15h",
+        },
+      ],
+    },
+    { name: "Them Mules", relationship: "member", media: [] },
+    {
+      name: "The Barefoot Boys",
+      relationship: "former member",
+      media: [{ type: "audio-file", platform: "archive" }],
+    },
+    {
+      name: "Gentleman Deluxe",
+      relationship: "band member for a friend's solo project",
+      media: [],
+    },
   ],
 
   engineeringProjects: [
