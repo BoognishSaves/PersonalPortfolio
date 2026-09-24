@@ -66,8 +66,8 @@ export default function Home() {
 
           {active.id === "music" && <div className="musicRail">
             {music.map((project) => {
-              const media = project.media.find((item) => "url" in item && Boolean(item.url));
-              return media && "url" in media ? <a href={media.url} target="_blank" rel="noreferrer" key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong><b>Listen ↗</b></a> : <div key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong></div>;
+              const media = project.media.find((item): item is typeof item & { url: string } => "url" in item && typeof item.url === "string");
+              return media ? <a href={media.url} target="_blank" rel="noreferrer" key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong><b>Listen ↗</b></a> : <div key={project.name}><span>{project.relationship}</span><strong>{project.name}</strong></div>;
             })}
           </div>}
 
