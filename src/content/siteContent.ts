@@ -187,7 +187,7 @@ export const siteContent: SiteContent = {
       stack: ["Node", "Express", "MongoDB"],
       url: "https://github.com/BoognishSaves/Ranter",
       chapter: "03 · Leading the build",
-      description: "A three-person anonymous Twitter-style project that became mostly my build. An early lesson in carrying both the product idea and the team forward.",
+      description: "My first group build, where I led two developers in creating an anonymous Twitter-style app within the span of a week.",
     },
     {
       name: "Healthy Homemade",
