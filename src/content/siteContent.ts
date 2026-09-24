@@ -201,7 +201,7 @@ export const siteContent: SiteContent = {
       stack: ["React", "Express", "MongoDB", "Node"],
       url: "https://github.com/BoognishSaves/gb-frontend",
       chapter: "05 · Domain → software",
-      description: "A digital take on integrated pest management for 10,000-square-foot growing facilities: guide a novice to capture useful field observations so a professional could assess garden health at scale.",
+      description: "A digital take on integrated pest management, designed to work at scale. The tool guides a novice to capture useful field observations so a professional can assess garden health across a larger operation.",
     },
     {
       name: "Three JS Portfolio",
