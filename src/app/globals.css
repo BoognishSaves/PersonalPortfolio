@@ -25,12 +25,65 @@ a { color: inherit; }
   border-bottom: 1px solid var(--line);
 }
 .brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
   font-size: 18px;
   font-weight: 800;
   letter-spacing: -0.04em;
-  text-decoration: none;
+  cursor: pointer;
 }
-.brand span { color: var(--blue); }
+.brandForward, .brandReverse {
+  display: inline-block;
+  transition: transform .42s cubic-bezier(.2,.8,.2,1), color .25s ease;
+}
+.brandReverse { transform-origin: left center; }
+.brandAxis {
+  width: 0;
+  height: 18px;
+  margin: 0;
+  border-left: 1px solid transparent;
+  transition: width .35s ease, margin .35s ease, border-color .35s ease;
+}
+.brand:hover .brandReverse,
+.brand:focus-visible .brandReverse,
+.brand.isOpen .brandReverse {
+  transform: rotateY(180deg);
+  color: var(--blue);
+}
+.brand:hover .brandAxis,
+.brand:focus-visible .brandAxis,
+.brand.isOpen .brandAxis {
+  width: 10px;
+  margin: 0 4px;
+  border-color: var(--blue);
+}
+.brand::after {
+  content: "forward / backward";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 3px);
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.brand:hover::after,
+.brand:focus-visible::after,
+.brand.isOpen::after {
+  opacity: 1;
+  transform: translateY(0);
+}
 .quietLink {
   font-size: 13px;
   text-decoration: none;
@@ -173,6 +226,8 @@ footer {
 @media (max-width: 760px) {
   .shell { width: min(100% - 24px, 1180px); }
   .topbar { min-height: 58px; }
+  .brand { font-size: 16px; }
+  .brand::after { display: none; }
   .hero {
     min-height: auto;
     grid-template-columns: 1fr;
