@@ -811,3 +811,149 @@ footer {
   .buildCard > strong { font-size: 34px; }
   .buildCard > p { margin-bottom: 28px; padding-right: 26px; }
 }
+
+
+/* Story: the line only becomes obvious looking backward */
+.storyExperience {
+  border-top: 1px solid var(--line);
+}
+.storyThesis {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 32px;
+  align-items: baseline;
+  padding: 22px 0 34px;
+  border-bottom: 1px solid var(--line);
+}
+.storyThesis span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.storyThesis p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px,4vw,48px);
+  font-style: italic;
+  letter-spacing: -.045em;
+}
+.storyChapters {
+  position: relative;
+}
+.storyChapters::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 29px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--blue), rgba(64,184,238,.12));
+}
+.storyChapter {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px minmax(150px,.48fr) minmax(0,1.52fr);
+  gap: 26px;
+  padding: 38px 0;
+  border-bottom: 1px solid var(--line);
+}
+.storyMarker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: start center;
+}
+.storyMarker span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--blue);
+  font: 700 9px/1 monospace;
+  transition: background .25s ease, color .25s ease, transform .3s ease;
+}
+.storyChapter:hover .storyMarker span {
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.08);
+}
+.storyChapterMeta {
+  padding-top: 5px;
+}
+.storyChapterMeta > span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.storyChapterMeta strong {
+  color: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+}
+.storyChapterCopy h3 {
+  margin: 0;
+  font-size: clamp(30px,4vw,48px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+.storyChapterCopy p {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.storyClose {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 32px;
+  padding: 42px 0 8px 86px;
+}
+.storyClose span {
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-style: italic;
+}
+.storyClose strong {
+  max-width: 650px;
+  font-size: clamp(26px,3.5vw,44px);
+  line-height: 1;
+  letter-spacing: -.05em;
+}
+@media (max-width: 760px) {
+  .storyThesis {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-bottom: 26px;
+  }
+  .storyThesis p { font-size: 32px; }
+  .storyChapters::before { left: 16px; }
+  .storyChapter {
+    grid-template-columns: 34px 1fr;
+    gap: 16px;
+    padding: 30px 0;
+  }
+  .storyMarker { grid-row: 1 / 3; }
+  .storyMarker span { width: 32px; height: 32px; }
+  .storyChapterMeta { padding-top: 3px; }
+  .storyChapterCopy { grid-column: 2; }
+  .storyChapterCopy h3 { font-size: 34px; }
+  .storyChapterCopy p { font-size: 14px; }
+  .storyClose {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 34px 0 0 50px;
+  }
+}
