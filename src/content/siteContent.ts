@@ -91,15 +91,26 @@ export const siteContent: SiteContent = {
   ],
 
   music: [
-    { name: "JoJa of the Hill People", relationship: "member", media: [] },
+    {
+      name: "JoJa of the Hill People",
+      relationship: "member · childhood band being resurrected",
+      description: "A childhood band finding its way back to the stage. More to come.",
+      media: [],
+    },
     {
       name: "The High Desert Band",
       relationship: "member",
+      artwork: "/HD logo.svg",
       media: [
         {
           type: "audio",
           platform: "SoundCloud",
-          url: "https://on.soundcloud.com/Gbl73Wmov5x7HDF15h",
+          url: "https://on.soundcloud.com/QrMHGO9zTQWISH3Oy7",
+        },
+        {
+          type: "social",
+          platform: "Instagram",
+          url: "https://www.instagram.com/thehighdesertband",
         },
       ],
     },
