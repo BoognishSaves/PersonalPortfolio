@@ -958,3 +958,98 @@ footer {
     padding: 34px 0 0 50px;
   }
 }
+
+
+/* Wake system: the restrained surface slowly reveals a living blue network. */
+.wake { position: relative; isolation: isolate; }
+.rootNetwork { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.rootNetwork i { position: absolute; display: block; height: 1px; width: 44%; background: linear-gradient(90deg, transparent, rgba(64,184,238,.48), transparent); transform-origin: left center; filter: blur(.15px); }
+.rootNetwork i:nth-child(1) { top: 13%; left: 48%; transform: rotate(27deg); }
+.rootNetwork i:nth-child(2) { top: 31%; left: 8%; width: 58%; transform: rotate(-12deg); }
+.rootNetwork i:nth-child(3) { top: 49%; left: 42%; width: 50%; transform: rotate(16deg); }
+.rootNetwork i:nth-child(4) { top: 65%; left: 3%; width: 63%; transform: rotate(8deg); }
+.rootNetwork i:nth-child(5) { top: 79%; left: 34%; width: 57%; transform: rotate(-18deg); }
+.rootNetwork i:nth-child(6) { top: 91%; left: 10%; width: 48%; transform: rotate(14deg); }
+.wake-1 .rootNetwork { opacity: .12; }
+.wake-2 .rootNetwork { opacity: .22; }
+.wake-3 .rootNetwork { opacity: .34; }
+.wake-4 .rootNetwork { opacity: .48; }
+.wake-5 .rootNetwork { opacity: .7; }
+
+.wake-2 .markStage::before { border-color: rgba(64,184,238,.28); }
+.wake-3 .markStage::before { animation: siteBreath 5.5s ease-in-out infinite; }
+.wake-3 .brandAxis { border-color: rgba(64,184,238,.35); }
+.wake-4 .storyChapters::before { box-shadow: 0 0 18px rgba(64,184,238,.28); }
+.wake-4 .pathTabs { box-shadow: inset 0 -1px rgba(64,184,238,.22); }
+.wake-5 .mark { filter: drop-shadow(0 18px 28px rgba(64,184,238,.22)); }
+.wake-5 .sectionLabel, .wake-5 .eyebrow { color: #377f9e; }
+
+@keyframes siteBreath {
+  0%,100% { transform: scale(.84); opacity: .55; }
+  50% { transform: scale(1.02); opacity: .9; }
+}
+
+.markStage {
+  appearance: none;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.secretSeed {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.secretSeed i {
+  color: var(--blue);
+  font-style: normal;
+  opacity: .18;
+  transition: opacity .25s ease, transform .4s ease;
+}
+.secretSeed:hover i, .secretSeed:focus-visible i { opacity: 1; transform: scale(1.8); }
+
+.secretNote {
+  position: relative;
+  margin: -4px 0 42px;
+  padding: 22px 24px;
+  border: 1px solid rgba(64,184,238,.32);
+  background: rgba(245,244,239,.94);
+  display: grid;
+  grid-template-columns: .7fr 1.5fr auto;
+  gap: 18px;
+  align-items: center;
+  animation: panelIn .32s ease both;
+}
+.secretNote span { color: var(--muted); font: italic 13px Georgia, serif; }
+.secretNote strong { font-size: 16px; letter-spacing: -.02em; }
+.secretNote button {
+  padding: 9px 12px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: 700 10px Arial, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.secretNote button:hover, .secretNote button:focus-visible { background: var(--blue); }
+
+@media (max-width: 760px) {
+  .secretNote { grid-template-columns: 1fr; margin-bottom: 24px; }
+  .rootNetwork i { width: 70%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wake-3 .markStage::before { animation: none; }
+}
