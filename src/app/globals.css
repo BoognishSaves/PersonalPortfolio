@@ -134,8 +134,9 @@ h1 {
   transition: background .2s ease, color .2s ease, transform .2s ease;
 }
 .actions a:hover, .actions a:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--ink);
   transform: translateY(-2px);
 }
 .markStage {
