@@ -80,9 +80,10 @@ export default function Home() {
                     <p className="musicRelease"><span>Latest release</span><strong>{project.releases[0].title}</strong><em>{project.releases[0].year} · {project.releases[0].tracks} tracks</em></p>
                   )}
                   <div className="musicActions">
-                    {project.media.filter((item) => "url" in item && typeof item.url === "string").map((item) => (
-                      <a key={item.platform} href={"url" in item ? item.url : "#"} target="_blank" rel="noreferrer">{item.platform} ↗</a>
-                    ))}
+                    {project.media.map((item) => {
+                      const url = "url" in item && typeof item.url === "string" ? item.url : undefined;
+                      return url ? <a key={item.platform} href={url} target="_blank" rel="noreferrer">{item.platform} ↗</a> : null;
+                    })}
                   </div>
                 </div>
               </article>
