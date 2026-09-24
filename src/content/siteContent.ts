@@ -43,6 +43,12 @@ type SiteContent = {
     chapter: string;
     description: string;
   }>;
+  storyChapters: Array<{
+    era: string;
+    title: string;
+    thread: string;
+    description: string;
+  }>;
   socials: Array<{
     label: string;
     url: string;
@@ -86,9 +92,9 @@ export const siteContent: SiteContent = {
     {
       id: "story",
       label: "Story",
-      title: "The path was not particularly linear.",
+      title: "It only looks linear in reverse.",
       summary:
-        "Adjusting, entrepreneurship, engineering, product leadership, music, and a mountain property all belong to the same story.",
+        "I didn't set out to build a career in product. I kept collecting skills, taking risks, and following the next problem. Eventually, the things that looked unrelated started connecting.",
     },
   ],
 
@@ -209,6 +215,58 @@ export const siteContent: SiteContent = {
       url: "https://github.com/BoognishSaves/threejsportfolio",
       chapter: "06 · Follow along",
       description: "A deliberate YouTube follow-along rather than an original product — a way to learn unfamiliar 3D tools by rebuilding someone else's work.",
+    },
+  ],
+
+
+  storyChapters: [
+    {
+      era: "01 · The first leap",
+      title: "Art school → entrepreneurship",
+      thread: "Risk",
+      description: "I wasn't a great student, and art school never quite fit. Gordon saw something in me that I didn't yet know how to use and gave me half of Raptor Management Solutions. I dropped out of college to build it. The business taught me how to sell an idea, operate in business circles, and accept that risk carries both reward and consequence.",
+    },
+    {
+      era: "02 · Building businesses",
+      title: "Hotels → restaurants",
+      thread: "Entrepreneurship",
+      description: "RM Solutions grew from hotel sales leads into training, secret shopping, and consulting. That led us into The Great Lakes Fish House, which we helped open and staff in less than 90 days. Growth came fast, then capital disappeared faster. It was an early education in execution, scale, and what happens when a business gets stretched too thin.",
+    },
+    {
+      era: "03 · A guitar changes the path",
+      title: "Music → catastrophe adjusting",
+      thread: "Adaptability",
+      description: "After a short and unhappy stop in software sales, music pulled me somewhere unexpected. A musician I met through an open mic paid me to leave that job, become an insurance adjuster, and play in his bluegrass band. Hurricane work followed. I spent 12 years adjusting catastrophes and playing music between storms.",
+    },
+    {
+      era: "04 · Systems in the real world",
+      title: "Growing → automation",
+      thread: "Systems",
+      description: "Along the way, my brother and I built Rocky Mountain Organics in Colorado. I focused on controlled-environment agriculture and learned to automate growing systems with programmable logic controllers because labor was expensive. I didn't know it then, but I was already learning to think in systems.",
+    },
+    {
+      era: "05 · The domain",
+      title: "Catastrophe → field staff",
+      thread: "Expertise",
+      description: "After 12 years in catastrophe work, I spent another four as a field-staff adjuster at American Family. Insurance became more than a job; it became deep subject-matter expertise in the people, workflows, constraints, and problems I would eventually come back to solve.",
+    },
+    {
+      era: "06 · Another leap",
+      title: "Roofing → software engineering",
+      thread: "Learning",
+      description: "When the career I expected to retire from stopped looking viable, I moved into roofing and construction, then made another uncomfortable bet on myself. I left work for General Assembly's full-stack engineering program. Twelve intense weeks later, they hired me to help teach software engineering.",
+    },
+    {
+      era: "07 · Finding the name for it",
+      title: "Engineering → product",
+      thread: "Synthesis",
+      description: "Learning to code showed me that engineering wasn't the destination. It gave me another language. Through General Assembly I met Mario Giannini, who eventually hired me into product. Entrepreneurship, customer empathy, technical fluency, and domain thinking finally had a name and a place to work together.",
+    },
+    {
+      era: "08 · The threads reconnect",
+      title: "Product → insurance technology",
+      thread: "Connection",
+      description: "Then Verisk reached out. The industry I had spent years inside collided with the technical and product skills I had built after leaving it. What had looked like a collection of career detours became the exact combination I needed. Today, I lead product in the space I once worked in from the field.",
     },
   ],
 
