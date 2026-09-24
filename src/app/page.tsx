@@ -4,7 +4,7 @@ import { useState } from "react";
 import siteContent from "../content/siteContent";
 
 export default function Home() {
-  const { identity, paths, socials, music, engineeringProjects } = siteContent;
+  const { identity, paths, socials, music, engineeringProjects, storyChapters } = siteContent;
   const [brandOpen, setBrandOpen] = useState(false);
   const [activePath, setActivePath] = useState("product");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
@@ -112,8 +112,32 @@ export default function Home() {
             </div>
           </div>}
 
-          {active.id === "story" && <div className="storyLine" aria-label="Career path">
-            <span>Claims</span><i>→</i><span>Entrepreneurship</span><i>→</i><span>Software</span><i>→</i><span>Product</span><i>↗</i><span>Music</span>
+          {active.id === "story" && <div className="storyExperience">
+            <div className="storyThesis">
+              <span>The through line</span>
+              <p>Not reinvention. Accumulation.</p>
+            </div>
+            <div className="storyChapters">
+              {storyChapters.map((chapter, index) => (
+                <article className="storyChapter" key={chapter.title}>
+                  <div className="storyMarker" aria-hidden="true">
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                  <div className="storyChapterMeta">
+                    <span>{chapter.era}</span>
+                    <strong>{chapter.thread}</strong>
+                  </div>
+                  <div className="storyChapterCopy">
+                    <h3>{chapter.title}</h3>
+                    <p>{chapter.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="storyClose">
+              <span>Looking backward, the line is easier to see.</span>
+              <strong>Each chapter taught me something the next one needed.</strong>
+            </div>
           </div>}
         </div>
       </section>
