@@ -426,3 +426,55 @@ footer {
   border-color: #f3b34d;
   color: #17110d;
 }
+
+/* Them Mules: monochrome field-journal / anatomical archive */
+.musicFeature.isThemMules {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(255,255,255,.055), transparent 30%),
+    #0d0d0d;
+}
+.musicFeature.isThemMules .musicPoster {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 5px),
+    radial-gradient(circle at 42% 45%, #343434 0%, #1c1c1c 48%, #0d0d0d 100%);
+}
+.musicFeature.isThemMules .musicPoster::before,
+.musicFeature.isThemMules .musicPoster::after {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border: 1px solid rgba(245,244,239,.1);
+  border-radius: 0;
+  transform: none;
+  pointer-events: none;
+}
+.musicFeature.isThemMules .musicPoster::after {
+  inset: 9%;
+  border-style: dashed;
+  opacity: .42;
+}
+.musicFeature.isThemMules .musicPoster img {
+  z-index: 1;
+  object-fit: contain;
+  padding: clamp(24px,4vw,58px);
+  filter: grayscale(1) contrast(1.15);
+  mix-blend-mode: screen;
+}
+.musicFeature.isThemMules .musicKicker {
+  color: #c9c2b5;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  letter-spacing: .08em;
+  text-transform: none;
+}
+.musicFeature.isThemMules .musicRole {
+  color: #c9c2b5;
+}
+.musicFeature.isThemMules .musicDescription {
+  font-family: Georgia, "Times New Roman", serif;
+}
+.musicFeature.isThemMules .musicActions a:hover {
+  background: #e7e0d3;
+  border-color: #e7e0d3;
+  color: #0d0d0d;
+}
