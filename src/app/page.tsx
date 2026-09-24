@@ -60,8 +60,24 @@ export default function Home() {
             <article><span>Lens</span><strong>Platform thinking</strong><p>Connect people, data, workflows, and products instead of treating every screen as an island.</p></article>
           </div>}
 
-          {active.id === "building" && <div className="projectRail">
-            {engineeringProjects.map((project) => <a href={project.url} target="_blank" rel="noreferrer" key={project.name}><span>{project.stack.join(" · ")}</span><strong>{project.name}</strong><b aria-hidden="true">↗</b></a>)}
+          {active.id === "building" && <div className="buildArchive">
+            <div className="buildArchiveIntro">
+              <span>Learning archive</span>
+              <p>The code is still here on purpose.</p>
+            </div>
+            <div className="buildGrid">
+              {engineeringProjects.map((project) => (
+                <a className="buildCard" href={project.url} target="_blank" rel="noreferrer" key={project.name}>
+                  <div className="buildCardTop">
+                    <span className="buildChapter">{project.chapter}</span>
+                    <b aria-hidden="true">↗</b>
+                  </div>
+                  <strong>{project.name}</strong>
+                  <p>{project.description}</p>
+                  <span className="buildStack">{project.stack.join(" · ")}</span>
+                </a>
+              ))}
+            </div>
           </div>}
 
           {active.id === "music" && <div className="musicExperience">
