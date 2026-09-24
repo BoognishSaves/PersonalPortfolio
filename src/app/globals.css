@@ -1201,3 +1201,78 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .wake-5 .circuitPulse path { animation: none; stroke-dasharray: none; opacity: .35; }
 }
+
+
+/* Wake v4: at maturity the circuitry stops crossing the page and begins supporting it. */
+.contentVines { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.vine {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 360px;
+  background: linear-gradient(to top, rgba(64,184,238,.58), rgba(64,184,238,.14) 72%, transparent);
+  opacity: 0;
+  transform-origin: bottom;
+  transition: opacity 1.2s ease, transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.vine::before, .vine::after {
+  content: "";
+  position: absolute;
+  width: 82px;
+  height: 132px;
+  border: 1px solid rgba(64,184,238,.38);
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 100% 0 100%;
+}
+.vine::before { left: 0; top: 82px; transform: rotate(18deg); }
+.vine::after { right: 0; top: 190px; transform: scaleX(-1) rotate(12deg); }
+.v1 { top: 8%; left: 2%; transform: rotate(-7deg) scaleY(.35); }
+.v2 { top: 30%; right: 2%; transform: rotate(8deg) scaleY(.35); }
+.v3 { top: 55%; left: 3%; transform: rotate(-5deg) scaleY(.35); }
+.v4 { top: 77%; right: 4%; transform: rotate(6deg) scaleY(.35); }
+.wake-3 .vine { opacity: .08; }
+.wake-4 .vine { opacity: .18; transform: rotate(0deg) scaleY(.78); }
+.wake-5 .vine { opacity: .42; transform: rotate(0deg) scaleY(1); }
+
+/* Mature circuitry yields the center to the content: the organism frames instead of scribbling over it. */
+.wake-5 .circuitField { mask-image: linear-gradient(90deg, #000 0 19%, transparent 34% 66%, #000 81% 100%); -webkit-mask-image: linear-gradient(90deg, #000 0 19%, transparent 34% 66%, #000 81% 100%); }
+.wake-5 .heroCopy,
+.wake-5 .pathStatement,
+.wake-5 .evidenceGrid,
+.wake-5 .buildArchive,
+.wake-5 .musicExperience,
+.wake-5 .storyExperience {
+  position: relative;
+  z-index: 1;
+}
+.wake-5 .heroCopy::before,
+.wake-5 .pathStatement::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 12%;
+  bottom: 8%;
+  width: 10px;
+  border-left: 1px solid rgba(64,184,238,.34);
+  border-top: 1px solid rgba(64,184,238,.28);
+  border-bottom: 1px solid rgba(64,184,238,.28);
+  border-radius: 18px 0 0 18px;
+  pointer-events: none;
+}
+.wake-5 .heroCopy::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  bottom: -14px;
+  width: 42%;
+  height: 34px;
+  border-right: 1px solid rgba(64,184,238,.3);
+  border-bottom: 1px solid rgba(64,184,238,.3);
+  border-radius: 0 0 28px 0;
+  pointer-events: none;
+}
+@media (max-width:760px) {
+  .wake-5 .circuitField { mask-image: linear-gradient(90deg,#000 0 8%,transparent 24% 76%,#000 92% 100%); -webkit-mask-image: linear-gradient(90deg,#000 0 8%,transparent 24% 76%,#000 92% 100%); }
+  .wake-5 .heroCopy::before, .wake-5 .pathStatement::before { left: -8px; }
+}
