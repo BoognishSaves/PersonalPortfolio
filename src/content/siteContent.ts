@@ -131,7 +131,7 @@ export const siteContent: SiteContent = {
     {
       name: "The Barefoot Boys",
       relationship: "vocals · guitar · harmonica · mandolin",
-      artwork: "/BAREFOOTBOYZ.jpg",
+      artwork: "/Barefoot%20Boys%20Logo.png",
       description:
         "A bluegrass band with one foot at the beach — traditional acoustic instrumentation alongside bluegrass takes on the country and coastal songs we loved at the time.",
       media: [],
