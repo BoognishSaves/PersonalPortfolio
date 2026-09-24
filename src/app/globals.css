@@ -478,3 +478,8 @@ footer {
   border-color: #e7e0d3;
   color: #0d0d0d;
 }
+
+.musicRole span {
+  font: inherit;
+  color: inherit;
+}
