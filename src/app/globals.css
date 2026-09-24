@@ -367,3 +367,28 @@ footer {
     grid-column: 1 / -1;
   }
 }
+
+.musicFeature.isHighDesert .musicPoster {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(216,163,75,.16), transparent 38%),
+    linear-gradient(145deg, #f3ead8, #ded0b8);
+}
+.musicFeature.isHighDesert .musicPoster::before,
+.musicFeature.isHighDesert .musicPoster::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  width: 116%;
+  height: 38%;
+  border: 1px solid rgba(23,17,13,.11);
+  border-radius: 50%;
+  transform: rotate(-7deg);
+  pointer-events: none;
+}
+.musicFeature.isHighDesert .musicPoster::before { bottom: -19%; }
+.musicFeature.isHighDesert .musicPoster::after { bottom: -7%; }
+.musicFeature.isHighDesert .musicPoster img {
+  z-index: 1;
+  padding: clamp(12px, 2.2vw, 30px);
+  mix-blend-mode: multiply;
+}
