@@ -84,7 +84,11 @@ export const siteContent = {
     { label: "LinkedIn", url: "https://www.linkedin.com/in/john-paul-haddad/" },
     { label: "Instagram", url: "https://www.instagram.com/haddadaddah/" },
     { label: "GitHub", url: "https://github.com/BoognishSaves" },
-    // SoundCloud URL will be added once confirmed.
+    {
+      label: "SoundCloud",
+      url: "https://on.soundcloud.com/Gbl73Wmov5x7HDF15h",
+      context: "The High Desert Band",
+    },
   ],
 };
 
