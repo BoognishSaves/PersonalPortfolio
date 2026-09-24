@@ -547,3 +547,56 @@ footer {
   padding: clamp(12px, 2vw, 24px);
   z-index: 1;
 }
+
+
+/* Barefoot Boys: sun-faded seagrass poster around the original logo */
+.musicFeature.isBarefootBoys {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255,190,92,.12), transparent 30%),
+    linear-gradient(145deg, #10252a, #17373b 58%, #1e4547);
+}
+.musicFeature.isBarefootBoys .musicPoster {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255,225,139,.95), transparent 18%),
+    radial-gradient(circle at 72% 68%, rgba(43,128,138,.44), transparent 34%),
+    linear-gradient(155deg, #e4cf8e 0%, #94c1b6 42%, #3d7d83 72%, #24545e 100%);
+}
+.musicFeature.isBarefootBoys .musicPoster::before {
+  inset: auto -18% -22% -18%;
+  width: auto;
+  height: 48%;
+  border: 1px solid rgba(255,255,255,.26);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(3deg);
+  z-index: 0;
+}
+.musicFeature.isBarefootBoys .musicPoster::after {
+  inset: auto -12% -10% -12%;
+  width: auto;
+  height: 34%;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg);
+  z-index: 0;
+}
+.musicFeature.isBarefootBoys .musicPoster img {
+  inset: 7%;
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  z-index: 2;
+  filter: drop-shadow(0 18px 22px rgba(11,32,35,.22));
+}
+.musicFeature.isBarefootBoys:hover .musicPoster img {
+  transform: translateY(-5px) rotate(-1deg) scale(1.02);
+  filter: drop-shadow(0 24px 28px rgba(11,32,35,.3));
+}
+.musicFeature.isBarefootBoys .musicKicker {
+  color: #f0c96e;
+}
+.musicFeature.isBarefootBoys .musicRole {
+  color: #a9d9d2;
+}
