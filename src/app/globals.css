@@ -1137,3 +1137,67 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .growth, .circuit { transition: none; }
 }
+
+
+/* Wake v3: full wake is a populated digital garden, not simply a brighter background. */
+.circuitD, .circuitPulse { opacity: 0; }
+.wake-4 .circuitD { opacity: .16; }
+.wake-5 .circuitD { opacity: .48; }
+.circuitPulse path {
+  stroke-dasharray: .055 .945;
+  stroke-dashoffset: 1;
+  stroke-width: 2;
+}
+.wake-5 .circuitPulse { opacity: .7; }
+.wake-5 .circuitPulse path:first-child { animation: circuitTravel 7s linear infinite; }
+.wake-5 .circuitPulse path:last-child { animation: circuitTravel 9s linear 1.4s infinite reverse; }
+@keyframes circuitTravel { to { stroke-dashoffset: 0; } }
+
+.wakeSpore {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(64,184,238,.72);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1.3s cubic-bezier(.2,.8,.2,1);
+}
+.wakeSpore::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to top, rgba(64,184,238,.48), transparent);
+  transform-origin: bottom;
+  transform: rotate(24deg);
+}
+.s1 { top: 9%; left: 8%; }.s2 { top: 36%; right: 11%; }.s3 { top: 58%; left: 14%; }.s4 { top: 74%; right: 18%; }.s5 { top: 93%; left: 42%; }
+.wake-4 .wakeSpore { opacity: .25; transform: scale(.8); }
+.wake-5 .wakeSpore { opacity: .7; transform: scale(1.15); }
+
+.wake-5 .growth::before { box-shadow: inset 0 0 28px rgba(64,184,238,.035); }
+.wake-5 .growth::after { box-shadow: 0 0 18px rgba(64,184,238,.08); }
+.wake-5 .g1 { transform: scale(1.12) rotate(8deg); }
+.wake-5 .g2 { transform: scale(1.06) rotate(-13deg); }
+.wake-5 .g3 { transform: scale(.92) rotate(19deg); }
+.wake-5 .g4 { transform: scale(1.18) rotate(-9deg); }
+
+.wake-5 .hero,
+.wake-5 .explorer,
+.wake-5 footer { border-color: rgba(64,184,238,.28); }
+.wake-5 .pathTabs { border-color: rgba(64,184,238,.34); }
+.wake-5 .pathTab { border-color: rgba(64,184,238,.24); }
+.wake-5 .pathPanel { text-shadow: 0 0 24px rgba(245,244,239,.7); }
+.wake-5 .buildCard,
+.wake-5 .storyChapter { backdrop-filter: blur(.35px); }
+
+@media (hover:hover) and (pointer:fine) {
+  .wake-5 .pathTab:hover,
+  .wake-5 .secretSeed:hover,
+  .wake-5 .quietLink:hover { text-shadow: 0 0 12px rgba(64,184,238,.38); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wake-5 .circuitPulse path { animation: none; stroke-dasharray: none; opacity: .35; }
+}
