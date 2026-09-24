@@ -143,16 +143,33 @@ h1 {
   display: grid;
   place-items: center;
   min-height: 360px;
+  isolation: isolate;
+}
+.markStage::before {
+  content: "";
+  position: absolute;
+  width: min(88%, 330px);
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  opacity: .55;
+  transform: scale(.82);
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+  z-index: -1;
 }
 .mark {
-  width: min(100%, 380px);
+  width: min(82%, 310px);
   height: auto;
-  filter: drop-shadow(0 24px 30px rgba(12,20,22,.08));
+  filter: drop-shadow(0 22px 26px rgba(12,20,22,.12));
   transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .55s ease;
 }
 .markStage:hover .mark {
   transform: rotate(180deg) scale(.94);
-  filter: drop-shadow(0 -24px 30px rgba(12,20,22,.12));
+  filter: drop-shadow(0 -22px 26px rgba(12,20,22,.15));
+}
+.markStage:hover::before {
+  transform: scale(1);
+  opacity: 1;
 }
 .markHint {
   position: absolute;
@@ -220,7 +237,8 @@ footer {
     order: -1;
     justify-items: end;
   }
-  .mark { width: 190px; }
+  .mark { width: 168px; }
+  .markStage::before { width: 184px; }
   .markHint { bottom: 4px; }
   .explorerIntro { padding: 52px 0 36px; }
   .explorerIntro > p:last-child { font-size: 32px; }
