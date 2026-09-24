@@ -93,8 +93,10 @@ export const siteContent: SiteContent = {
   music: [
     {
       name: "JoJa of the Hill People",
-      relationship: "member · childhood band being resurrected",
-      description: "A childhood band finding its way back to the stage. More to come.",
+      relationship: "vocals · guitar · lifelong collaborator",
+      artwork: "/Joja%20Logo.jpg",
+      description:
+        "A musical friendship that started in school and never really stopped. Joe and John became JoJa for an art-festival busking gig, took it on the road from Tampa to D.C. in 2006, and have continued finding reasons to make music together ever since.",
       media: [],
     },
     {
