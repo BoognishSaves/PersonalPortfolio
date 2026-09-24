@@ -392,3 +392,37 @@ footer {
   padding: clamp(12px, 2.2vw, 30px);
   mix-blend-mode: multiply;
 }
+
+/* High Desert: playful desert energy without literal mascot references */
+.musicFeature.isHighDesert .musicPoster {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 205, 94, .78), transparent 25%),
+    radial-gradient(circle at 82% 76%, rgba(228, 99, 61, .42), transparent 31%),
+    linear-gradient(145deg, #f3b34d 0%, #ef8354 48%, #d95763 100%);
+}
+.musicFeature.isHighDesert .musicPoster::before {
+  bottom: -20%;
+  border-color: rgba(50, 47, 31, .2);
+}
+.musicFeature.isHighDesert .musicPoster::after {
+  bottom: -8%;
+  border-color: rgba(50, 47, 31, .14);
+}
+.musicFeature.isHighDesert .musicPoster img {
+  mix-blend-mode: multiply;
+  filter: contrast(1.12);
+}
+.musicFeature.isHighDesert {
+  background:
+    radial-gradient(circle at 92% 12%, rgba(239, 131, 84, .1), transparent 28%),
+    #17110d;
+}
+.musicFeature.isHighDesert .musicKicker,
+.musicFeature.isHighDesert .musicRole {
+  color: #f3b34d;
+}
+.musicFeature.isHighDesert .musicActions a:hover {
+  background: #f3b34d;
+  border-color: #f3b34d;
+  color: #17110d;
+}
