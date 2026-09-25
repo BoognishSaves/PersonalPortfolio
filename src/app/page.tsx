@@ -78,7 +78,7 @@ export default function Home() {
       <div key={`puzzle-${puzzlePing}`} className={`livingContent puzzleStep-${puzzlePulse} ${puzzlePrimed ? "puzzleReady" : ""} ${partyMode ? "partyMode" : ""}`}>
       {partyMode && <div className="partySignal" aria-live="polite"><span>SYSTEM WIDE OPEN</span><i>HaddadaddaH</i></div>}
       <header className="topbar">
-        <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset the folded Haddad wordmark" : "Fold the reversed half of Haddad over the first half"} onClick={() => {
+        <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset the folded Haddad wordmark" : "Fold the right half of HaddadaddaH over the left"} onClick={() => {
           if (brandDragging) return;
           if (brandOpen) { setBrandOpen(false); setBrandDrag(0); grow("brand-reset", 2); }
         }}>
@@ -105,7 +105,7 @@ export default function Home() {
                 else setBrandDrag(0);
               }}
               onPointerCancel={() => { setBrandDragging(false); if (!brandOpen) setBrandDrag(0); }}
-            >addaH</span>
+            ><span className="brandFace brandFaceFront">addaH</span><span className="brandFace brandFaceBack">Haddad</span></span>
           </span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
