@@ -2346,3 +2346,11 @@ body{transition:background-color .28s ease,color .28s ease}
 .connectSubmit button:hover,.connectSubmit button:focus-visible{background:var(--blue);border-color:var(--blue);color:#0c1416;transform:translateY(-2px)}
 @media(max-width:760px){.topbarActions{gap:12px}.connectSection{grid-template-columns:1fr;gap:48px;padding:72px 0}.connectForm{grid-template-columns:1fr}.connectWide,.connectSubmit{grid-column:1}.connectSubmit{justify-content:flex-start}}
 @media(prefers-reduced-motion:reduce){body,.themeToggle{transition:none!important}}
+
+
+/* Keep the palindrome fold interactive in dark mode: explicit theme colors override legacy !important ink rules. */
+:root[data-theme="dark"] .brandLeft,
+:root[data-theme="dark"] .brandLeafFront{color:var(--ink)!important}
+:root[data-theme="dark"] .brandLeafBack,
+:root[data-theme="dark"] .brand.isOpen .brandLeft{color:var(--blue)!important}
+:root[data-theme="dark"] .brandLeaf{pointer-events:auto!important}
