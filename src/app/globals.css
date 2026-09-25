@@ -1609,3 +1609,69 @@ footer {
  .wake-5 .pcbGrowth{opacity:.58}
  .pcbGrowth i{width:88%}
 }
+
+
+/* Wake v13: circuit density becomes the background color.
+   Empty substrate fills; content remains a quiet clearing. */
+.pcbGrowth{width:50%;mix-blend-mode:multiply}
+.pcbLeft{left:-2%}.pcbRight{right:-2%}
+.pcbGrowth i{width:92%;height:1px;background:rgba(64,184,238,.19)}
+.pcbGrowth i::before{
+  left:16%;width:66%;height:24px;
+  border-color:rgba(64,184,238,.2);
+  border-radius:0 9px 0 0
+}
+.pcbGrowth i::after{border-color:rgba(64,184,238,.42)}
+.wake-1 .pcbGrowth{opacity:.025}
+.wake-2 .pcbGrowth{opacity:.12}
+.wake-3 .pcbGrowth{opacity:.29}
+.wake-4 .pcbGrowth{opacity:.53}
+.wake-5 .pcbGrowth{opacity:.86}
+
+/* Mature PCB substrate: parallel hairlines make open areas read blue at distance. */
+.wake-4 .pcbGrowth i{box-shadow:
+  0 4px 0 rgba(64,184,238,.06),
+  0 -5px 0 rgba(64,184,238,.06),
+  0 9px 0 rgba(64,184,238,.035)}
+.wake-5 .pcbGrowth i{box-shadow:
+  0 3px 0 rgba(64,184,238,.12),
+  0 -4px 0 rgba(64,184,238,.11),
+  0 7px 0 rgba(64,184,238,.08),
+  0 -9px 0 rgba(64,184,238,.055),
+  0 12px 0 rgba(64,184,238,.04)}
+.wake-5 .pcbGrowth i:nth-child(2n)::before{height:34px;left:24%;width:54%}
+.wake-5 .pcbGrowth i:nth-child(3n){width:76%}
+.wake-5 .pcbGrowth i:nth-child(4n){width:98%}
+
+/* Large organic routes recede as the fine PCB ecosystem takes over. */
+.wake-4 .vine{opacity:.24!important}
+.wake-5 .vine{opacity:.2!important}
+.wake-4 .thicket{opacity:.18!important}
+.wake-5 .thicket{opacity:.22!important}
+
+/* Quiet zones: circuitry approaches content but does not compete with it. */
+.heroCopy,.pathStatement,.storyChapterCopy,.buildingCardCopy,.musicFeatureCopy{
+  position:relative;z-index:4
+}
+.heroCopy::before,.pathStatement::before,.storyChapterCopy::before,.buildingCardCopy::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  inset:-12px -18px;
+  background:radial-gradient(ellipse at center,
+    rgba(245,244,239,.96) 0%,
+    rgba(245,244,239,.88) 58%,
+    rgba(245,244,239,.35) 80%,
+    rgba(245,244,239,0) 100%);
+  opacity:0;transition:opacity 1.2s ease
+}
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before,.wake-3 .buildingCardCopy::before{opacity:.35}
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,.wake-4 .buildingCardCopy::before{opacity:.68}
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before,.wake-5 .buildingCardCopy::before{opacity:.9}
+
+/* Keep tiny moving life in the substrate, not as the primary graphic. */
+.wake-5 .digitalLife{opacity:.62}
+
+@media(max-width:760px){
+  .pcbGrowth{width:47%}
+  .wake-5 .pcbGrowth{opacity:.76}
+  .heroCopy::before,.pathStatement::before,.storyChapterCopy::before,.buildingCardCopy::before{inset:-8px -10px}
+}
