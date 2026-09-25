@@ -1675,3 +1675,39 @@ footer {
   .wake-5 .pcbGrowth{opacity:.76}
   .heroCopy::before,.pathStatement::before,.storyChapterCopy::before,.buildingCardCopy::before{inset:-8px -10px}
 }
+
+
+/* Wake v14: dense circuitry occupies negative space; content remains a clearing. */
+.pcbGrowth{width:100%;left:0!important;right:auto!important;mix-blend-mode:multiply}
+.pcbRight{display:none}
+.pcbGrowth i{width:34%;height:1px;background:rgba(64,184,238,.17)}
+.pcbLeft i:nth-child(6n+1){left:1%;width:31%}.pcbLeft i:nth-child(6n+2){left:34%;width:25%}
+.pcbLeft i:nth-child(6n+3){left:62%;width:35%}.pcbLeft i:nth-child(6n+4){left:8%;width:42%}
+.pcbLeft i:nth-child(6n+5){left:53%;width:39%}.pcbLeft i:nth-child(6n){left:22%;width:63%}
+.pcbLeft i:nth-child(n+19){top:auto}
+.pcbLeft i:nth-child(19){top:4%}.pcbLeft i:nth-child(20){top:8%}.pcbLeft i:nth-child(21){top:12%}
+.pcbLeft i:nth-child(22){top:17%}.pcbLeft i:nth-child(23){top:23%}.pcbLeft i:nth-child(24){top:29%}
+.pcbLeft i:nth-child(25){top:35%}.pcbLeft i:nth-child(26){top:41%}.pcbLeft i:nth-child(27){top:47%}
+.pcbLeft i:nth-child(28){top:53%}.pcbLeft i:nth-child(29){top:59%}.pcbLeft i:nth-child(30){top:65%}
+.pcbLeft i:nth-child(31){top:71%}.pcbLeft i:nth-child(32){top:77%}.pcbLeft i:nth-child(33){top:83%}
+.pcbLeft i:nth-child(34){top:89%}.pcbLeft i:nth-child(35){top:95%}.pcbLeft i:nth-child(36){top:14%}
+.pcbLeft i:nth-child(37){top:26%}.pcbLeft i:nth-child(38){top:38%}.pcbLeft i:nth-child(39){top:50%}
+.pcbLeft i:nth-child(40){top:62%}.pcbLeft i:nth-child(41){top:74%}.pcbLeft i:nth-child(42){top:86%}
+.pcbLeft i:nth-child(43){top:19%}.pcbLeft i:nth-child(44){top:31%}.pcbLeft i:nth-child(45){top:43%}
+.pcbLeft i:nth-child(46){top:57%}.pcbLeft i:nth-child(47){top:69%}.pcbLeft i:nth-child(48){top:81%}
+.wake-5 .pcbGrowth i{background:rgba(64,184,238,.25);box-shadow:0 2px 0 rgba(64,184,238,.13),0 -2px 0 rgba(64,184,238,.11),0 5px 0 rgba(64,184,238,.075),0 -5px 0 rgba(64,184,238,.06)}
+.wake-5 .pcbGrowth i::before{border-color:rgba(64,184,238,.28);height:18px}
+.wake-5 .pcbGrowth i::after{border-color:rgba(64,184,238,.48)}
+.wake-5 .pcbLeft{opacity:.94}
+
+/* Carve true paper-colored quiet zones around readable content. */
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before,.wake-3 .buildingCardCopy::before,
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,.wake-4 .buildingCardCopy::before,
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before,.wake-5 .buildingCardCopy::before{
+ opacity:1;background:radial-gradient(ellipse at center,var(--paper) 0%,var(--paper) 68%,rgba(245,244,239,.98) 76%,rgba(245,244,239,.78) 85%,rgba(245,244,239,0) 100%)
+}
+.heroCopy::before{inset:-34px -54px}.pathStatement::before{inset:-24px -42px}
+.storyChapterCopy::before,.buildingCardCopy::before{inset:-18px -28px}
+.wake-4 .vine,.wake-5 .vine{opacity:.08!important}.wake-4 .thicket,.wake-5 .thicket{opacity:.1!important}
+.wake-5 .digitalLife{opacity:.76}
+@media(max-width:760px){.pcbGrowth{width:100%}.wake-5 .pcbLeft{opacity:.82}.heroCopy::before{inset:-22px -18px}.pathStatement::before{inset:-16px -14px}}
