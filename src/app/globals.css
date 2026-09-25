@@ -1,0 +1,2398 @@
+:root {
+  --ink: #0c1416;
+  --paper: #f5f4ef;
+  --blue: #40b8ee;
+  --muted: #667074;
+  --line: rgba(12, 20, 22, 0.16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+.topbar {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+}
+.brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  cursor: pointer;
+}
+.brandForward, .brandReverse {
+  display: inline-block;
+  transition: transform .42s cubic-bezier(.2,.8,.2,1), color .25s ease;
+}
+.brandReverse { transform-origin: left center; }
+.brandAxis {
+  width: 0;
+  height: 18px;
+  margin: 0;
+  border-left: 1px solid transparent;
+  transition: width .35s ease, margin .35s ease, border-color .35s ease;
+}
+.brand:hover .brandReverse,
+.brand:focus-visible .brandReverse,
+.brand.isOpen .brandReverse {
+  transform: rotateY(180deg);
+  color: var(--blue);
+}
+.brand:hover .brandAxis,
+.brand:focus-visible .brandAxis,
+.brand.isOpen .brandAxis {
+  width: 10px;
+  margin: 0 4px;
+  border-color: var(--blue);
+}
+.brand::after {
+  content: "forward / backward";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 3px);
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.brand:hover::after,
+.brand:focus-visible::after,
+.brand.isOpen::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+.quietLink {
+  font-size: 13px;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.hero {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
+  align-items: center;
+  gap: 48px;
+  border-bottom: 1px solid var(--line);
+}
+.eyebrow, .sectionLabel {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  max-width: 760px;
+  font-size: clamp(64px, 9vw, 138px);
+  line-height: .82;
+  letter-spacing: -.075em;
+}
+.lead {
+  max-width: 620px;
+  margin: 32px 0 0;
+  font-size: clamp(22px, 3vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 34px;
+}
+.actions a {
+  padding: 10px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+.actions a:hover, .actions a:focus-visible {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+.markStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+  isolation: isolate;
+}
+.markStage::before {
+  content: "";
+  position: absolute;
+  width: min(88%, 330px);
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  opacity: .55;
+  transform: scale(.82);
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+  z-index: -1;
+}
+.mark {
+  width: min(82%, 310px);
+  height: auto;
+  filter: drop-shadow(0 22px 26px rgba(12,20,22,.12));
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), filter .55s ease;
+}
+.markStage:hover .mark {
+  transform: rotate(180deg) scale(.94);
+  filter: drop-shadow(0 -22px 26px rgba(12,20,22,.15));
+}
+.markStage:hover::before {
+  transform: scale(1);
+  opacity: 1;
+}
+.markHint {
+  position: absolute;
+  right: 0;
+  bottom: 24px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+.explorer { border-bottom: 1px solid var(--line); }
+.explorerIntro { padding: 72px 0 52px; max-width: 930px; }
+.explorerIntro > p:last-child { margin: 0; font-size: clamp(28px, 4vw, 54px); line-height: 1.03; letter-spacing: -.05em; }
+.pathTabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.pathTab { min-height: 104px; padding: 16px 18px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; text-align: left; }
+.pathTab:last-child { border-right: 0; }
+.pathTab span { color: var(--muted); font-size: 10px; }
+.pathTab strong { font-size: clamp(21px, 2.2vw, 30px); letter-spacing: -.045em; }
+.pathTab:hover, .pathTab:focus-visible { background: rgba(255,255,255,.55); }
+.pathTab.isActive { background: var(--ink); color: var(--paper); }
+.pathTab.isActive span { color: var(--blue); }
+.pathPanel { padding: 52px 0 68px; animation: panelIn .32s ease both; }
+@keyframes panelIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.pathStatement { display: grid; grid-template-columns: .42fr 1.15fr 1fr; gap: 32px; align-items: start; margin-bottom: 46px; }
+.pathStatement h2 { margin: 0; font-size: clamp(36px, 5vw, 64px); line-height: .94; letter-spacing: -.055em; }
+.pathStatement > p:last-child { margin: 0; color: var(--muted); font-size: 17px; line-height: 1.5; max-width: 500px; }
+.evidenceGrid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
+.evidenceGrid article { padding: 24px 28px 0 0; border-right: 1px solid var(--line); min-height: 160px; }
+.evidenceGrid article + article { padding-left: 28px; }
+.evidenceGrid article:last-child { border-right: 0; }
+.evidenceGrid span, .projectRail span, .musicRail span { display: block; color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+.evidenceGrid strong { font-size: 24px; letter-spacing: -.04em; }
+.evidenceGrid p { color: var(--muted); line-height: 1.45; max-width: 310px; }
+.projectRail, .musicRail { border-top: 1px solid var(--line); }
+.projectRail a, .musicRail a, .musicRail > div { display: grid; grid-template-columns: 1fr 1.2fr auto; align-items: center; min-height: 76px; border-bottom: 1px solid var(--line); text-decoration: none; transition: padding .2s ease, background .2s ease; }
+.projectRail a:hover, .musicRail a:hover { padding-left: 12px; background: rgba(255,255,255,.55); }
+.projectRail span, .musicRail span { margin: 0; }
+.projectRail strong, .musicRail strong { font-size: 22px; letter-spacing: -.035em; }
+.projectRail b, .musicRail b { font-size: 12px; font-weight: 500; }
+
+.musicExperience { display: grid; gap: 42px; }
+.musicFeature { display: grid; grid-template-columns: minmax(280px,.8fr) minmax(0,1.2fr); background: #0b0c0c; color: #f5f4ef; min-height: 430px; overflow: hidden; }
+.musicPoster { position: relative; min-height: 430px; background: #050606; overflow: hidden; }
+.musicPoster img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center; transition: transform .7s cubic-bezier(.2,.8,.2,1), filter .7s ease; }
+.musicFeature:hover .musicPoster img { transform: scale(1.035); filter: saturate(1.08) contrast(1.03); }
+.musicFeatureCopy { padding: 48px; align-self: center; }
+.musicKicker { margin: 0 0 14px; color: #48e7b2; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.musicFeatureCopy h3 { margin: 0; font-size: clamp(48px,7vw,88px); line-height: .88; letter-spacing: -.065em; }
+.musicRole { margin: 18px 0 0; color: #e9b928; font-size: 14px; }
+.musicDescription { max-width: 620px; margin: 26px 0; color: rgba(245,244,239,.72); font-size: 17px; line-height: 1.55; }
+.musicRelease { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: baseline; padding: 16px 0; border-top: 1px solid rgba(245,244,239,.18); border-bottom: 1px solid rgba(245,244,239,.18); }
+.musicRelease span, .musicRelease em { color: rgba(245,244,239,.52); font-size: 10px; font-style: normal; letter-spacing: .1em; text-transform: uppercase; }
+.musicRelease strong { font-size: 20px; }
+.musicActions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.musicActions a { padding: 10px 14px; border: 1px solid rgba(245,244,239,.55); border-radius: 999px; color: #f5f4ef; text-decoration: none; font-size: 12px; transition: background .2s ease,color .2s ease,transform .2s ease; }
+.musicActions a:hover { background: #48e7b2; color: #0b0c0c; border-color: #48e7b2; transform: translateY(-2px); }
+.musicArchive { border-top: 1px solid var(--line); }
+.musicArchive .sectionLabel { margin: 22px 0 8px; }
+.musicArchive > div { display: grid; grid-template-columns: 1fr 1.4fr; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.musicArchive span { color: var(--muted); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.musicArchive strong { font-size: 20px; letter-spacing: -.035em; }
+
+.storyLine { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; border-top: 1px solid var(--line); padding-top: 28px; font-size: clamp(25px, 4vw, 48px); letter-spacing: -.05em; }
+.storyLine i { color: var(--blue); font-style: normal; }
+footer {
+  min-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .shell { width: min(100% - 24px, 1180px); }
+  .topbar { min-height: 58px; }
+  .brand { font-size: 16px; }
+  .brand::after { display: none; }
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 54px 0 28px;
+  }
+  h1 { font-size: clamp(58px, 20vw, 88px); }
+  .lead { margin-top: 24px; font-size: 25px; }
+  .actions { margin-top: 26px; }
+  .markStage {
+    min-height: 210px;
+    order: -1;
+    justify-items: end;
+  }
+  .mark { width: 168px; }
+  .markStage::before { width: 184px; }
+  .markHint { bottom: 4px; }
+  .explorerIntro { padding: 52px 0 36px; }
+  .explorerIntro > p:last-child { font-size: 32px; }
+  .pathTabs { grid-template-columns: 1fr 1fr; }
+  .pathTab { min-height: 84px; }
+  .pathTab:nth-child(2) { border-right: 0; }
+  .pathTab:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .pathPanel { padding: 38px 0 48px; }
+  .pathStatement { grid-template-columns: 1fr; gap: 12px; margin-bottom: 34px; }
+  .pathStatement .sectionLabel { margin-bottom: 2px; }
+  .evidenceGrid { grid-template-columns: 1fr; }
+  .evidenceGrid article, .evidenceGrid article + article { min-height: 0; padding: 22px 0; border-right: 0; border-bottom: 1px solid var(--line); }
+  .projectRail a, .musicRail a, .musicRail > div { grid-template-columns: 1fr auto; gap: 6px 12px; padding: 15px 0; }
+  .projectRail span, .musicRail span { grid-column: 1 / -1; }
+  .musicFeature { grid-template-columns: 1fr; }
+  .musicPoster { min-height: 320px; }
+  .musicFeatureCopy { padding: 28px 24px 32px; }
+  .musicFeatureCopy h3 { font-size: 52px; }
+  .musicRelease { grid-template-columns: 1fr auto; }
+  .musicRelease span { grid-column: 1 / -1; }
+  .musicArchive > div { grid-template-columns: 1fr; gap: 5px; }
+  .storyLine { font-size: 27px; }
+  footer { min-height: 80px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+
+.musicFeature.isHighDesert {
+  background: #17110d;
+}
+.musicFeature.isHighDesert .musicPoster {
+  background: #efe6d4;
+}
+.musicFeature.isHighDesert .musicPoster img {
+  object-fit: contain;
+  padding: clamp(24px, 4vw, 54px);
+}
+.musicFeature.isHighDesert .musicKicker,
+.musicFeature.isHighDesert .musicRole {
+  color: #d8a34b;
+}
+.musicFeature.isHighDesert .musicActions a:hover {
+  background: #d8a34b;
+  border-color: #d8a34b;
+  color: #17110d;
+}
+.musicPlaceholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgba(245,244,239,.45);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.musicArchive > button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr auto;
+  gap: 18px;
+  align-items: center;
+  padding: 16px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+.musicArchive > button span {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.musicArchive > button strong {
+  font-size: 20px;
+  letter-spacing: -.035em;
+}
+.musicArchive > button b {
+  font-size: 16px;
+  font-weight: 400;
+  transition: transform .2s ease;
+}
+.musicArchive > button:hover b {
+  transform: translate(3px,-3px);
+}
+@media (max-width: 760px) {
+  .musicArchive > button {
+    grid-template-columns: 1fr auto;
+  }
+  .musicArchive > button span {
+    grid-column: 1 / -1;
+  }
+}
+
+.musicFeature.isHighDesert .musicPoster {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(216,163,75,.16), transparent 38%),
+    linear-gradient(145deg, #f3ead8, #ded0b8);
+}
+.musicFeature.isHighDesert .musicPoster::before,
+.musicFeature.isHighDesert .musicPoster::after {
+  content: "";
+  position: absolute;
+  left: -8%;
+  width: 116%;
+  height: 38%;
+  border: 1px solid rgba(23,17,13,.11);
+  border-radius: 50%;
+  transform: rotate(-7deg);
+  pointer-events: none;
+}
+.musicFeature.isHighDesert .musicPoster::before { bottom: -19%; }
+.musicFeature.isHighDesert .musicPoster::after { bottom: -7%; }
+.musicFeature.isHighDesert .musicPoster img {
+  z-index: 1;
+  padding: clamp(12px, 2.2vw, 30px);
+  mix-blend-mode: multiply;
+}
+
+/* High Desert: playful desert energy without literal mascot references */
+.musicFeature.isHighDesert .musicPoster {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 205, 94, .78), transparent 25%),
+    radial-gradient(circle at 82% 76%, rgba(228, 99, 61, .42), transparent 31%),
+    linear-gradient(145deg, #f3b34d 0%, #ef8354 48%, #d95763 100%);
+}
+.musicFeature.isHighDesert .musicPoster::before {
+  bottom: -20%;
+  border-color: rgba(50, 47, 31, .2);
+}
+.musicFeature.isHighDesert .musicPoster::after {
+  bottom: -8%;
+  border-color: rgba(50, 47, 31, .14);
+}
+.musicFeature.isHighDesert .musicPoster img {
+  mix-blend-mode: multiply;
+  filter: contrast(1.12);
+}
+.musicFeature.isHighDesert {
+  background:
+    radial-gradient(circle at 92% 12%, rgba(239, 131, 84, .1), transparent 28%),
+    #17110d;
+}
+.musicFeature.isHighDesert .musicKicker,
+.musicFeature.isHighDesert .musicRole {
+  color: #f3b34d;
+}
+.musicFeature.isHighDesert .musicActions a:hover {
+  background: #f3b34d;
+  border-color: #f3b34d;
+  color: #17110d;
+}
+
+/* Them Mules: monochrome field-journal / anatomical archive */
+.musicFeature.isThemMules {
+  background:
+    radial-gradient(circle at 88% 16%, rgba(255,255,255,.055), transparent 30%),
+    #0d0d0d;
+}
+.musicFeature.isThemMules .musicPoster {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 5px),
+    radial-gradient(circle at 42% 45%, #343434 0%, #1c1c1c 48%, #0d0d0d 100%);
+}
+.musicFeature.isThemMules .musicPoster::before,
+.musicFeature.isThemMules .musicPoster::after {
+  content: "";
+  position: absolute;
+  inset: 7%;
+  border: 1px solid rgba(245,244,239,.1);
+  border-radius: 0;
+  transform: none;
+  pointer-events: none;
+}
+.musicFeature.isThemMules .musicPoster::after {
+  inset: 9%;
+  border-style: dashed;
+  opacity: .42;
+}
+.musicFeature.isThemMules .musicPoster img {
+  z-index: 1;
+  object-fit: contain;
+  padding: clamp(24px,4vw,58px);
+  filter: grayscale(1) contrast(1.15);
+  mix-blend-mode: screen;
+}
+.musicFeature.isThemMules .musicKicker {
+  color: #c9c2b5;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  letter-spacing: .08em;
+  text-transform: none;
+}
+.musicFeature.isThemMules .musicRole {
+  color: #c9c2b5;
+}
+.musicFeature.isThemMules .musicDescription {
+  font-family: Georgia, "Times New Roman", serif;
+}
+.musicFeature.isThemMules .musicActions a:hover {
+  background: #e7e0d3;
+  border-color: #e7e0d3;
+  color: #0d0d0d;
+}
+
+.musicRole span {
+  font: inherit;
+  color: inherit;
+}
+
+/* Barefoot Boys: seagrass, acoustic tradition with a coastal streak */
+.musicFeature.isBarefootBoys {
+  background:
+    radial-gradient(circle at 88% 12%, rgba(125,190,190,.12), transparent 28%),
+    #122126;
+}
+.musicFeature.isBarefootBoys .musicPoster {
+  background:
+    radial-gradient(circle at 22% 18%, rgba(239,221,161,.52), transparent 22%),
+    radial-gradient(circle at 78% 74%, rgba(64,145,151,.42), transparent 30%),
+    linear-gradient(150deg, #d9c88f 0%, #79a9a7 48%, #315e66 100%);
+}
+.musicFeature.isBarefootBoys .musicPoster::before,
+.musicFeature.isBarefootBoys .musicPoster::after {
+  content: "";
+  position: absolute;
+  left: -12%;
+  width: 124%;
+  height: 34%;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.musicFeature.isBarefootBoys .musicPoster::before {
+  bottom: -18%;
+  transform: rotate(4deg);
+}
+.musicFeature.isBarefootBoys .musicPoster::after {
+  bottom: -5%;
+  transform: rotate(-5deg);
+  opacity: .7;
+}
+.musicFeature.isBarefootBoys .musicPlaceholder {
+  z-index: 1;
+  color: #10252a;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px,3vw,42px);
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: -.03em;
+  text-transform: none;
+}
+.musicFeature.isBarefootBoys .musicKicker,
+.musicFeature.isBarefootBoys .musicRole {
+  color: #9fd1cf;
+}
+.musicFeature.isBarefootBoys .musicDescription {
+  font-family: Georgia, "Times New Roman", serif;
+}
+.musicFeature.isBarefootBoys .musicActions a:hover {
+  background: #9fd1cf;
+  border-color: #9fd1cf;
+  color: #122126;
+}
+
+
+/* Barefoot Boys artwork is portrait-oriented; preserve the full surfboard silhouette. */
+.musicFeature.isBarefootBoys .musicPoster img {
+  object-fit: contain;
+  object-position: center;
+  padding: clamp(12px, 2vw, 24px);
+  z-index: 1;
+}
+
+
+/* Barefoot Boys: sun-faded seagrass poster around the original logo */
+.musicFeature.isBarefootBoys {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(255,190,92,.12), transparent 30%),
+    linear-gradient(145deg, #10252a, #17373b 58%, #1e4547);
+}
+.musicFeature.isBarefootBoys .musicPoster {
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255,225,139,.95), transparent 18%),
+    radial-gradient(circle at 72% 68%, rgba(43,128,138,.44), transparent 34%),
+    linear-gradient(155deg, #e4cf8e 0%, #94c1b6 42%, #3d7d83 72%, #24545e 100%);
+}
+.musicFeature.isBarefootBoys .musicPoster::before {
+  inset: auto -18% -22% -18%;
+  width: auto;
+  height: 48%;
+  border: 1px solid rgba(255,255,255,.26);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(3deg);
+  z-index: 0;
+}
+.musicFeature.isBarefootBoys .musicPoster::after {
+  inset: auto -12% -10% -12%;
+  width: auto;
+  height: 34%;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-4deg);
+  z-index: 0;
+}
+.musicFeature.isBarefootBoys .musicPoster img {
+  inset: 7%;
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  z-index: 2;
+  filter: drop-shadow(0 18px 22px rgba(11,32,35,.22));
+}
+.musicFeature.isBarefootBoys:hover .musicPoster img {
+  transform: translateY(-5px) rotate(-1deg) scale(1.02);
+  filter: drop-shadow(0 24px 28px rgba(11,32,35,.3));
+}
+.musicFeature.isBarefootBoys .musicKicker {
+  color: #f0c96e;
+}
+.musicFeature.isBarefootBoys .musicRole {
+  color: #a9d9d2;
+}
+
+
+/* JoJa: two musical paths that keep crossing */
+.musicFeature.isJoJa {
+  background:
+    radial-gradient(circle at 86% 16%, rgba(104,157,171,.14), transparent 28%),
+    linear-gradient(145deg, #17191a, #22282a 58%, #111314);
+}
+.musicFeature.isJoJa .musicPoster {
+  isolation: isolate;
+  background:
+    linear-gradient(115deg, transparent 49.7%, rgba(240,225,187,.22) 50%, transparent 50.3%),
+    linear-gradient(65deg, transparent 49.7%, rgba(240,225,187,.14) 50%, transparent 50.3%),
+    radial-gradient(circle at 50% 50%, #59676a 0%, #303a3d 46%, #171b1c 100%);
+}
+.musicFeature.isJoJa .musicPoster::before,
+.musicFeature.isJoJa .musicPoster::after {
+  content: "";
+  position: absolute;
+  top: -12%;
+  bottom: -12%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(240,225,187,.55), transparent);
+  z-index: 0;
+  transition: transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.musicFeature.isJoJa .musicPoster::before {
+  left: 35%;
+  transform: rotate(18deg);
+}
+.musicFeature.isJoJa .musicPoster::after {
+  right: 35%;
+  transform: rotate(-18deg);
+}
+.musicFeature.isJoJa:hover .musicPoster::before { transform: rotate(10deg) translateX(20px); }
+.musicFeature.isJoJa:hover .musicPoster::after { transform: rotate(-10deg) translateX(-20px); }
+.musicFeature.isJoJa .musicPoster img {
+  inset: 10%;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  padding: 0;
+  z-index: 2;
+  filter: drop-shadow(0 18px 24px rgba(0,0,0,.32));
+}
+.musicFeature.isJoJa:hover .musicPoster img {
+  transform: scale(1.025);
+  filter: drop-shadow(0 22px 30px rgba(0,0,0,.38));
+}
+.musicFeature.isJoJa .musicKicker {
+  color: #d8c18b;
+}
+.musicFeature.isJoJa .musicRole {
+  color: #9fc3ca;
+}
+.musicFeature.isJoJa .musicDescription {
+  max-width: 650px;
+}
+
+
+/* Building: the learning archive — early code shown as evidence of the leap, not polished case studies */
+.buildArchive {
+  border-top: 1px solid var(--line);
+}
+.buildArchiveIntro {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+.buildArchiveIntro span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.buildArchiveIntro p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-style: italic;
+}
+.buildGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+.buildCard {
+  position: relative;
+  min-height: 290px;
+  padding: 30px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background .3s ease, color .3s ease;
+}
+.buildCard:nth-child(odd) {
+  border-right: 1px solid var(--line);
+}
+.buildCard::before {
+  content: "";
+  position: absolute;
+  inset: auto -10% -48% 38%;
+  height: 78%;
+  border: 1px solid rgba(64,184,238,.22);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+  z-index: -1;
+}
+.buildCard::after {
+  content: "</>";
+  position: absolute;
+  right: 26px;
+  bottom: 14px;
+  color: rgba(12,20,22,.055);
+  font: 700 clamp(54px,7vw,90px)/1 monospace;
+  letter-spacing: -.12em;
+  transition: color .3s ease, transform .55s cubic-bezier(.2,.8,.2,1);
+  z-index: -1;
+}
+.buildCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 38px;
+}
+.buildChapter {
+  color: var(--blue);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.buildCardTop b {
+  font-size: 16px;
+  font-weight: 400;
+  transition: transform .25s ease;
+}
+.buildCard > strong {
+  display: block;
+  max-width: 90%;
+  font-size: clamp(28px,3.2vw,42px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+.buildCard > p {
+  max-width: 500px;
+  margin: 18px 0 34px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.5;
+  transition: color .3s ease;
+}
+.buildStack {
+  display: block;
+  margin-top: auto;
+  color: var(--muted);
+  font: 600 10px/1.4 monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: color .3s ease;
+}
+.buildCard:hover,
+.buildCard:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  outline: none;
+}
+.buildCard:hover > p,
+.buildCard:focus-visible > p,
+.buildCard:hover .buildStack,
+.buildCard:focus-visible .buildStack {
+  color: rgba(245,244,239,.68);
+}
+.buildCard:hover::before,
+.buildCard:focus-visible::before {
+  transform: rotate(-5deg) translate(-16px,-12px) scale(1.08);
+}
+.buildCard:hover::after,
+.buildCard:focus-visible::after {
+  color: rgba(64,184,238,.11);
+  transform: translateY(-5px);
+}
+.buildCard:hover .buildCardTop b,
+.buildCard:focus-visible .buildCardTop b {
+  transform: translate(4px,-4px);
+}
+@media (max-width: 760px) {
+  .buildArchiveIntro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .buildGrid {
+    grid-template-columns: 1fr;
+  }
+  .buildCard,
+  .buildCard:nth-child(odd) {
+    min-height: 0;
+    padding: 24px 4px 26px;
+    border-right: 0;
+  }
+  .buildCardTop { margin-bottom: 26px; }
+  .buildCard > strong { font-size: 34px; }
+  .buildCard > p { margin-bottom: 28px; padding-right: 26px; }
+}
+
+
+/* Story: the line only becomes obvious looking backward */
+.storyExperience {
+  border-top: 1px solid var(--line);
+}
+.storyThesis {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 32px;
+  align-items: baseline;
+  padding: 22px 0 34px;
+  border-bottom: 1px solid var(--line);
+}
+.storyThesis span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.storyThesis p {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(28px,4vw,48px);
+  font-style: italic;
+  letter-spacing: -.045em;
+}
+.storyChapters {
+  position: relative;
+}
+.storyChapters::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 29px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--blue), rgba(64,184,238,.12));
+}
+.storyChapter {
+  position: relative;
+  display: grid;
+  grid-template-columns: 60px minmax(150px,.48fr) minmax(0,1.52fr);
+  gap: 26px;
+  padding: 38px 0;
+  border-bottom: 1px solid var(--line);
+}
+.storyMarker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: start center;
+}
+.storyMarker span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--blue);
+  font: 700 9px/1 monospace;
+  transition: background .25s ease, color .25s ease, transform .3s ease;
+}
+.storyChapter:hover .storyMarker span {
+  background: var(--ink);
+  color: var(--paper);
+  transform: scale(1.08);
+}
+.storyChapterMeta {
+  padding-top: 5px;
+}
+.storyChapterMeta > span {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.storyChapterMeta strong {
+  color: var(--blue);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+}
+.storyChapterCopy h3 {
+  margin: 0;
+  font-size: clamp(30px,4vw,48px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+.storyChapterCopy p {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.storyClose {
+  display: grid;
+  grid-template-columns: .7fr 1.3fr;
+  gap: 32px;
+  padding: 42px 0 8px 86px;
+}
+.storyClose span {
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  font-style: italic;
+}
+.storyClose strong {
+  max-width: 650px;
+  font-size: clamp(26px,3.5vw,44px);
+  line-height: 1;
+  letter-spacing: -.05em;
+}
+@media (max-width: 760px) {
+  .storyThesis {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding-bottom: 26px;
+  }
+  .storyThesis p { font-size: 32px; }
+  .storyChapters::before { left: 16px; }
+  .storyChapter {
+    grid-template-columns: 34px 1fr;
+    gap: 16px;
+    padding: 30px 0;
+  }
+  .storyMarker { grid-row: 1 / 3; }
+  .storyMarker span { width: 32px; height: 32px; }
+  .storyChapterMeta { padding-top: 3px; }
+  .storyChapterCopy { grid-column: 2; }
+  .storyChapterCopy h3 { font-size: 34px; }
+  .storyChapterCopy p { font-size: 14px; }
+  .storyClose {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 34px 0 0 50px;
+  }
+}
+
+
+/* Wake system: the restrained surface slowly reveals a living blue network. */
+.wake { position: relative; isolation: isolate; }
+.rootNetwork { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity 1.2s ease; }
+.rootNetwork i { position: absolute; display: block; height: 1px; width: 44%; background: linear-gradient(90deg, transparent, rgba(64,184,238,.48), transparent); transform-origin: left center; filter: blur(.15px); }
+.rootNetwork i:nth-child(1) { top: 13%; left: 48%; transform: rotate(27deg); }
+.rootNetwork i:nth-child(2) { top: 31%; left: 8%; width: 58%; transform: rotate(-12deg); }
+.rootNetwork i:nth-child(3) { top: 49%; left: 42%; width: 50%; transform: rotate(16deg); }
+.rootNetwork i:nth-child(4) { top: 65%; left: 3%; width: 63%; transform: rotate(8deg); }
+.rootNetwork i:nth-child(5) { top: 79%; left: 34%; width: 57%; transform: rotate(-18deg); }
+.rootNetwork i:nth-child(6) { top: 91%; left: 10%; width: 48%; transform: rotate(14deg); }
+.wake-1 .rootNetwork { opacity: .12; }
+.wake-2 .rootNetwork { opacity: .22; }
+.wake-3 .rootNetwork { opacity: .34; }
+.wake-4 .rootNetwork { opacity: .48; }
+.wake-5 .rootNetwork { opacity: .7; }
+
+.wake-2 .markStage::before { border-color: rgba(64,184,238,.28); }
+.wake-3 .markStage::before { animation: siteBreath 5.5s ease-in-out infinite; }
+.wake-3 .brandAxis { border-color: rgba(64,184,238,.35); }
+.wake-4 .storyChapters::before { box-shadow: 0 0 18px rgba(64,184,238,.28); }
+.wake-4 .pathTabs { box-shadow: inset 0 -1px rgba(64,184,238,.22); }
+.wake-5 .mark { filter: drop-shadow(0 18px 28px rgba(64,184,238,.22)); }
+.wake-5 .sectionLabel, .wake-5 .eyebrow { color: #377f9e; }
+
+@keyframes siteBreath {
+  0%,100% { transform: scale(.84); opacity: .55; }
+  50% { transform: scale(1.02); opacity: .9; }
+}
+
+.markStage {
+  appearance: none;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.secretSeed {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.secretSeed i {
+  color: var(--blue);
+  font-style: normal;
+  opacity: .18;
+  transition: opacity .25s ease, transform .4s ease;
+}
+.secretSeed:hover i, .secretSeed:focus-visible i { opacity: 1; transform: scale(1.8); }
+
+.secretNote {
+  position: relative;
+  margin: -4px 0 42px;
+  padding: 22px 24px;
+  border: 1px solid rgba(64,184,238,.32);
+  background: rgba(245,244,239,.94);
+  display: grid;
+  grid-template-columns: .7fr 1.5fr auto;
+  gap: 18px;
+  align-items: center;
+  animation: panelIn .32s ease both;
+}
+.secretNote span { color: var(--muted); font: italic 13px Georgia, serif; }
+.secretNote strong { font-size: 16px; letter-spacing: -.02em; }
+.secretNote button {
+  padding: 9px 12px;
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: 700 10px Arial, sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.secretNote button:hover, .secretNote button:focus-visible { background: var(--blue); }
+
+@media (max-width: 760px) {
+  .secretNote { grid-template-columns: 1fr; margin-bottom: 24px; }
+  .rootNetwork i { width: 70%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wake-3 .markStage::before { animation: none; }
+}
+
+
+/* Wake v2: circuitry grows into an ornamental, paisley-like organism. */
+.rootNetwork { opacity: 1; }
+.rootNetwork > i:not(.growth) { display: none; }
+.circuitField { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.circuit {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+.circuit path { vector-effect: non-scaling-stroke; }
+.circuit circle { fill: var(--paper); stroke: var(--blue); stroke-width: 1.2; transform-box: fill-box; transform-origin: center; }
+.wake-1 .circuitA { opacity: .13; }
+.wake-2 .circuitA { opacity: .26; }
+.wake-2 .circuitB { opacity: .12; }
+.wake-3 .circuitA { opacity: .38; }
+.wake-3 .circuitB { opacity: .27; }
+.wake-3 .circuitC { opacity: .12; }
+.wake-4 .circuitA, .wake-4 .circuitB { opacity: .48; }
+.wake-4 .circuitC { opacity: .31; }
+.wake-5 .circuitA, .wake-5 .circuitB, .wake-5 .circuitC { opacity: .62; }
+
+.growth {
+  position: absolute;
+  display: block;
+  width: 180px;
+  height: 280px;
+  border: 1px solid rgba(64,184,238,.45);
+  border-radius: 68% 32% 62% 38% / 58% 42% 58% 42%;
+  opacity: 0;
+  transform: scale(.3) rotate(24deg);
+  transition: opacity 1.1s ease, transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.growth::before, .growth::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(64,184,238,.34);
+  border-radius: 62% 38% 65% 35% / 55% 45% 55% 45%;
+}
+.growth::before { inset: 24px; transform: rotate(-19deg); }
+.growth::after { inset: 58px 42px; transform: rotate(32deg); }
+.g1 { top: 20%; right: -40px; }
+.g2 { top: 43%; left: -65px; transform: scale(.3) rotate(-35deg); }
+.g3 { top: 67%; right: 5%; }
+.g4 { top: 84%; left: 8%; transform: scale(.3) rotate(-18deg); }
+.wake-3 .g1 { opacity: .16; transform: scale(.72) rotate(24deg); }
+.wake-4 .g1, .wake-4 .g2 { opacity: .24; transform: scale(.9) rotate(8deg); }
+.wake-5 .growth { opacity: .32; transform: scale(1) rotate(0deg); }
+
+/* Full wake should feel populated, but content remains the foreground. */
+.wake-5 .explorerIntro,
+.wake-5 .pathPanel,
+.wake-5 .heroCopy { position: relative; }
+.wake-5 .explorerIntro::after,
+.wake-5 .pathStatement::after {
+  content: "";
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--blue);
+  border-radius: 50%;
+  box-shadow:
+    24px 16px 0 -3px var(--paper), 24px 16px 0 -2px rgba(64,184,238,.65),
+    52px -8px 0 -3px var(--paper), 52px -8px 0 -2px rgba(64,184,238,.42);
+  opacity: .72;
+  pointer-events: none;
+}
+.wake-5 .explorerIntro::after { right: 4%; bottom: 18px; }
+.wake-5 .pathStatement::after { left: 41%; bottom: -22px; }
+.wake-5 .pathTab:not(.isActive):hover { background: rgba(64,184,238,.09); }
+.wake-5 .storyMarker span { box-shadow: 0 0 0 5px rgba(64,184,238,.06); }
+
+@media (max-width: 760px) {
+  .circuitField { width: 150%; left: -25%; }
+  .growth { width: 120px; height: 190px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .growth, .circuit { transition: none; }
+}
+
+
+/* Wake v3: full wake is a populated digital garden, not simply a brighter background. */
+.circuitD, .circuitPulse { opacity: 0; }
+.wake-4 .circuitD { opacity: .16; }
+.wake-5 .circuitD { opacity: .48; }
+.circuitPulse path {
+  stroke-dasharray: .055 .945;
+  stroke-dashoffset: 1;
+  stroke-width: 2;
+}
+.wake-5 .circuitPulse { opacity: .7; }
+.wake-5 .circuitPulse path:first-child { animation: circuitTravel 7s linear infinite; }
+.wake-5 .circuitPulse path:last-child { animation: circuitTravel 9s linear 1.4s infinite reverse; }
+@keyframes circuitTravel { to { stroke-dashoffset: 0; } }
+
+.wakeSpore {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid rgba(64,184,238,.72);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1.3s cubic-bezier(.2,.8,.2,1);
+}
+.wakeSpore::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(to top, rgba(64,184,238,.48), transparent);
+  transform-origin: bottom;
+  transform: rotate(24deg);
+}
+.s1 { top: 9%; left: 8%; }.s2 { top: 36%; right: 11%; }.s3 { top: 58%; left: 14%; }.s4 { top: 74%; right: 18%; }.s5 { top: 93%; left: 42%; }
+.wake-4 .wakeSpore { opacity: .25; transform: scale(.8); }
+.wake-5 .wakeSpore { opacity: .7; transform: scale(1.15); }
+
+.wake-5 .growth::before { box-shadow: inset 0 0 28px rgba(64,184,238,.035); }
+.wake-5 .growth::after { box-shadow: 0 0 18px rgba(64,184,238,.08); }
+.wake-5 .g1 { transform: scale(1.12) rotate(8deg); }
+.wake-5 .g2 { transform: scale(1.06) rotate(-13deg); }
+.wake-5 .g3 { transform: scale(.92) rotate(19deg); }
+.wake-5 .g4 { transform: scale(1.18) rotate(-9deg); }
+
+.wake-5 .hero,
+.wake-5 .explorer,
+.wake-5 footer { border-color: rgba(64,184,238,.28); }
+.wake-5 .pathTabs { border-color: rgba(64,184,238,.34); }
+.wake-5 .pathTab { border-color: rgba(64,184,238,.24); }
+.wake-5 .pathPanel { text-shadow: 0 0 24px rgba(245,244,239,.7); }
+.wake-5 .buildCard,
+.wake-5 .storyChapter { backdrop-filter: blur(.35px); }
+
+@media (hover:hover) and (pointer:fine) {
+  .wake-5 .pathTab:hover,
+  .wake-5 .secretSeed:hover,
+  .wake-5 .quietLink:hover { text-shadow: 0 0 12px rgba(64,184,238,.38); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wake-5 .circuitPulse path { animation: none; stroke-dasharray: none; opacity: .35; }
+}
+
+
+/* Wake v4: at maturity the circuitry stops crossing the page and begins supporting it. */
+.contentVines { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.vine {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 360px;
+  background: linear-gradient(to top, rgba(64,184,238,.58), rgba(64,184,238,.14) 72%, transparent);
+  opacity: 0;
+  transform-origin: bottom;
+  transition: opacity 1.2s ease, transform 1.4s cubic-bezier(.2,.8,.2,1);
+}
+.vine::before, .vine::after {
+  content: "";
+  position: absolute;
+  width: 82px;
+  height: 132px;
+  border: 1px solid rgba(64,184,238,.38);
+  border-left: 0;
+  border-bottom: 0;
+  border-radius: 0 100% 0 100%;
+}
+.vine::before { left: 0; top: 82px; transform: rotate(18deg); }
+.vine::after { right: 0; top: 190px; transform: scaleX(-1) rotate(12deg); }
+.v1 { top: 8%; left: 2%; transform: rotate(-7deg) scaleY(.35); }
+.v2 { top: 30%; right: 2%; transform: rotate(8deg) scaleY(.35); }
+.v3 { top: 55%; left: 3%; transform: rotate(-5deg) scaleY(.35); }
+.v4 { top: 77%; right: 4%; transform: rotate(6deg) scaleY(.35); }
+.wake-3 .vine { opacity: .08; }
+.wake-4 .vine { opacity: .18; transform: rotate(0deg) scaleY(.78); }
+.wake-5 .vine { opacity: .42; transform: rotate(0deg) scaleY(1); }
+
+/* Mature circuitry yields the center to the content: the organism frames instead of scribbling over it. */
+.wake-5 .circuitField { mask-image: linear-gradient(90deg, #000 0 19%, transparent 34% 66%, #000 81% 100%); -webkit-mask-image: linear-gradient(90deg, #000 0 19%, transparent 34% 66%, #000 81% 100%); }
+.wake-5 .heroCopy,
+.wake-5 .pathStatement,
+.wake-5 .evidenceGrid,
+.wake-5 .buildArchive,
+.wake-5 .musicExperience,
+.wake-5 .storyExperience {
+  position: relative;
+  z-index: 1;
+}
+.wake-5 .heroCopy::before,
+.wake-5 .pathStatement::before {
+  content: "";
+  position: absolute;
+  left: -22px;
+  top: 12%;
+  bottom: 8%;
+  width: 10px;
+  border-left: 1px solid rgba(64,184,238,.34);
+  border-top: 1px solid rgba(64,184,238,.28);
+  border-bottom: 1px solid rgba(64,184,238,.28);
+  border-radius: 18px 0 0 18px;
+  pointer-events: none;
+}
+.wake-5 .heroCopy::after {
+  content: "";
+  position: absolute;
+  right: -18px;
+  bottom: -14px;
+  width: 42%;
+  height: 34px;
+  border-right: 1px solid rgba(64,184,238,.3);
+  border-bottom: 1px solid rgba(64,184,238,.3);
+  border-radius: 0 0 28px 0;
+  pointer-events: none;
+}
+@media (max-width:760px) {
+  .wake-5 .circuitField { mask-image: linear-gradient(90deg,#000 0 8%,transparent 24% 76%,#000 92% 100%); -webkit-mask-image: linear-gradient(90deg,#000 0 8%,transparent 24% 76%,#000 92% 100%); }
+  .wake-5 .heroCopy::before, .wake-5 .pathStatement::before { left: -8px; }
+}
+
+
+/* Wake v5: preserve readable clearings; concentrate growth in negative space. */
+.wake-5 .circuitField {
+  mask-image:
+    linear-gradient(90deg, #000 0 27%, rgba(0,0,0,.28) 36%, transparent 44% 68%, rgba(0,0,0,.32) 76%, #000 86% 100%);
+  -webkit-mask-image:
+    linear-gradient(90deg, #000 0 27%, rgba(0,0,0,.28) 36%, transparent 44% 68%, rgba(0,0,0,.32) 76%, #000 86% 100%);
+}
+.wake-5 .rootNetwork { z-index: -2; }
+.wake-5 .contentVines { z-index: -1; }
+
+/* Local paper clearings keep the organism from visually crossing copy. */
+.wake-5 .heroCopy,
+.wake-5 .explorerIntro,
+.wake-5 .pathStatement,
+.wake-5 .evidenceGrid article,
+.wake-5 .buildCard,
+.wake-5 .storyChapterCopy,
+.wake-5 .storyChapterMeta {
+  background: radial-gradient(ellipse at center, rgba(245,244,239,.96) 0%, rgba(245,244,239,.91) 58%, rgba(245,244,239,0) 100%);
+}
+
+/* Let the margins carry more of the mature growth. */
+.wake-5 .v1, .wake-5 .v3 { left: .5%; }
+.wake-5 .v2, .wake-5 .v4 { right: .5%; }
+.wake-5 .growth { opacity: .42; }
+.wake-5 .g1 { right: -72px; }
+.wake-5 .g2 { left: -88px; }
+.wake-5 .g3 { right: -18px; }
+.wake-5 .g4 { left: -12px; }
+
+@media (max-width:760px) {
+  .wake-5 .circuitField {
+    mask-image: linear-gradient(90deg,#000 0 14%,rgba(0,0,0,.18) 23%,transparent 34% 72%,rgba(0,0,0,.2) 82%,#000 94% 100%);
+    -webkit-mask-image: linear-gradient(90deg,#000 0 14%,rgba(0,0,0,.18) 23%,transparent 34% 72%,rgba(0,0,0,.2) 82%,#000 94% 100%);
+  }
+}
+
+
+/* Logo battery: rapid fidgeting temporarily drives the organism into overdrive. */
+.isOverdrive .circuit,
+.isOverdrive .circuitD,
+.isOverdrive .circuitPulse { opacity: .82; }
+.isOverdrive .growth { opacity: .58; }
+.isOverdrive .wakeSpore { opacity: .9; transform: scale(1.35); }
+.isOverdrive .vine { opacity: .58; transform: rotate(0deg) scaleY(1.08); }
+.isOverdrive .markStage::before { animation: batterySurge .7s ease-in-out infinite; border-color: rgba(64,184,238,.72); }
+.isOverdrive .mark { animation: batterySpin .95s cubic-bezier(.2,.8,.2,1) infinite; filter: drop-shadow(0 0 30px rgba(64,184,238,.48)); }
+.isOverdrive .circuitPulse path:first-child { animation-duration: 1.8s; }
+.isOverdrive .circuitPulse path:last-child { animation-duration: 2.4s; }
+.isOverdrive .rootNetwork { filter: drop-shadow(0 0 5px rgba(64,184,238,.18)); }
+.isOverdrive .hero,
+.isOverdrive .explorer,
+.isOverdrive footer { border-color: rgba(64,184,238,.52); }
+
+@keyframes batterySurge {
+  0%,100% { transform: scale(.9); opacity: .55; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+@keyframes batterySpin {
+  0% { transform: rotate(0deg) scale(.96); }
+  100% { transform: rotate(360deg) scale(.96); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .isOverdrive .mark, .isOverdrive .markStage::before { animation: none; }
+}
+
+
+/* Wake v6: silence first, then a genuinely dense living circuit garden. */
+.circuitCanopy, .circuitTwigs { opacity: 0; }
+.wake-2 .circuitCanopy { opacity: .10; }
+.wake-3 .circuitCanopy { opacity: .22; }
+.wake-4 .circuitCanopy { opacity: .38; }
+.wake-4 .circuitTwigs { opacity: .22; }
+.wake-5 .circuitCanopy { opacity: .62; }
+.wake-5 .circuitTwigs { opacity: .48; }
+.circuitCanopy path, .circuitTwigs path { vector-effect: non-scaling-stroke; }
+
+/* Mature growth is intentionally concentrated in the gutters and open fields. */
+.wake-4 .rootNetwork,
+.wake-5 .rootNetwork { background:
+  radial-gradient(circle at 7% 24%, rgba(64,184,238,.07) 0 2px, transparent 3px),
+  radial-gradient(circle at 94% 41%, rgba(64,184,238,.07) 0 2px, transparent 3px),
+  radial-gradient(circle at 11% 72%, rgba(64,184,238,.06) 0 2px, transparent 3px);
+  background-size: 42px 42px, 58px 58px, 67px 67px;
+}
+
+/* Fidget overdrive is the theatrical payoff: brighter, denser, heaving, sparking. */
+.isOverdrive .circuitCanopy,
+.isOverdrive .circuitTwigs { opacity: .9; }
+.isOverdrive .circuitField { filter: drop-shadow(0 0 7px rgba(64,184,238,.42)); }
+.isOverdrive .rootNetwork { animation: organismHeave 1.35s ease-in-out infinite; }
+.isOverdrive .growth { animation: growthHeave 1.7s ease-in-out infinite alternate; }
+.isOverdrive .contentVines { filter: drop-shadow(0 0 9px rgba(64,184,238,.34)); }
+.isOverdrive .wakeSpore::after {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border: 1px solid rgba(64,184,238,.7);
+  border-radius: 50%;
+  animation: sparkPop .72s ease-out infinite;
+}
+.isOverdrive .wakeSpore:nth-child(even)::after { animation-delay: .28s; }
+.isOverdrive .heroCopy::before,
+.isOverdrive .pathStatement::before { border-color: rgba(64,184,238,.72); box-shadow: -5px 0 14px rgba(64,184,238,.16); }
+
+@keyframes organismHeave {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.006); }
+}
+@keyframes growthHeave {
+  from { filter: drop-shadow(0 0 1px rgba(64,184,238,.08)); }
+  to { filter: drop-shadow(0 0 13px rgba(64,184,238,.34)); }
+}
+@keyframes sparkPop {
+  0% { transform: scale(.35); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isOverdrive .rootNetwork, .isOverdrive .growth, .isOverdrive .wakeSpore::after { animation: none; }
+}
+
+
+/* Wake v7: dense overgrown circuitry occupies the clearings and margins. */
+.thicket { position:absolute; width:30%; height:100%; top:0; opacity:0; transition:opacity 1.2s ease; }
+.thicketLeft { left:-2%; }
+.thicketRight { right:-2%; transform:scaleX(-1); }
+.thicket i { position:absolute; display:block; width:210px; height:360px; border-left:1px solid rgba(64,184,238,.34); border-top:1px solid rgba(64,184,238,.26); border-radius:70% 30% 65% 35% / 55% 45% 58% 42%; }
+.thicket i::before,.thicket i::after { content:""; position:absolute; width:95px; height:150px; border:1px solid rgba(64,184,238,.28); border-left:0; border-bottom:0; border-radius:0 100% 0 100%; }
+.thicket i::before { left:32px; top:58px; transform:rotate(28deg); }
+.thicket i::after { left:78px; top:170px; transform:rotate(-18deg) scale(.8); }
+.thicket i:nth-child(1){top:4%;left:2%;transform:rotate(14deg)}
+.thicket i:nth-child(2){top:19%;left:18%;transform:rotate(-17deg) scale(.85)}
+.thicket i:nth-child(3){top:37%;left:-4%;transform:rotate(23deg) scale(1.08)}
+.thicket i:nth-child(4){top:54%;left:20%;transform:rotate(-11deg) scale(.92)}
+.thicket i:nth-child(5){top:70%;left:0;transform:rotate(19deg) scale(1.12)}
+.thicket i:nth-child(6){top:85%;left:22%;transform:rotate(-22deg) scale(.82)}
+.wake-2 .thicket{opacity:.06}.wake-3 .thicket{opacity:.13}.wake-4 .thicket{opacity:.23}.wake-5 .thicket{opacity:.42}
+
+/* Overdrive is visibly different from ordinary full wake. */
+.isOverdrive .thicket { opacity:.78; filter:drop-shadow(0 0 8px rgba(64,184,238,.38)); animation:thicketBreath 1.15s ease-in-out infinite alternate; }
+.isOverdrive .markStage { filter:drop-shadow(0 0 10px rgba(64,184,238,.5)) drop-shadow(0 0 34px rgba(64,184,238,.42)); }
+.isOverdrive .markStage::after {
+  content:""; position:absolute; inset:7%; border-radius:50%;
+  box-shadow:0 0 22px 8px rgba(64,184,238,.3),0 0 70px 18px rgba(64,184,238,.14);
+  animation:batteryArc .62s ease-in-out infinite alternate; pointer-events:none;
+}
+.isOverdrive .mark { animation:batterySpin .62s linear infinite; }
+.isOverdrive .circuitField { filter:drop-shadow(0 0 4px rgba(64,184,238,.65)) drop-shadow(0 0 14px rgba(64,184,238,.24)); }
+.isOverdrive .circuit { stroke-width:1.8; }
+.isOverdrive .circuitPulse path { stroke-width:3.2; }
+.isOverdrive .contentVines { animation:vineHeave 1.05s ease-in-out infinite alternate; }
+
+@keyframes thicketBreath { from{transform:scaleX(var(--sx,1)) scaleY(.985)} to{transform:scaleX(var(--sx,1)) scaleY(1.018)} }
+.thicketRight{--sx:-1}.thicketLeft{--sx:1}
+@keyframes batteryArc { from{transform:scale(.93);opacity:.55} to{transform:scale(1.06);opacity:1} }
+@keyframes vineHeave { from{transform:translateY(3px) scaleY(.99)} to{transform:translateY(-4px) scaleY(1.02)} }
+
+@media(max-width:760px){
+ .thicket{width:42%;opacity:0}.thicket i{width:130px;height:250px}
+ .wake-5 .thicket{opacity:.3}.isOverdrive .thicket{opacity:.62}
+}
+@media(prefers-reduced-motion:reduce){
+ .isOverdrive .thicket,.isOverdrive .markStage::after,.isOverdrive .contentVines{animation:none}
+}
+
+
+/* Wake v8: linework only, with a visible logo battery. */
+.wake-4 .rootNetwork,.wake-5 .rootNetwork{background:none!important}
+.growth,.growth::before,.growth::after,.thicket i,.thicket i::before,.thicket i::after{background:transparent!important;box-shadow:none}
+.wakeSpore{display:none!important}
+.wake-5 .thicket{opacity:.58}
+.wake-5 .circuitCanopy{opacity:.76}
+.wake-5 .circuitTwigs{opacity:.62}
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD{opacity:.7}
+.markStage{position:relative;z-index:2;overflow:visible}
+.isOverdrive .markStage::after{
+ content:"";position:absolute;z-index:-1;inset:8%;border-radius:50%;opacity:1!important;
+ background:radial-gradient(circle,rgba(64,184,238,.62) 0%,rgba(64,184,238,.3) 34%,rgba(64,184,238,.1) 58%,transparent 78%);
+ box-shadow:0 0 36px 20px rgba(64,184,238,.3),0 0 92px 42px rgba(64,184,238,.18);
+ animation:batteryBloom .58s ease-in-out infinite alternate!important;pointer-events:none
+}
+.isOverdrive .mark{filter:drop-shadow(0 0 10px rgba(64,184,238,.95)) drop-shadow(0 0 26px rgba(64,184,238,.72))!important}
+@keyframes batteryBloom{from{transform:scale(.96);opacity:.72}to{transform:scale(1.28);opacity:1}}
+@media(prefers-reduced-motion:reduce){.isOverdrive .markStage::after{animation:none!important}}
+
+
+/* Wake v9: depth comes from hatched "soil" in unused space; vines rise out of it. */
+.rootNetwork::before{
+  content:"";position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(24deg,rgba(20,58,72,.13) 0 1px,transparent 1px 13px),
+    repeating-linear-gradient(156deg,rgba(64,184,238,.10) 0 1px,transparent 1px 17px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0 25%,transparent 39% 67%,#000 84% 100%);
+  mask-image:linear-gradient(90deg,#000 0 25%,transparent 39% 67%,#000 84% 100%);
+  transition:opacity 1.4s ease
+}
+.wake-2 .rootNetwork::before{opacity:.08}
+.wake-3 .rootNetwork::before{opacity:.16}
+.wake-4 .rootNetwork::before{opacity:.28}
+.wake-5 .rootNetwork::before{opacity:.42}
+.isOverdrive .rootNetwork::before{opacity:.58;animation:hatchSurge 1.05s ease-in-out infinite alternate}
+@keyframes hatchSurge{from{filter:contrast(1);transform:scale(1)}to{filter:contrast(1.25);transform:scale(1.004)}}
+
+/* Preserve a readable foreground while the margins become visually deep. */
+.wake-5 .heroCopy,.wake-5 .pathStatement,.wake-5 .musicFeatureCopy,.wake-5 .storyChapterCopy{
+  background:radial-gradient(ellipse at center,rgba(245,244,239,.985) 0%,rgba(245,244,239,.94) 68%,rgba(245,244,239,0) 100%)
+}
+
+/* Mobile music is a selector + immediate feature, not an archive that sends you backward. */
+.musicSwitcher{display:none}
+@media(max-width:760px){
+  .musicSwitcher{
+    display:flex;gap:7px;overflow-x:auto;padding:0 0 14px;margin:0 0 6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch
+  }
+  .musicSwitcher::-webkit-scrollbar{display:none}
+  .musicSwitcher button{
+    flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:transparent;
+    color:var(--ink);padding:9px 12px;font:inherit;font-size:12px;white-space:nowrap
+  }
+  .musicSwitcher button.isActive{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .musicArchive{display:none}
+  .musicFeature{scroll-margin-top:18px}
+  .rootNetwork::before{
+    -webkit-mask-image:linear-gradient(90deg,#000 0 18%,transparent 34% 72%,#000 90% 100%);
+    mask-image:linear-gradient(90deg,#000 0 18%,transparent 34% 72%,#000 90% 100%)
+  }
+}
+
+
+/* Wake v10: return to circuitry. No battery orb, no crosshatch, no content wash. */
+.rootNetwork::before{display:none!important}
+.isOverdrive .markStage::after{display:none!important}
+.wake-5 .heroCopy,.wake-5 .pathStatement,.wake-5 .musicFeatureCopy,.wake-5 .storyChapterCopy{background:none!important}
+
+/* Mature state = denser circuit growth in margins/clearings. */
+.wake-5 .thicket{opacity:.72}
+.wake-5 .circuitCanopy{opacity:.88}
+.wake-5 .circuitTwigs{opacity:.78}
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD{opacity:.82}
+.wake-5 .vine{opacity:.52}
+.wake-5 .circuitPulse{opacity:.9}
+
+/* Music cards own their readability; the wake field never bleaches them. */
+.musicFeatureCopy{position:relative;z-index:3;background:#0b0c0c!important}
+.musicFeatureCopy h3{color:#f5f4ef!important}
+.musicFeatureCopy .musicDescription{color:rgba(245,244,239,.78)!important}
+.musicFeatureCopy .musicRole{color:#e9b928}
+.isHighDesert .musicFeatureCopy,.isBarefootBoys .musicFeatureCopy,.isThemMules .musicFeatureCopy,.isJoJa .musicFeatureCopy{background:inherit!important}
+
+@media(max-width:760px){
+  .musicFeatureCopy{background:#0b0c0c!important;color:#f5f4ef!important}
+  .musicFeatureCopy h3{color:#f5f4ef!important;text-shadow:none!important}
+  .musicFeatureCopy .musicDescription{color:rgba(245,244,239,.82)!important;text-shadow:none!important}
+  .musicFeatureCopy .musicRole{color:rgba(245,244,239,.68)!important}
+  .musicFeatureCopy .musicKicker{opacity:1}
+  .isHighDesert .musicFeatureCopy,.isBarefootBoys .musicFeatureCopy,.isThemMules .musicFeatureCopy,.isJoJa .musicFeatureCopy{background:#0b0c0c!important}
+}
+
+
+/* Wake v11: populate negative space while keeping copy in a quiet clearing. */
+.thicket i:nth-child(7){top:11%;left:42%;transform:rotate(-31deg) scale(.68)}
+.thicket i:nth-child(8){top:46%;left:43%;transform:rotate(34deg) scale(.72)}
+.thicket i:nth-child(9){top:78%;left:39%;transform:rotate(-28deg) scale(.7)}
+.wake-3 .thicket{opacity:.18}.wake-4 .thicket{opacity:.36}.wake-5 .thicket{opacity:.68}
+
+/* Digital fauna: tiny signals that only become apparent as the page matures. */
+.digitalLife{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.2s ease}
+.wake-3 .digitalLife{opacity:.18}.wake-4 .digitalLife{opacity:.42}.wake-5 .digitalLife{opacity:.72}
+.bug,.worm{position:absolute;display:block;color:rgba(64,184,238,.72)}
+.bug{width:8px;height:8px;border:1px solid currentColor;border-radius:50%;animation:bugCrawl 9s ease-in-out infinite alternate}
+.bug::before,.bug::after{content:"";position:absolute;top:2px;width:5px;border-top:1px solid currentColor}
+.bug::before{right:6px;transform:rotate(28deg)}.bug::after{left:6px;transform:rotate(-28deg)}
+.b1{top:16%;left:7%}.b2{top:34%;right:8%;animation-delay:-3s}.b3{top:66%;left:10%;animation-delay:-5s}.b4{top:83%;right:11%;animation-delay:-7s}
+.worm{width:38px;height:15px;border-top:1px solid currentColor;border-radius:50%;animation:wormDrift 12s ease-in-out infinite alternate}
+.worm::after{content:"";position:absolute;right:-3px;top:-3px;width:5px;height:5px;border:1px solid currentColor;border-radius:50%}
+.w1{top:25%;right:4%;transform:rotate(32deg)}.w2{top:58%;left:3%;transform:rotate(-24deg);animation-delay:-4s}.w3{top:75%;right:5%;transform:rotate(18deg);animation-delay:-8s}
+@keyframes bugCrawl{0%{translate:0 0;rotate:0deg}45%{translate:18px -8px;rotate:35deg}100%{translate:5px 18px;rotate:-20deg}}
+@keyframes wormDrift{from{translate:0 0;scale:.92}to{translate:24px -12px;scale:1.08}}
+
+/* Text gets only a trace of circuitry; open space gets the density. */
+.wake-5 .circuitField{
+ -webkit-mask-image:linear-gradient(90deg,#000 0 31%,rgba(0,0,0,.18) 39%,rgba(0,0,0,.08) 46% 67%,rgba(0,0,0,.3) 76%,#000 88% 100%)!important;
+ mask-image:linear-gradient(90deg,#000 0 31%,rgba(0,0,0,.18) 39%,rgba(0,0,0,.08) 46% 67%,rgba(0,0,0,.3) 76%,#000 88% 100%)!important
+}
+.wake-5 .heroCopy,.wake-5 .pathStatement,.wake-5 .storyChapterCopy{position:relative;z-index:2}
+
+@media(max-width:760px){
+ .wake-5 .thicket{opacity:.5}
+ .wake-5 .digitalLife{opacity:.58}
+ .wake-5 .circuitField{
+  -webkit-mask-image:linear-gradient(90deg,#000 0 23%,rgba(0,0,0,.14) 31%,rgba(0,0,0,.06) 40% 70%,rgba(0,0,0,.18) 80%,#000 94% 100%)!important;
+  mask-image:linear-gradient(90deg,#000 0 23%,rgba(0,0,0,.14) 31%,rgba(0,0,0,.06) 40% 70%,rgba(0,0,0,.18) 80%,#000 94% 100%)!important
+ }
+ .bug{width:6px;height:6px}.worm{width:28px}
+}
+@media(prefers-reduced-motion:reduce){.bug,.worm{animation:none}}
+
+
+/* Wake v12: organic PCB density — many fine traces, pads and branching routes. */
+.pcbGrowth{position:absolute;top:0;width:34%;height:100%;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.4s ease}
+.pcbLeft{left:-1%}.pcbRight{right:-1%;transform:scaleX(-1)}
+.pcbGrowth i{position:absolute;display:block;width:72%;height:1px;background:rgba(64,184,238,.22);transform-origin:left center}
+.pcbGrowth i::before{content:"";position:absolute;left:28%;top:-1px;width:42%;height:18px;border-top:1px solid rgba(64,184,238,.22);border-right:1px solid rgba(64,184,238,.22);border-radius:0 11px 0 0}
+.pcbGrowth i::after{content:"";position:absolute;right:-3px;top:-3px;width:6px;height:6px;border:1px solid rgba(64,184,238,.34);border-radius:50%;background:var(--paper)}
+.pcbGrowth i:nth-child(1){top:6%;left:2%;transform:rotate(8deg)}.pcbGrowth i:nth-child(2){top:10%;left:8%;transform:rotate(-5deg)}
+.pcbGrowth i:nth-child(3){top:15%;left:-4%;transform:rotate(13deg)}.pcbGrowth i:nth-child(4){top:21%;left:12%;transform:rotate(-9deg)}
+.pcbGrowth i:nth-child(5){top:27%;left:1%;transform:rotate(5deg)}.pcbGrowth i:nth-child(6){top:32%;left:17%;transform:rotate(-14deg)}
+.pcbGrowth i:nth-child(7){top:39%;left:-3%;transform:rotate(10deg)}.pcbGrowth i:nth-child(8){top:44%;left:9%;transform:rotate(-6deg)}
+.pcbGrowth i:nth-child(9){top:50%;left:3%;transform:rotate(15deg)}.pcbGrowth i:nth-child(10){top:56%;left:15%;transform:rotate(-11deg)}
+.pcbGrowth i:nth-child(11){top:62%;left:-5%;transform:rotate(7deg)}.pcbGrowth i:nth-child(12){top:67%;left:7%;transform:rotate(-16deg)}
+.pcbGrowth i:nth-child(13){top:73%;left:13%;transform:rotate(9deg)}.pcbGrowth i:nth-child(14){top:79%;left:-2%;transform:rotate(-7deg)}
+.pcbGrowth i:nth-child(15){top:84%;left:18%;transform:rotate(13deg)}.pcbGrowth i:nth-child(16){top:89%;left:3%;transform:rotate(-10deg)}
+.pcbGrowth i:nth-child(17){top:94%;left:11%;transform:rotate(6deg)}.pcbGrowth i:nth-child(18){top:98%;left:-3%;transform:rotate(-13deg)}
+.wake-2 .pcbGrowth{opacity:.08}.wake-3 .pcbGrowth{opacity:.2}.wake-4 .pcbGrowth{opacity:.42}.wake-5 .pcbGrowth{opacity:.72}
+
+/* At maturity, traces gain secondary hairline routing and the open substrate becomes populated. */
+.wake-5 .pcbGrowth i{box-shadow:0 5px 0 rgba(64,184,238,.08),0 -7px 0 rgba(64,184,238,.07)}
+.wake-5 .pcbGrowth i:nth-child(3n)::after{box-shadow:12px 8px 0 -2px rgba(64,184,238,.32),25px -5px 0 -2px rgba(64,184,238,.24)}
+.wake-5 .digitalLife{opacity:.5}
+
+/* Keep circuitry present but restrained through content zones. */
+@media(min-width:761px){
+ .pcbGrowth{width:39%}
+}
+@media(max-width:760px){
+ .pcbGrowth{width:30%}
+ .wake-5 .pcbGrowth{opacity:.58}
+ .pcbGrowth i{width:88%}
+}
+
+
+/* Wake v13: circuit density becomes the background color.
+   Empty substrate fills; content remains a quiet clearing. */
+.pcbGrowth{width:50%;mix-blend-mode:multiply}
+.pcbLeft{left:-2%}.pcbRight{right:-2%}
+.pcbGrowth i{width:92%;height:1px;background:rgba(64,184,238,.19)}
+.pcbGrowth i::before{
+  left:16%;width:66%;height:24px;
+  border-color:rgba(64,184,238,.2);
+  border-radius:0 9px 0 0
+}
+.pcbGrowth i::after{border-color:rgba(64,184,238,.42)}
+.wake-1 .pcbGrowth{opacity:.025}
+.wake-2 .pcbGrowth{opacity:.12}
+.wake-3 .pcbGrowth{opacity:.29}
+.wake-4 .pcbGrowth{opacity:.53}
+.wake-5 .pcbGrowth{opacity:.86}
+
+/* Mature PCB substrate: parallel hairlines make open areas read blue at distance. */
+.wake-4 .pcbGrowth i{box-shadow:
+  0 4px 0 rgba(64,184,238,.06),
+  0 -5px 0 rgba(64,184,238,.06),
+  0 9px 0 rgba(64,184,238,.035)}
+.wake-5 .pcbGrowth i{box-shadow:
+  0 3px 0 rgba(64,184,238,.12),
+  0 -4px 0 rgba(64,184,238,.11),
+  0 7px 0 rgba(64,184,238,.08),
+  0 -9px 0 rgba(64,184,238,.055),
+  0 12px 0 rgba(64,184,238,.04)}
+.wake-5 .pcbGrowth i:nth-child(2n)::before{height:34px;left:24%;width:54%}
+.wake-5 .pcbGrowth i:nth-child(3n){width:76%}
+.wake-5 .pcbGrowth i:nth-child(4n){width:98%}
+
+/* Large organic routes recede as the fine PCB ecosystem takes over. */
+.wake-4 .vine{opacity:.24!important}
+.wake-5 .vine{opacity:.2!important}
+.wake-4 .thicket{opacity:.18!important}
+.wake-5 .thicket{opacity:.22!important}
+
+/* Quiet zones: circuitry approaches content but does not compete with it. */
+.heroCopy,.pathStatement,.storyChapterCopy,.buildingCardCopy,.musicFeatureCopy{
+  position:relative;z-index:4
+}
+.heroCopy::before,.pathStatement::before,.storyChapterCopy::before,.buildingCardCopy::before{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  inset:-12px -18px;
+  background:radial-gradient(ellipse at center,
+    rgba(245,244,239,.96) 0%,
+    rgba(245,244,239,.88) 58%,
+    rgba(245,244,239,.35) 80%,
+    rgba(245,244,239,0) 100%);
+  opacity:0;transition:opacity 1.2s ease
+}
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before,.wake-3 .buildingCardCopy::before{opacity:.35}
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,.wake-4 .buildingCardCopy::before{opacity:.68}
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before,.wake-5 .buildingCardCopy::before{opacity:.9}
+
+/* Keep tiny moving life in the substrate, not as the primary graphic. */
+.wake-5 .digitalLife{opacity:.62}
+
+@media(max-width:760px){
+  .pcbGrowth{width:47%}
+  .wake-5 .pcbGrowth{opacity:.76}
+  .heroCopy::before,.pathStatement::before,.storyChapterCopy::before,.buildingCardCopy::before{inset:-8px -10px}
+}
+
+
+/* Wake v14: dense circuitry occupies negative space; content remains a clearing. */
+.pcbGrowth{width:100%;left:0!important;right:auto!important;mix-blend-mode:multiply}
+.pcbRight{display:none}
+.pcbGrowth i{width:34%;height:1px;background:rgba(64,184,238,.17)}
+.pcbLeft i:nth-child(6n+1){left:1%;width:31%}.pcbLeft i:nth-child(6n+2){left:34%;width:25%}
+.pcbLeft i:nth-child(6n+3){left:62%;width:35%}.pcbLeft i:nth-child(6n+4){left:8%;width:42%}
+.pcbLeft i:nth-child(6n+5){left:53%;width:39%}.pcbLeft i:nth-child(6n){left:22%;width:63%}
+.pcbLeft i:nth-child(n+19){top:auto}
+.pcbLeft i:nth-child(19){top:4%}.pcbLeft i:nth-child(20){top:8%}.pcbLeft i:nth-child(21){top:12%}
+.pcbLeft i:nth-child(22){top:17%}.pcbLeft i:nth-child(23){top:23%}.pcbLeft i:nth-child(24){top:29%}
+.pcbLeft i:nth-child(25){top:35%}.pcbLeft i:nth-child(26){top:41%}.pcbLeft i:nth-child(27){top:47%}
+.pcbLeft i:nth-child(28){top:53%}.pcbLeft i:nth-child(29){top:59%}.pcbLeft i:nth-child(30){top:65%}
+.pcbLeft i:nth-child(31){top:71%}.pcbLeft i:nth-child(32){top:77%}.pcbLeft i:nth-child(33){top:83%}
+.pcbLeft i:nth-child(34){top:89%}.pcbLeft i:nth-child(35){top:95%}.pcbLeft i:nth-child(36){top:14%}
+.pcbLeft i:nth-child(37){top:26%}.pcbLeft i:nth-child(38){top:38%}.pcbLeft i:nth-child(39){top:50%}
+.pcbLeft i:nth-child(40){top:62%}.pcbLeft i:nth-child(41){top:74%}.pcbLeft i:nth-child(42){top:86%}
+.pcbLeft i:nth-child(43){top:19%}.pcbLeft i:nth-child(44){top:31%}.pcbLeft i:nth-child(45){top:43%}
+.pcbLeft i:nth-child(46){top:57%}.pcbLeft i:nth-child(47){top:69%}.pcbLeft i:nth-child(48){top:81%}
+.wake-5 .pcbGrowth i{background:rgba(64,184,238,.25);box-shadow:0 2px 0 rgba(64,184,238,.13),0 -2px 0 rgba(64,184,238,.11),0 5px 0 rgba(64,184,238,.075),0 -5px 0 rgba(64,184,238,.06)}
+.wake-5 .pcbGrowth i::before{border-color:rgba(64,184,238,.28);height:18px}
+.wake-5 .pcbGrowth i::after{border-color:rgba(64,184,238,.48)}
+.wake-5 .pcbLeft{opacity:.94}
+
+/* Carve true paper-colored quiet zones around readable content. */
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before,.wake-3 .buildingCardCopy::before,
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,.wake-4 .buildingCardCopy::before,
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before,.wake-5 .buildingCardCopy::before{
+ opacity:1;background:radial-gradient(ellipse at center,var(--paper) 0%,var(--paper) 68%,rgba(245,244,239,.98) 76%,rgba(245,244,239,.78) 85%,rgba(245,244,239,0) 100%)
+}
+.heroCopy::before{inset:-34px -54px}.pathStatement::before{inset:-24px -42px}
+.storyChapterCopy::before,.buildingCardCopy::before{inset:-18px -28px}
+.wake-4 .vine,.wake-5 .vine{opacity:.08!important}.wake-4 .thicket,.wake-5 .thicket{opacity:.1!important}
+.wake-5 .digitalLife{opacity:.76}
+@media(max-width:760px){.pcbGrowth{width:100%}.wake-5 .pcbLeft{opacity:.82}.heroCopy::before{inset:-22px -18px}.pathStatement::before{inset:-16px -14px}}
+
+
+/* Wake v15: pointillist PCB field. At maturity, negative space reads blue from
+   across the room and resolves into hundreds of tiny organic routes up close. */
+.pcbGrowth.pcbLeft{
+  inset:0!important;
+  width:100%!important;
+  height:100%;
+  opacity:0;
+  overflow:hidden;
+  transform:none!important;
+  mix-blend-mode:multiply;
+}
+.pcbGrowth.pcbRight{display:none!important}
+.pcbGrowth.pcbLeft i{
+  position:absolute;
+  display:block;
+  min-width:24px;
+  max-width:190px;
+  height:1px;
+  background:rgba(64,184,238,.22);
+  border-radius:999px;
+  transform-origin:left center;
+  box-shadow:none;
+  opacity:.28;
+}
+.pcbGrowth.pcbLeft i::before{
+  content:"";
+  position:absolute;
+  left:38%;
+  top:-1px;
+  width:38%;
+  height:7px;
+  border-top:1px solid rgba(64,184,238,.28);
+  border-right:1px solid rgba(64,184,238,.28);
+  border-radius:0 6px 0 0;
+}
+.pcbGrowth.pcbLeft i::after{
+  content:"";
+  position:absolute;
+  right:-2px;
+  top:-2px;
+  width:4px;
+  height:4px;
+  border:1px solid rgba(64,184,238,.42);
+  border-radius:50%;
+  background:var(--paper);
+}
+.pcbGrowth.pcbLeft i:nth-child(3n){height:2px;opacity:.36}
+.pcbGrowth.pcbLeft i:nth-child(4n)::before{left:18%;width:62%;height:11px}
+.pcbGrowth.pcbLeft i:nth-child(5n)::after{width:2px;height:2px;background:var(--blue)}
+.pcbGrowth.pcbLeft i:nth-child(7n){animation:pcbSignal 7s ease-in-out infinite alternate}
+.pcbGrowth.pcbLeft i:nth-child(11n){animation:pcbSignal 11s ease-in-out -4s infinite alternate}
+.pcbGrowth.pcbLeft i:nth-child(13n)::after{animation:padPulse 2.8s ease-in-out infinite}
+
+.wake-1 .pcbGrowth.pcbLeft{opacity:.03}
+.wake-2 .pcbGrowth.pcbLeft{opacity:.12}
+.wake-3 .pcbGrowth.pcbLeft{opacity:.3}
+.wake-4 .pcbGrowth.pcbLeft{opacity:.58}
+.wake-5 .pcbGrowth.pcbLeft{opacity:1}
+.wake-4 .pcbGrowth.pcbLeft i{opacity:.48}
+.wake-5 .pcbGrowth.pcbLeft i{
+  opacity:.72;
+  background:rgba(64,184,238,.34);
+  box-shadow:
+    0 2px 0 rgba(64,184,238,.11),
+    0 -2px 0 rgba(64,184,238,.09);
+}
+.wake-5 .pcbGrowth.pcbLeft i::before{border-color:rgba(64,184,238,.38)}
+.wake-5 .pcbGrowth.pcbLeft i::after{border-color:rgba(64,184,238,.62)}
+
+/* The older hero-scale routes become scaffolding, not the visual mass. */
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD,
+.wake-5 .circuitCanopy,.wake-5 .circuitTwigs{opacity:.18!important}
+.wake-5 .vine,.wake-5 .thicket{opacity:.035!important}
+
+/* Real paper clearings over copy. These deliberately sit above the PCB field,
+   so density accumulates around information rather than through it. */
+.heroCopy,.pathStatement,.storyChapterCopy{
+  isolation:isolate;
+}
+.heroCopy::before,.pathStatement::before,.storyChapterCopy::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  background:var(--paper)!important;
+  opacity:0!important;
+  border-radius:28px;
+  transition:opacity 1.1s ease;
+}
+.wake-2 .heroCopy::before,.wake-2 .pathStatement::before,.wake-2 .storyChapterCopy::before{opacity:.42!important}
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before{opacity:.72!important}
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before{opacity:.97!important}
+.heroCopy::before{inset:-22px -30px}
+.pathStatement::before{inset:-18px -24px}
+.storyChapterCopy::before{inset:-12px -18px}
+
+/* Tiny movement reads as life only after the substrate has grown in. */
+@keyframes pcbSignal{
+  0%{filter:brightness(.92);translate:0 0}
+  45%{filter:brightness(1.35);translate:2px 0}
+  100%{filter:brightness(1);translate:-1px 1px}
+}
+@keyframes padPulse{
+  0%,100%{opacity:.28;box-shadow:0 0 0 0 rgba(64,184,238,0)}
+  50%{opacity:1;box-shadow:0 0 0 3px rgba(64,184,238,.11)}
+}
+
+@media(max-width:760px){
+  .pcbGrowth.pcbLeft i{min-width:14px;max-width:105px}
+  .wake-5 .pcbGrowth.pcbLeft i{opacity:.62}
+  .heroCopy::before{inset:-14px -10px}
+  .pathStatement::before{inset:-12px -8px}
+  .storyChapterCopy::before{inset:-8px -6px}
+}
+@media(prefers-reduced-motion:reduce){
+  .pcbGrowth.pcbLeft i,.pcbGrowth.pcbLeft i::after{animation:none!important}
+}
+
+
+/* Wake v16: ordered systems. Replaces hundreds of individual PCB nodes with
+   one lightweight SVG pattern: branching, repetition and hierarchy instead of noise. */
+.pcbGrowth{display:none!important}
+.orderedField{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  overflow:hidden;opacity:0;transition:opacity 1.2s ease;
+}
+.orderedPattern{
+  stroke:rgba(64,184,238,.34);stroke-width:1;fill:none;
+}
+.orderedField circle{fill:var(--paper);stroke:rgba(64,184,238,.52);stroke-width:1}
+.orderedSpine{
+  fill:none;stroke:rgba(64,184,238,.28);stroke-width:1.15;
+  vector-effect:non-scaling-stroke;
+}
+.wake-1 .orderedField{opacity:.025}
+.wake-2 .orderedField{opacity:.09}
+.wake-3 .orderedField{opacity:.18}
+.wake-4 .orderedField{opacity:.3}
+.wake-5 .orderedField{opacity:.44}
+
+/* Let the system become denser by contrast, not by adding more DOM or motion. */
+.wake-5 .orderedPattern{stroke:rgba(64,184,238,.5)}
+.wake-5 .orderedSpine{stroke:rgba(64,184,238,.44)}
+.wake-5 .orderedField circle{stroke:rgba(64,184,238,.68)}
+
+/* Remove the chaotic secondary fauna/branches from the mature state. */
+.wake-4 .digitalLife,.wake-5 .digitalLife{opacity:.12!important}
+.wake-4 .thicket,.wake-5 .thicket,.wake-4 .vine,.wake-5 .vine{opacity:.025!important}
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD,
+.wake-5 .circuitCanopy,.wake-5 .circuitTwigs{opacity:.1!important}
+
+/* Content is protected by broad, soft clearings rather than little white islands. */
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before{opacity:.5!important}
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before{
+  opacity:.86!important;
+  background:radial-gradient(ellipse at center,var(--paper) 0%,rgba(245,244,239,.98) 58%,rgba(245,244,239,.68) 78%,rgba(245,244,239,0) 100%)!important;
+  border-radius:0;
+}
+
+/* No continuous background animation: interaction stays cheap. */
+.orderedField,.orderedPattern,.orderedSpine{animation:none!important}
+@media(max-width:760px){
+  .wake-5 .orderedField{opacity:.34}
+  .orderedPattern{stroke-width:.9}
+}
+
+
+/* Wake v17: one digital-paisley wallpaper. Density comes from the pattern itself,
+   while content surfaces stay clean above it. */
+.orderedField{display:none!important}
+.paisleyField{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  opacity:0;transition:opacity 1.4s ease;z-index:0;
+}
+.paisleyCell{
+  fill:none;stroke:rgba(64,184,238,.72);stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+.paisleyCell circle{fill:var(--paper);stroke:rgba(64,184,238,.82);stroke-width:1}
+.wake-1 .paisleyField{opacity:.018}
+.wake-2 .paisleyField{opacity:.065}
+.wake-3 .paisleyField{opacity:.14}
+.wake-4 .paisleyField{opacity:.25}
+.wake-5 .paisleyField{opacity:.38}
+
+/* Treat readable UI as paper laid over the growing system. */
+.heroCopy,.pathIntro,.pathStatement,.pathTabs,.musicExperience,.buildingExperience,
+.storyExperience,.siteHeader,.siteFooter{position:relative;z-index:2}
+.wake-2 .heroCopy,.wake-2 .pathIntro,.wake-2 .pathStatement{
+  background:rgba(245,244,239,.94);
+  box-shadow:0 0 28px 18px rgba(245,244,239,.94);
+}
+.wake-3 .heroCopy,.wake-3 .pathIntro,.wake-3 .pathStatement,
+.wake-4 .heroCopy,.wake-4 .pathIntro,.wake-4 .pathStatement,
+.wake-5 .heroCopy,.wake-5 .pathIntro,.wake-5 .pathStatement{
+  background:var(--paper);
+  box-shadow:0 0 42px 28px var(--paper);
+}
+/* Disable old line systems so the negative space has one coherent visual language. */
+.wake-1 .circuitA,.wake-1 .circuitB,.wake-1 .circuitC,.wake-1 .circuitD,
+.wake-2 .circuitA,.wake-2 .circuitB,.wake-2 .circuitC,.wake-2 .circuitD,
+.wake-3 .circuitA,.wake-3 .circuitB,.wake-3 .circuitC,.wake-3 .circuitD,
+.wake-4 .circuitA,.wake-4 .circuitB,.wake-4 .circuitC,.wake-4 .circuitD,
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD,
+.wake-1 .circuitCanopy,.wake-2 .circuitCanopy,.wake-3 .circuitCanopy,.wake-4 .circuitCanopy,.wake-5 .circuitCanopy,
+.wake-1 .circuitTwigs,.wake-2 .circuitTwigs,.wake-3 .circuitTwigs,.wake-4 .circuitTwigs,.wake-5 .circuitTwigs,
+.wake-1 .digitalLife,.wake-2 .digitalLife,.wake-3 .digitalLife,.wake-4 .digitalLife,.wake-5 .digitalLife,
+.wake-1 .thicket,.wake-2 .thicket,.wake-3 .thicket,.wake-4 .thicket,.wake-5 .thicket,
+.wake-1 .vine,.wake-2 .vine,.wake-3 .vine,.wake-4 .vine,.wake-5 .vine{opacity:0!important}
+@media(max-width:760px){
+  .paisleyField{width:100%;height:100%}
+  .wake-5 .paisleyField{opacity:.31}
+}
+@media(prefers-reduced-motion:reduce){.paisleyField{transition:none}}
+
+
+/* Wake v18: digital botanical paisley. Hierarchy: stems -> leaves/curls -> traces/nodes. */
+.paisleyField{display:none!important}
+.botanicalField{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.4s ease}
+.botanicalField use,.botanicalField path,.botanicalField circle{vector-effect:non-scaling-stroke}
+.botanicalStem,.botanicalOuter,.botanicalInner,.botanicalTrace,.botanicalConnector,.botanicalBranches path{
+  fill:none;stroke:rgba(64,184,238,.72);stroke-linecap:round;stroke-linejoin:round
+}
+.botanicalStem{stroke-width:1.25}.botanicalOuter{stroke-width:1.05}.botanicalInner{stroke-width:.8}
+.botanicalTrace,.botanicalConnector{stroke-width:.72}
+.botanicalField circle,.botanicalNode{fill:var(--paper);stroke:rgba(64,184,238,.88);stroke-width:.85}
+.botanicalBranches{fill:none;stroke:rgba(64,184,238,.38);stroke-width:1.1}
+.botanicalBase,.botanicalBranches{opacity:.35;transition:opacity 1.4s ease}
+.wake-1 .botanicalField{opacity:.025}.wake-1 .botanicalBase{opacity:.12}.wake-1 .botanicalBranches{opacity:.7}
+.wake-2 .botanicalField{opacity:.085}.wake-2 .botanicalBase{opacity:.25}.wake-2 .botanicalBranches{opacity:.82}
+.wake-3 .botanicalField{opacity:.17}.wake-3 .botanicalBase{opacity:.5}.wake-3 .botanicalBranches{opacity:.9}
+.wake-4 .botanicalField{opacity:.28}.wake-4 .botanicalBase{opacity:.78}.wake-4 .botanicalBranches{opacity:1}
+.wake-5 .botanicalField{opacity:.42}.wake-5 .botanicalBase{opacity:1}.wake-5 .botanicalBranches{opacity:1}
+
+/* Content remains a clearing; growth belongs to the surrounding negative space. */
+.wake-3 .heroCopy,.wake-3 .pathIntro,.wake-3 .pathStatement,
+.wake-4 .heroCopy,.wake-4 .pathIntro,.wake-4 .pathStatement,
+.wake-5 .heroCopy,.wake-5 .pathIntro,.wake-5 .pathStatement{
+  background:var(--paper)!important;
+  box-shadow:0 0 50px 34px var(--paper)!important;
+}
+@media(max-width:760px){
+  .wake-5 .botanicalField{opacity:.34}
+  .botanicalField{transform:none}
+}
+@media(prefers-reduced-motion:reduce){.botanicalField,.botanicalBase,.botanicalBranches{transition:none}}
+
+
+/* Wake v19: growth behaves like a vine, not a wallpaper fade.
+   Three lightweight SVG bands emerge in sequence; six tiny blooms appear only at maturity. */
+.botanicalGrowth1,.botanicalGrowth2,.botanicalGrowth3{opacity:0!important;transition:opacity 1.8s cubic-bezier(.2,.7,.2,1)}
+.botanicalBranches .branch{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.25,.7,.2,1)}
+.wake-1 .botanicalGrowth1{opacity:.16!important}
+.wake-2 .botanicalGrowth1{opacity:.34!important}.wake-2 .botanicalGrowth2{opacity:.14!important}
+.wake-3 .botanicalGrowth1{opacity:.58!important}.wake-3 .botanicalGrowth2{opacity:.34!important}.wake-3 .botanicalGrowth3{opacity:.12!important}
+.wake-4 .botanicalGrowth1{opacity:.82!important}.wake-4 .botanicalGrowth2{opacity:.66!important}.wake-4 .botanicalGrowth3{opacity:.42!important}
+.wake-5 .botanicalGrowth1,.wake-5 .botanicalGrowth2,.wake-5 .botanicalGrowth3{opacity:1!important}
+.wake-1 .branch.bA{stroke-dashoffset:.55}.wake-2 .branch.bA{stroke-dashoffset:0}
+.wake-2 .branch.bB{stroke-dashoffset:.45}.wake-3 .branch.bB{stroke-dashoffset:0}
+.wake-3 .branch.bC{stroke-dashoffset:.4}.wake-4 .branch.bC{stroke-dashoffset:0}
+.wake-4 .branch.bD{stroke-dashoffset:.38}.wake-5 .branch.bD{stroke-dashoffset:0}
+
+/* Digital flowers: transform-only animation, intentionally sparse and late. */
+.digitalBlooms{pointer-events:none}
+.bloom{opacity:0;transform-box:fill-box;transform-origin:center}
+.bloom path{fill:rgba(64,184,238,.08);stroke:rgba(64,184,238,.82);stroke-width:.9}
+.bloom circle{fill:var(--blue);stroke:none}
+.wake-5 .bloom{animation:digitalBloom 9s ease-in-out infinite}
+.wake-5 .f1{animation-delay:-1.1s}.wake-5 .f2{animation-delay:-5.7s}.wake-5 .f3{animation-delay:-3.2s}
+.wake-5 .f4{animation-delay:-7.8s}.wake-5 .f5{animation-delay:-4.4s}.wake-5 .f6{animation-delay:-8.6s}
+@keyframes digitalBloom{
+  0%,14%,100%{opacity:0;scale:.18;rotate:-8deg}
+  22%{opacity:.72;scale:1;rotate:0deg}
+  43%{opacity:.58;scale:.88;rotate:3deg}
+  54%{opacity:0;scale:.22;rotate:8deg}
+}
+@media(max-width:760px){
+  .wake-5 .bloom{animation-duration:11s}
+}
+@media(prefers-reduced-motion:reduce){
+  .botanicalGrowth1,.botanicalGrowth2,.botanicalGrowth3,.botanicalBranches .branch{transition:none!important}
+  .wake-5 .bloom{animation:none!important;opacity:.28;scale:.72}
+}
+
+
+/* Wake v20: cellular canopy. Smaller interlocking motifs make the mature field
+   read as blue biological texture at distance and circuitry up close. */
+.botanicalField{opacity:0;filter:none}
+.botanicalStem{stroke-width:1.05}.botanicalOuter{stroke-width:.92}.botanicalInner{stroke-width:.68}
+.botanicalTrace,.botanicalConnector{stroke-width:.62}
+.botanicalField circle,.botanicalNode{stroke-width:.72}
+.wake-1 .botanicalField{opacity:.04}
+.wake-2 .botanicalField{opacity:.13}
+.wake-3 .botanicalField{opacity:.25}
+.wake-4 .botanicalField{opacity:.4}
+.wake-5 .botanicalField{opacity:.56}
+.wake-4 .botanicalGrowth1,.wake-4 .botanicalGrowth2,.wake-4 .botanicalGrowth3{filter:saturate(1.05)}
+.wake-5 .botanicalGrowth1,.wake-5 .botanicalGrowth2,.wake-5 .botanicalGrowth3{filter:saturate(1.12)}
+/* Keep the dense canopy out of the reading plane. */
+.wake-4 .heroCopy,.wake-4 .pathStatement,.wake-5 .heroCopy,.wake-5 .pathStatement{
+  background:var(--paper)!important;box-shadow:0 0 58px 38px var(--paper)!important
+}
+@media(max-width:760px){
+  .wake-5 .botanicalField{opacity:.46}
+  .wake-5 .heroCopy,.wake-5 .pathStatement{box-shadow:0 0 34px 20px var(--paper)!important}
+}
+
+
+/* Living system prototype: isolated canvas, no animation loop. */
+.livingShell{position:relative;isolation:isolate}
+.livingCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.livingContent{position:relative;z-index:1}
+.livingContent .heroCopy,.livingContent .pathStatement,.livingContent .musicFeatureCopy,
+.livingContent .buildCard,.livingContent .storyChapterCopy{
+  position:relative;
+}
+.livingContent .heroCopy::after,.livingContent .pathStatement::after{
+  content:"";position:absolute;z-index:-1;inset:-22px -30px;background:var(--paper);
+  box-shadow:0 0 28px 20px var(--paper);border-radius:22px;pointer-events:none
+}
+@media(max-width:760px){
+  .livingContent .heroCopy::after,.livingContent .pathStatement::after{inset:-12px -8px;box-shadow:0 0 18px 12px var(--paper)}
+}
+
+
+/* Hidden puzzle feedback: the living system answers exploration without exposing a progress UI. */
+.livingContent::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:8;opacity:0;
+  box-shadow:inset 0 0 0 1px rgba(64,184,238,0);
+  transition:opacity .7s ease,box-shadow .7s ease
+}
+.puzzleStep-1::before{opacity:.16;box-shadow:inset 0 0 70px rgba(64,184,238,.08)}
+.puzzleStep-2::before{opacity:.25;box-shadow:inset 0 0 95px rgba(64,184,238,.11)}
+.puzzleStep-3::before{opacity:.34;box-shadow:inset 0 0 120px rgba(64,184,238,.14)}
+.puzzleReady::before{opacity:.48;box-shadow:inset 0 0 145px rgba(64,184,238,.18)}
+.puzzleReady .markStage::after{
+  content:"";position:absolute;inset:-16px;border:1px solid rgba(64,184,238,.32);
+  border-radius:50%;pointer-events:none;animation:puzzleOrbit 5.5s ease-in-out infinite
+}
+.puzzleReady .mark{animation:puzzleBreath 4.2s ease-in-out infinite}
+.puzzleSolved .livingContent{animation:puzzleFlash 2.2s ease-out}
+@keyframes puzzleOrbit{0%,100%{transform:scale(.92) rotate(0);opacity:.12}50%{transform:scale(1.08) rotate(180deg);opacity:.55}}
+@keyframes puzzleBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes puzzleFlash{0%{filter:none}12%{filter:saturate(1.8) brightness(1.08)}35%{filter:saturate(1.25)}100%{filter:none}}
+@media(prefers-reduced-motion:reduce){
+ .puzzleReady .markStage::after,.puzzleReady .mark,.puzzleSolved .livingContent{animation:none!important}
+}
+
+
+/* Puzzle v2: typographic breadcrumbs. Pure CSS; no additional rendering loop. */
+.puzzleStep-1 .eyebrow{
+  color:color-mix(in srgb,var(--blue) 42%,var(--muted));
+  transition:color 1.1s ease
+}
+.puzzleStep-2 .sectionLabel{
+  color:color-mix(in srgb,var(--blue) 58%,var(--muted));
+  transition:color 1.1s ease
+}
+.puzzleStep-2 .pathTab.isActive strong{color:var(--blue);transition:color .9s ease}
+.puzzleStep-3 .brandAxis{
+  background:var(--blue);box-shadow:0 0 12px rgba(64,184,238,.28);
+  transition:background .9s ease,box-shadow .9s ease
+}
+.puzzleStep-3 .quietLink{color:color-mix(in srgb,var(--blue) 62%,var(--ink));transition:color 1s ease}
+.puzzleReady h1{
+  color:color-mix(in srgb,var(--blue) 24%,var(--ink));
+  transition:color 1.2s ease
+}
+.puzzleReady .pathTab.isActive strong{color:var(--blue)}
+.puzzleReady .markStage{filter:drop-shadow(0 0 10px rgba(64,184,238,.18))}
+@media(prefers-reduced-motion:reduce){
+ .puzzleStep-1 .eyebrow,.puzzleStep-2 .sectionLabel,.puzzleStep-2 .pathTab.isActive strong,
+ .puzzleStep-3 .brandAxis,.puzzleStep-3 .quietLink,.puzzleReady h1{transition:none}
+}
+
+
+/* Puzzle payoff v1: temporary system-wide activation, CSS-only and responsive. */
+.partySignal{position:fixed;left:50%;top:22px;z-index:30;transform:translateX(-50%);display:flex;gap:12px;align-items:center;
+ padding:8px 13px;border:1px solid rgba(64,184,238,.55);background:rgba(245,244,239,.9);backdrop-filter:blur(8px);
+ font-size:10px;letter-spacing:.16em;text-transform:uppercase;animation:partySignalIn 12s ease both}
+.partySignal i{font-style:normal;color:var(--blue);font-weight:700}
+.partyMode .eyebrow,.partyMode .sectionLabel,.partyMode .storyChapterMeta strong,.partyMode .buildChapter,
+.partyMode .musicKicker,.partyMode .pathTab strong{color:var(--blue)!important}
+.partyMode .storyMarker span{border-color:var(--blue);box-shadow:0 0 0 5px rgba(64,184,238,.08),0 0 24px rgba(64,184,238,.18)}
+.partyMode .pathTabs,.partyMode .actions a,.partyMode .musicSwitcher button{border-color:rgba(64,184,238,.5)}
+.partyMode .markStage{filter:drop-shadow(0 0 18px rgba(64,184,238,.38))}
+.partyMode .mark{animation:partyMark 1.6s cubic-bezier(.2,.8,.2,1) infinite}
+.partyMode::after{content:"";position:fixed;inset:0;z-index:7;pointer-events:none;
+ background:repeating-linear-gradient(90deg,transparent 0 9vw,rgba(64,184,238,.045) 9vw 9.12vw);
+ animation:partySweep 3.2s linear infinite}
+@keyframes partySignalIn{0%{opacity:0;translate:0 -18px}5%,82%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -8px}}
+@keyframes partyMark{0%,100%{transform:rotate(0) scale(1)}35%{transform:rotate(8deg) scale(1.045)}70%{transform:rotate(-5deg) scale(.99)}}
+@keyframes partySweep{from{transform:translateX(-9vw)}to{transform:translateX(9vw)}}
+@media(max-width:760px){
+ .partySignal{top:10px;max-width:calc(100vw - 24px);white-space:nowrap;font-size:8px;padding:7px 10px}
+ .partyMode::after{background:repeating-linear-gradient(90deg,transparent 0 18vw,rgba(64,184,238,.04) 18vw 18.2vw)}
+ .partyMode .mark{animation-duration:2.1s}
+}
+@media(prefers-reduced-motion:reduce){
+ .partySignal,.partyMode .mark,.partyMode::after{animation:none!important}
+ .partySignal{opacity:1}.partyMode::after{display:none}
+}
+
+
+/* Puzzle v3: escalating cause-and-effect. One-shot CSS only; no new render loop. */
+.puzzleStep-2 .pathPanel::before,.puzzleStep-3 .pathPanel::before,.puzzleReady .pathPanel::before{
+ content:"";position:absolute;left:0;right:0;top:-12px;height:1px;pointer-events:none;
+ background:linear-gradient(90deg,transparent,var(--blue) 28%,rgba(64,184,238,.18) 72%,transparent);
+ transform-origin:left;animation:puzzleTrace 1.15s ease-out both
+}
+.puzzleStep-2 .pathTab.isActive,.puzzleStep-3 .pathTab.isActive,.puzzleReady .pathTab.isActive{
+ box-shadow:inset 0 -2px 0 rgba(64,184,238,.42)
+}
+.puzzleStep-3 .storyMarker:nth-child(odd),.puzzleStep-3 .evidenceGrid article:first-child{
+ filter:drop-shadow(0 0 7px rgba(64,184,238,.16))
+}
+.puzzleStep-3 .markStage::before,.puzzleReady .markStage::before{
+ content:"";position:absolute;inset:50%;width:1px;height:1px;border-radius:50%;pointer-events:none;
+ box-shadow:0 0 0 0 rgba(64,184,238,.24);animation:puzzleRemotePing 1.7s ease-out 1
+}
+.puzzleReady .markStage{animation:puzzleSummon 3.6s ease-in-out infinite}
+.puzzleReady .markStage::before{animation:puzzleBeacon 2.2s ease-out infinite}
+.puzzleReady .markStage::after{border-width:1px;border-style:dashed;animation:puzzleOrbit 4.4s linear infinite}
+.puzzleReady .hero::after{
+ content:"";position:absolute;right:9%;top:49%;width:32%;height:1px;pointer-events:none;
+ background:linear-gradient(90deg,transparent,rgba(64,184,238,.18),var(--blue));
+ transform-origin:left;animation:puzzleRouteToMark 1.8s ease-out both
+}
+@keyframes puzzleTrace{0%{transform:scaleX(0);opacity:0}18%{opacity:1}100%{transform:scaleX(1);opacity:.42}}
+@keyframes puzzleRemotePing{0%{box-shadow:0 0 0 0 rgba(64,184,238,.38);opacity:1}100%{box-shadow:0 0 0 38px rgba(64,184,238,0);opacity:0}}
+@keyframes puzzleBeacon{0%{box-shadow:0 0 0 0 rgba(64,184,238,.3)}100%{box-shadow:0 0 0 54px rgba(64,184,238,0)}}
+@keyframes puzzleSummon{0%,100%{transform:rotate(0deg)}45%{transform:rotate(2.4deg)}58%{transform:rotate(-1.2deg)}}
+@keyframes puzzleRouteToMark{0%{transform:scaleX(0);opacity:0}25%{opacity:.85}100%{transform:scaleX(1);opacity:.38}}
+@media(max-width:760px){
+ .puzzleReady .hero::after{right:13%;top:58%;width:46%}
+ .puzzleReady .markStage{animation-duration:4.5s}
+}
+@media(prefers-reduced-motion:reduce){
+ .puzzleStep-2 .pathPanel::before,.puzzleStep-3 .pathPanel::before,.puzzleReady .pathPanel::before,
+ .puzzleStep-3 .markStage::before,.puzzleReady .markStage,.puzzleReady .markStage::before,.puzzleReady .hero::after{animation:none!important}
+}
+
+.partyCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:.5;pointer-events:none}
+.partyMode{position:relative}
+.partyMode .heroCopy::after,.partyMode .pathStatement::after{box-shadow:0 0 36px 22px rgba(245,244,239,.9)}
+@media(max-width:760px){.partyCanvas{opacity:.82}}
+@media(prefers-reduced-motion:reduce){.partyCanvas{display:none}}
+
+
+/* Foldable Haddad wordmark: deliberate forward/backward states. */
+.brand{perspective:700px;align-items:flex-start}
+.brandFold{position:relative;display:inline-block;min-width:58px;line-height:1}
+.brandForward{position:relative;z-index:1}
+.brandReverse{
+ position:absolute;z-index:2;left:100%;top:0;color:var(--blue);
+ transform-origin:left center;transform:rotateY(0deg);backface-visibility:visible;
+ transition:transform .55s cubic-bezier(.2,.8,.2,1),left .55s cubic-bezier(.2,.8,.2,1),color .25s ease
+}
+.brand.isOpen .brandReverse{left:100%;transform:rotateY(180deg);color:var(--blue)}
+.brandAxis{display:none}
+.brandDirection{
+ position:absolute;left:0;top:calc(100% + 3px);white-space:nowrap;color:var(--muted);
+ font-size:9px;font-weight:500;letter-spacing:.08em;opacity:.72;transition:color .25s ease
+}
+.brand.isOpen .brandDirection{color:var(--blue)}
+.brand::after{content:none!important}
+.brand:hover .brandReverse,.brand:focus-visible .brandReverse{color:var(--blue)}
+@media(max-width:760px){.brandFold{min-width:54px}}
+@media(prefers-reduced-motion:reduce){.brandReverse{transition:none}}
+
+
+/* Fold resolve: the mirrored half completes the hinge, then visually fuses into Haddad. */
+.brandDirection{display:none!important}
+.brand.isOpen .brandForward{color:var(--blue);transition:color .18s ease .5s}
+.brand.isOpen .brandReverse{
+ left:0;
+ transform:rotateY(180deg);
+ opacity:0;
+ transition:left .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),opacity .16s ease .48s
+}
+.brand:not(.isOpen) .brandForward{color:var(--ink);transition:color .22s ease}
+.brand:not(.isOpen) .brandReverse{
+ left:100%;transform:rotateY(0deg);opacity:1;
+ transition:left .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),opacity .12s ease
+}
+@media(prefers-reduced-motion:reduce){
+ .brand.isOpen .brandForward{color:var(--blue)}
+ .brand.isOpen .brandReverse{left:0;opacity:0;transform:none}
+}
+
+
+/* Tactile palindrome fold: pointer/finger owns the movement; snap only near registration. */
+.brandFold{touch-action:none;user-select:none;-webkit-user-select:none}
+.brand .brandReverse{
+ left:calc(100% * (1 - var(--fold-progress,0)));
+ transform:rotateY(calc(180deg * var(--fold-progress,0)));
+ opacity:calc(1 - max(0,(var(--fold-progress,0) - .78) * 4.55));
+ cursor:grab;
+ will-change:transform,left,opacity;
+ transition:none
+}
+.brand.isDragging .brandReverse{cursor:grabbing}
+.brand:not(.isDragging):not(.isOpen) .brandReverse{
+ transition:left .34s cubic-bezier(.2,.8,.2,1),transform .34s cubic-bezier(.2,.8,.2,1),opacity .2s ease
+}
+.brand.isOpen .brandForward{color:var(--blue);transition:color .18s ease .08s}
+.brand.isOpen .brandReverse{left:0;transform:rotateY(180deg);opacity:0;transition:opacity .16s ease}
+.brand.isOpen{cursor:pointer}
+@media(max-width:760px){.brand .brandReverse{padding:8px 6px;margin:-8px -6px 0 0}}
+@media(prefers-reduced-motion:reduce){.brand .brandReverse{transition:none!important}}
+
+
+/* Final wordmark model: one black palindrome; right half is a two-sided hinged sheet. */
+.brandFold{min-width:124px;white-space:nowrap}
+.brandForward{display:inline-block;color:var(--ink)!important}
+.brand .brandReverse{
+ position:absolute;left:50%;top:0;width:50%;height:1em;
+ transform-origin:left center;
+ transform:perspective(520px) rotateY(calc(-180deg * var(--fold-progress,0)));
+ transform-style:preserve-3d;opacity:1!important;color:inherit!important;
+ cursor:grab;touch-action:none;will-change:transform;
+ transition:none!important
+}
+.brandFace{position:absolute;inset:0;display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.brandFaceFront{color:var(--ink);transform:rotateY(0deg)}
+.brandFaceBack{color:var(--blue);transform:rotateY(180deg)}
+.brand.isDragging .brandReverse{cursor:grabbing}
+.brand:not(.isDragging):not(.isOpen) .brandReverse{transition:transform .32s cubic-bezier(.2,.8,.2,1)!important}
+.brand.isOpen .brandForward{color:var(--blue)!important;transition:color .16s ease .12s}
+.brand.isOpen .brandReverse{transform:perspective(520px) rotateY(-180deg);opacity:0!important;transition:opacity .16s ease .1s!important}
+.brand.isOpen .brandFold{min-width:58px}
+@media(max-width:760px){.brandFold{min-width:116px}.brand.isOpen .brandFold{min-width:54px}.brand .brandReverse{padding:0;margin:0}}
+@media(prefers-reduced-motion:reduce){.brand .brandReverse{transition:none!important}}
+
+
+/* Wordmark reset: preserve the original fluid fold; add only its resolved blue state. */
+.brand{perspective:none;align-items:center}
+.brandFold,.brandFace,.brandDirection{display:contents}
+.brandForward,.brandReverse{position:static;width:auto;height:auto;opacity:1!important;padding:0;margin:0;will-change:auto}
+.brandForward{z-index:auto;color:var(--ink)!important}
+.brandReverse{
+ color:var(--ink)!important;transform-origin:left center!important;transform:rotateY(0)!important;
+ transition:transform .42s cubic-bezier(.2,.8,.2,1),color .25s ease!important;cursor:pointer
+}
+.brandAxis{display:block}
+.brand:hover .brandReverse,.brand:focus-visible .brandReverse{transform:rotateY(180deg)!important;color:var(--blue)!important}
+.brand:hover .brandAxis,.brand:focus-visible .brandAxis{width:10px;margin:0 4px;border-color:var(--blue)}
+.brand.isOpen .brandForward{color:var(--blue)!important;transition:color .18s ease .32s}
+.brand.isOpen .brandReverse{position:absolute;left:0;top:8px;transform:rotateY(180deg)!important;color:var(--blue)!important;opacity:0!important;transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .16s ease .34s!important}
+.brand.isOpen .brandAxis{display:none}
+.brand.isOpen{min-width:58px}
+.brand::after{content:none!important}
+@media(max-width:760px){.brand.isOpen{min-width:54px}}
+
+
+/* Center-d physical fold. The final H drives the gesture; click only resets resolved state. */
+.brand{display:inline-flex;align-items:baseline;perspective:520px;position:relative;white-space:nowrap}
+.brandLeft,.brandHinge{color:var(--ink);position:relative;z-index:2}
+.brandHinge{transform-origin:center center}
+.brandLeaf{
+ position:relative;display:inline-block;transform-origin:left center;transform-style:preserve-3d;
+ transform:rotateY(calc(-180deg * var(--fold-progress,0)));touch-action:none;cursor:grab;
+ will-change:transform;transition:none
+}
+.brandLeafFront,.brandLeafBack{display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.brandLeafFront{color:var(--ink)}
+.brandLeafBack{position:absolute;inset:0;color:var(--blue);transform:rotateY(180deg)}
+.brand.isDragging .brandLeaf{cursor:grabbing}
+.brand:not(.isDragging):not(.isOpen) .brandLeaf{transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.brand.isOpen .brandLeft,.brand.isOpen .brandHinge{color:var(--blue);transition:color .14s ease .08s}
+.brand.isOpen .brandLeaf{transform:rotateY(-180deg);opacity:0;transition:opacity .15s ease .08s}
+.brand.isOpen{cursor:pointer}
+.brand.isOpen .brandLeft::after{content:"d";color:var(--blue)}
+.brand.isOpen .brandHinge{display:none}
+.brandForward,.brandReverse,.brandAxis,.brandFold,.brandFace,.brandDirection{display:none!important}
+@media(max-width:760px){.brandLeaf{padding:7px 5px;margin:-7px -5px -7px 0}.brandLeafFront,.brandLeafBack{padding:7px 5px}}
+@media(prefers-reduced-motion:reduce){.brandLeaf{transition:none!important}}
+
+
+/* Symmetry correction: daddaH is the six-letter folding leaf over Haddad. */
+.brandLeft{color:var(--ink);position:relative;z-index:2}
+.brandHinge{display:none!important}
+.brand.isOpen .brandLeft{color:var(--blue);transition:color .14s ease .08s}
+.brand.isOpen .brandLeft::after{content:none}
+
+
+/* Carry the folding leaf across the seam as it turns; rotation alone cannot register the Hs. */
+.brandLeaf{
+ transform:translateX(calc(-100% * var(--fold-progress,0))) rotateY(calc(-180deg * var(--fold-progress,0)))!important;
+ transform-origin:left center!important
+}
+.brand.isOpen .brandLeaf{transform:translateX(-100%) rotateY(-180deg)!important}
+
+
+/* Actual H-to-H registration. Keep the seam fixed and let perspective create the fold. */
+.brandTargetH,.brandMovingH{display:inline}
+.brandLeaf{
+ transform:perspective(520px) rotateY(calc(-180deg * var(--fold-progress,0)))!important;
+ transform-origin:left center!important
+}
+.brand.isOpen .brandLeaf{transform:perspective(520px) rotateY(-180deg)!important;opacity:0!important}
+
+
+/* Theme + Connect */
+:root[data-theme="dark"]{
+  --ink:#eef2f1;
+  --paper:#0b1113;
+  --muted:#9aa6a8;
+  --line:rgba(238,242,241,.16);
+}
+body{transition:background-color .28s ease,color .28s ease}
+.topbarActions{display:flex;align-items:center;gap:18px}
+.themeToggle{width:34px;height:34px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);font:inherit;cursor:pointer;transition:border-color .2s ease,transform .2s ease,background .2s ease}
+.themeToggle:hover,.themeToggle:focus-visible{border-color:var(--blue);background:color-mix(in srgb,var(--blue) 12%,transparent);transform:rotate(12deg)}
+:root[data-theme="dark"] .pathTab:hover,:root[data-theme="dark"] .pathTab:focus-visible{background:rgba(255,255,255,.06)}
+:root[data-theme="dark"] .mark{filter:drop-shadow(0 22px 26px rgba(0,0,0,.3))}
+:root[data-theme="dark"] .markStage:hover .mark{filter:drop-shadow(0 -22px 26px rgba(0,0,0,.35))}
+.connectSection{display:grid;grid-template-columns:minmax(260px,.72fr) minmax(0,1.28fr);gap:clamp(48px,8vw,120px);padding:clamp(72px,10vw,130px) 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.connectIntro h2{margin:0;font-size:clamp(54px,7vw,100px);line-height:.88;letter-spacing:-.065em}
+.connectIntro>p:last-child{max-width:420px;margin:28px 0 0;color:var(--muted);font-size:18px;line-height:1.45}
+.connectForm{display:grid;grid-template-columns:1fr 1fr;gap:26px 18px;align-content:start}
+.connectForm label{display:grid;gap:9px}
+.connectForm label>span{color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.connectForm input,.connectForm textarea{width:100%;border:0;border-bottom:1px solid var(--line);border-radius:0;padding:11px 0;background:transparent;color:var(--ink);font:inherit;font-size:17px;outline:none;resize:vertical;transition:border-color .2s ease}
+.connectForm input:focus,.connectForm textarea:focus{border-color:var(--blue)}
+.connectWide{grid-column:1/-1}
+.connectSubmit{grid-column:1/-1;display:flex;justify-content:flex-end;margin-top:4px}
+.connectSubmit button{border:1px solid var(--ink);border-radius:999px;padding:12px 17px;background:var(--ink);color:var(--paper);font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:background .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
+.connectSubmit button:hover,.connectSubmit button:focus-visible{background:var(--blue);border-color:var(--blue);color:#0c1416;transform:translateY(-2px)}
+@media(max-width:760px){.topbarActions{gap:12px}.connectSection{grid-template-columns:1fr;gap:48px;padding:72px 0}.connectForm{grid-template-columns:1fr}.connectWide,.connectSubmit{grid-column:1}.connectSubmit{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){body,.themeToggle{transition:none!important}}
+
+
+/* Keep the palindrome fold interactive in dark mode: explicit theme colors override legacy !important ink rules. */
+:root[data-theme="dark"] .brandLeft,
+:root[data-theme="dark"] .brandLeafFront{color:var(--ink)!important}
+:root[data-theme="dark"] .brandLeafBack,
+:root[data-theme="dark"] .brand.isOpen .brandLeft{color:var(--blue)!important}
+:root[data-theme="dark"] .brandLeaf{pointer-events:auto!important}
+
+
+/* Mobile release polish: tighten the palindrome seam and anchor the mark to the hero grid. */
+@media(max-width:760px){
+  .brandLeft{margin-right:-.055em}
+  .brandLeaf{padding:7px 0;margin:-7px 0 -7px 0}
+  .brandLeafFront,.brandLeafBack{padding:7px 0}
+  .markStage{
+    min-height:230px;
+    justify-items:center;
+    align-items:end;
+    padding:0 3vw 10px 0;
+  }
+  .mark{width:158px}
+  .markStage::before{width:174px}
+}
+
+
+/* Final mobile alignment: the center d belongs to the folding leaf. */
+.brand.isOpen .brandLeft::after{content:"d";color:var(--blue)}
+@media(max-width:760px){
+  .brandLeft{margin-right:0}
+  .brandLeaf{margin-left:0}
+  .markStage{transform:translateX(-18px)}
+}
+
+
+/* Locked mobile hero mark: true center within its circle and viewport column. */
+@media(max-width:760px){
+  .markStage{
+    transform:none !important;
+    justify-items:center !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  .mark,
+  .markStage::before{
+    justify-self:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
