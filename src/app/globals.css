@@ -2089,3 +2089,31 @@ footer {
  .puzzleStep-1 .eyebrow,.puzzleStep-2 .sectionLabel,.puzzleStep-2 .pathTab.isActive strong,
  .puzzleStep-3 .brandAxis,.puzzleStep-3 .quietLink,.puzzleReady h1{transition:none}
 }
+
+
+/* Puzzle payoff v1: temporary system-wide activation, CSS-only and responsive. */
+.partySignal{position:fixed;left:50%;top:22px;z-index:30;transform:translateX(-50%);display:flex;gap:12px;align-items:center;
+ padding:8px 13px;border:1px solid rgba(64,184,238,.55);background:rgba(245,244,239,.9);backdrop-filter:blur(8px);
+ font-size:10px;letter-spacing:.16em;text-transform:uppercase;animation:partySignalIn 12s ease both}
+.partySignal i{font-style:normal;color:var(--blue);font-weight:700}
+.partyMode .eyebrow,.partyMode .sectionLabel,.partyMode .storyChapterMeta strong,.partyMode .buildChapter,
+.partyMode .musicKicker,.partyMode .pathTab strong{color:var(--blue)!important}
+.partyMode .storyMarker span{border-color:var(--blue);box-shadow:0 0 0 5px rgba(64,184,238,.08),0 0 24px rgba(64,184,238,.18)}
+.partyMode .pathTabs,.partyMode .actions a,.partyMode .musicSwitcher button{border-color:rgba(64,184,238,.5)}
+.partyMode .markStage{filter:drop-shadow(0 0 18px rgba(64,184,238,.38))}
+.partyMode .mark{animation:partyMark 1.6s cubic-bezier(.2,.8,.2,1) infinite}
+.partyMode::after{content:"";position:fixed;inset:0;z-index:7;pointer-events:none;
+ background:repeating-linear-gradient(90deg,transparent 0 9vw,rgba(64,184,238,.045) 9vw 9.12vw);
+ animation:partySweep 3.2s linear infinite}
+@keyframes partySignalIn{0%{opacity:0;translate:0 -18px}5%,82%{opacity:1;translate:0 0}100%{opacity:0;translate:0 -8px}}
+@keyframes partyMark{0%,100%{transform:rotate(0) scale(1)}35%{transform:rotate(8deg) scale(1.045)}70%{transform:rotate(-5deg) scale(.99)}}
+@keyframes partySweep{from{transform:translateX(-9vw)}to{transform:translateX(9vw)}}
+@media(max-width:760px){
+ .partySignal{top:10px;max-width:calc(100vw - 24px);white-space:nowrap;font-size:8px;padding:7px 10px}
+ .partyMode::after{background:repeating-linear-gradient(90deg,transparent 0 18vw,rgba(64,184,238,.04) 18vw 18.2vw)}
+ .partyMode .mark{animation-duration:2.1s}
+}
+@media(prefers-reduced-motion:reduce){
+ .partySignal,.partyMode .mark,.partyMode::after{animation:none!important}
+ .partySignal{opacity:1}.partyMode::after{display:none}
+}
