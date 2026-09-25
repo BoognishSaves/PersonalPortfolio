@@ -20,5 +20,6 @@
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "vercelBuildNonce": "2026-09-25-canvas-1"
 }
