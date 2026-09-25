@@ -61,12 +61,24 @@ export default function LivingCanvas({ maturity }: Props) {
         p.y+=Math.cos(time*.00028+p.phase)*.014;
         if(p.x<-15)p.x=w+15;if(p.x>w+15)p.x=-15;
         if(p.y<-15)p.y=h+15;if(p.y>h+15)p.y=-15;
-        const breathe=.78+Math.sin(time*.0011+p.phase)*.22;
+        const breathe=.82+Math.sin(time*.0011+p.phase)*.18;
+        const wobble=Math.sin(time*.0008+p.phase);
         const a=.045+Math.min(1,m/100)*.085;
-        ctx.beginPath();ctx.arc(p.x,p.y,p.r*breathe,0,Math.PI*2);
-        ctx.fillStyle=`rgba(64,184,238,${a})`;ctx.fill();
-        ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.8,p.r*.23),0,Math.PI*2);
-        ctx.fillStyle=`rgba(64,184,238,${a*2.25})`;ctx.fill();
+        // A tiny multi-lobed organism rather than a perfect particle.
+        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.phase+time*.000035);
+        const lobes=3+(i%3);
+        for(let l=0;l<lobes;l++){
+          const ang=(l/lobes)*Math.PI*2;
+          const orbit=p.r*(.28+.10*Math.sin(time*.001+l+p.phase));
+          const lr=p.r*breathe*(.48+.10*Math.sin(time*.0013+l*1.7+p.phase));
+          ctx.beginPath();
+          ctx.ellipse(Math.cos(ang)*orbit,Math.sin(ang)*orbit,lr*(1+.12*wobble),lr*(.72-.08*wobble),ang,0,Math.PI*2);
+          ctx.fillStyle=`rgba(64,184,238,${a*.72})`;ctx.fill();
+        }
+        // Brighter nucleus makes the spore read as a digital cell up close.
+        ctx.beginPath();ctx.arc(0,0,Math.max(.75,p.r*.20),0,Math.PI*2);
+        ctx.fillStyle=`rgba(64,184,238,${Math.min(.5,a*2.8)})`;ctx.fill();
+        ctx.restore();
       });
     };
 
