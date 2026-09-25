@@ -242,8 +242,12 @@ export default function Home() {
           </g>
         </svg>
         <i className="growth g1" /><i className="growth g2" /><i className="growth g3" /><i className="growth g4" />
-        <div className="thicket thicketLeft"><i/><i/><i/><i/><i/><i/></div>
-        <div className="thicket thicketRight"><i/><i/><i/><i/><i/><i/></div>
+        <div className="thicket thicketLeft"><i/><i/><i/><i/><i/><i/><i/><i/><i/></div>
+        <div className="thicket thicketRight"><i/><i/><i/><i/><i/><i/><i/><i/><i/></div>
+        <div className="digitalLife" aria-hidden="true">
+          <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
+          <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
+        </div>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
     </main>
