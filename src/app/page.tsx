@@ -13,6 +13,7 @@ export default function Home() {
   const brandStartX = useRef(0);
   const brandTargetRef = useRef<HTMLSpanElement | null>(null);
   const [activePath, setActivePath] = useState("product");
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [secretOpen, setSecretOpen] = useState(false);
   const [maturity, setMaturity] = useState(0);
@@ -29,6 +30,22 @@ export default function Home() {
     if (seen.current.has(key)) return;
     seen.current.add(key);
     setMaturity((value) => Math.min(100, value + amount));
+  };
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("haddad-theme");
+    const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const nextTheme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : preferred;
+    setTheme(nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("haddad-theme", next);
+    grow(`theme-${next}`, 2);
   };
 
   useEffect(() => {
@@ -114,7 +131,7 @@ export default function Home() {
             <span className="brandLeafFront">dadda<span className="brandMovingH">H</span></span><span className="brandLeafBack">Haddad</span>
           </span>
         </button>
-        <a className="quietLink" href="#connect">Connect</a>
+        <div className="topbarActions"><button className="themeToggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☀" : "◐"}</span></button><a className="quietLink" href="#connect">Connect</a></div>
       </header>
 
       <section className="hero" id="top">
@@ -122,7 +139,7 @@ export default function Home() {
           <p className="eyebrow">{identity.eyebrow}</p>
           <h1>{identity.name}</h1>
           <p className="lead">{identity.intro}</p>
-          <div className="actions" id="connect" aria-label="Primary links">
+          <div className="actions" aria-label="Primary links">
             {socials.map((social) => <a key={social.label} href={social.url} target="_blank" rel="noreferrer">{social.label}</a>)}
           </div>
         </div>
