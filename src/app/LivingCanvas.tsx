@@ -60,28 +60,68 @@ export default function LivingCanvas({ maturity }: Props) {
       ctx.clearRect(0,0,w,h);
       const m = Math.max(0,Math.min(100,maturityRef.current));
       if(m < 3) return;
-      const cols = mobile ? 9 : 17;
-      const rows = Math.ceil(h/(w/cols*.82))+2;
-      const gap=w/cols;
-      const total=cols*rows;
-      const reveal=Math.floor(total*(m/100));
-      for(let i=0;i<reveal;i++){
-        const row=Math.floor(i/cols), col=i%cols;
-        const order=(i*37)%total;
-        if(order>=reveal) continue;
-        const x=(col+.5+(row%2)*.5)*gap;
-        const y=(row+.5)*gap*.82;
-        const r=gap*(.47+hash(i)*.15);
-        drawCell(x,y,r,i,.10+(m/100)*.26);
+
+      // Deterministic colonies: broad forms first, then increasingly fine cellular detail.
+      // Nothing runs continuously; complexity only increases when growth is redrawn.
+      const colonies = mobile ? 7 : 13;
+      const generations = m < 28 ? 1 : m < 55 ? 2 : m < 78 ? 3 : 4;
+      const density = .22 + (m/100) * .78;
+
+      for(let c=0;c<colonies;c++){
+        const edge = c % 4;
+        const seed = 1000 + c * 113;
+        const cx = edge===0 ? hash(seed)*w*.22
+          : edge===1 ? w*(.78+hash(seed)*.22)
+          : hash(seed)*w
+        const cy = edge===2 ? hash(seed+2)*h*.18
+          : edge===3 ? h*(.82+hash(seed+2)*.18)
+          : hash(seed+2)*h;
+        const reach = (mobile ? 72 : 105) + hash(seed+4)*(mobile ? 70 : 145);
+        const localM = Math.max(0, Math.min(1, density*1.35 - hash(seed+9)*.42));
+        if(localM<=0) continue;
+
+        // Large membrane: deliberately incomplete and irregular.
+        drawCell(cx,cy,reach,seed,.07+localM*.15);
+
+        for(let g=1;g<=generations;g++){
+          const count = Math.floor((3+g*4) * localM);
+          const radius = reach / Math.pow(2.15,g);
+          for(let j=0;j<count;j++){
+            const a = hash(seed+g*97+j*19)*Math.PI*2;
+            const dist = reach*(.18+hash(seed+g*131+j*23)*(.7+g*.12));
+            const x = cx+Math.cos(a)*dist;
+            const y = cy+Math.sin(a)*dist*.82;
+            if(x < -radius || x > w+radius || y < -radius || y > h+radius) continue;
+            drawCell(x,y,radius*(.62+hash(seed+j+g)*.75),seed+g*100+j,.08+localM*.22+g*.018);
+
+            // Fine satellite cells create dense pockets rather than uniform wallpaper.
+            if(g>=2 && hash(seed+j*31+g) < localM*.72){
+              const satellites = 2 + Math.floor(hash(seed+j*43)*4);
+              for(let q=0;q<satellites;q++){
+                const sa=hash(seed+j*59+q*11)*Math.PI*2;
+                const sr=radius*(1.1+hash(seed+q*71)*1.7);
+                drawCell(x+Math.cos(sa)*sr,y+Math.sin(sa)*sr,radius*(.18+hash(seed+q)*.25),seed+j*200+q,.10+localM*.24);
+              }
+            }
+          }
+        }
       }
-      // A few structural tendrils make the field read as one organism.
-      ctx.strokeStyle=`rgba(64,184,238,${.05+(m/100)*.16})`;
-      ctx.lineWidth=1;
-      for(let k=0;k<Math.floor(m/22);k++){
-        ctx.beginPath();
-        const sy=(k+1)*h/5;
-        ctx.moveTo(k%2? w:0,sy);
-        ctx.bezierCurveTo(w*.28,sy-gap,w*.55,sy+gap,w*(k%2?.18:.82),sy+gap*.4);
+
+      // Structural veins bind colonies into a system without imposing a grid.
+      const veins = Math.floor(2 + m/16);
+      ctx.strokeStyle=`rgba(64,184,238,${.05+(m/100)*.17})`;
+      ctx.lineWidth=.8;
+      for(let k=0;k<veins;k++){
+        const seed=7000+k*83;
+        const fromLeft=hash(seed)>.5;
+        const sy=hash(seed+1)*h;
+        ctx.beginPath(); ctx.moveTo(fromLeft?0:w,sy);
+        ctx.bezierCurveTo(
+          w*hash(seed+2), sy+(hash(seed+3)-.5)*240,
+          w*hash(seed+4), sy+(hash(seed+5)-.5)*360,
+          fromLeft?w*(.62+hash(seed+6)*.38):w*(hash(seed+6)*.38),
+          Math.max(0,Math.min(h,sy+(hash(seed+7)-.5)*420))
+        );
         ctx.stroke();
       }
     };
