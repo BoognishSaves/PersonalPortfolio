@@ -2225,3 +2225,26 @@ footer {
 .brand.isOpen{cursor:pointer}
 @media(max-width:760px){.brand .brandReverse{padding:8px 6px;margin:-8px -6px 0 0}}
 @media(prefers-reduced-motion:reduce){.brand .brandReverse{transition:none!important}}
+
+
+/* Final wordmark model: one black palindrome; right half is a two-sided hinged sheet. */
+.brandFold{min-width:124px;white-space:nowrap}
+.brandForward{display:inline-block;color:var(--ink)!important}
+.brand .brandReverse{
+ position:absolute;left:50%;top:0;width:50%;height:1em;
+ transform-origin:left center;
+ transform:perspective(520px) rotateY(calc(-180deg * var(--fold-progress,0)));
+ transform-style:preserve-3d;opacity:1!important;color:inherit!important;
+ cursor:grab;touch-action:none;will-change:transform;
+ transition:none!important
+}
+.brandFace{position:absolute;inset:0;display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.brandFaceFront{color:var(--ink);transform:rotateY(0deg)}
+.brandFaceBack{color:var(--blue);transform:rotateY(180deg)}
+.brand.isDragging .brandReverse{cursor:grabbing}
+.brand:not(.isDragging):not(.isOpen) .brandReverse{transition:transform .32s cubic-bezier(.2,.8,.2,1)!important}
+.brand.isOpen .brandForward{color:var(--blue)!important;transition:color .16s ease .12s}
+.brand.isOpen .brandReverse{transform:perspective(520px) rotateY(-180deg);opacity:0!important;transition:opacity .16s ease .1s!important}
+.brand.isOpen .brandFold{min-width:58px}
+@media(max-width:760px){.brandFold{min-width:116px}.brand.isOpen .brandFold{min-width:54px}.brand .brandReverse{padding:0;margin:0}}
+@media(prefers-reduced-motion:reduce){.brand .brandReverse{transition:none!important}}
