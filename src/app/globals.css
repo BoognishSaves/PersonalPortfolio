@@ -2156,3 +2156,9 @@ footer {
  .puzzleStep-2 .pathPanel::before,.puzzleStep-3 .pathPanel::before,.puzzleReady .pathPanel::before,
  .puzzleStep-3 .markStage::before,.puzzleReady .markStage,.puzzleReady .markStage::before,.puzzleReady .hero::after{animation:none!important}
 }
+
+.partyCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:.5;pointer-events:none}
+.partyMode{position:relative}
+.partyMode .heroCopy::after,.partyMode .pathStatement::after{box-shadow:0 0 36px 22px rgba(245,244,239,.9)}
+@media(max-width:760px){.partyCanvas{opacity:.82}}
+@media(prefers-reduced-motion:reduce){.partyCanvas{display:none}}
