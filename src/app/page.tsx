@@ -248,6 +248,8 @@ export default function Home() {
           <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
           <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
         </div>
+        <div className="pcbGrowth pcbLeft" aria-hidden="true">{Array.from({length: 18}).map((_,i)=><i key={i}/>)}</div>
+        <div className="pcbGrowth pcbRight" aria-hidden="true">{Array.from({length: 18}).map((_,i)=><i key={i}/>)}</div>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
     </main>
