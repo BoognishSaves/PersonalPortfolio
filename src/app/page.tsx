@@ -78,11 +78,31 @@ export default function Home() {
       <div key={`puzzle-${puzzlePing}`} className={`livingContent puzzleStep-${puzzlePulse} ${puzzlePrimed ? "puzzleReady" : ""} ${partyMode ? "partyMode" : ""}`}>
       {partyMode && <div className="partySignal" aria-live="polite"><span>SYSTEM WIDE OPEN</span><i>HaddadaddaH</i></div>}
       <header className="topbar">
-        <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset Haddad wordmark" : "Fold the HaddadaddaH wordmark"} onClick={() => {
-          if (brandOpen) { setBrandOpen(false); grow("brand-reset", 2); }
-          else { setBrandOpen(true); grow("brand-fold", 4); }
+        <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset Haddad wordmark" : "Fold the wordmark from its final H"} onClick={() => {
+          if (brandOpen) { setBrandOpen(false); setBrandDrag(0); grow("brand-reset", 2); }
         }}>
-          <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
+          <span className="brandLeft">Hadda</span><span className="brandHinge">d</span>
+          <span className="brandLeaf" style={{ "--fold-progress": brandDrag } as React.CSSProperties}
+            onPointerDown={(event) => {
+              if (brandOpen) return;
+              event.preventDefault(); event.stopPropagation();
+              event.currentTarget.setPointerCapture(event.pointerId);
+              brandStartX.current = event.clientX; setBrandDragging(true);
+            }}
+            onPointerMove={(event) => {
+              if (!brandDragging || brandOpen) return;
+              const width = Math.max(1, event.currentTarget.getBoundingClientRect().width);
+              setBrandDrag(Math.max(0, Math.min(1, (brandStartX.current - event.clientX) / (width * 1.9))));
+            }}
+            onPointerUp={(event) => {
+              if (!brandDragging || brandOpen) return;
+              event.stopPropagation(); event.currentTarget.releasePointerCapture(event.pointerId); setBrandDragging(false);
+              if (brandDrag >= .88) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
+              else setBrandDrag(0);
+            }}
+            onPointerCancel={() => { setBrandDragging(false); if (!brandOpen) setBrandDrag(0); }}>
+            <span className="brandLeafFront">addaH</span><span className="brandLeafBack">Hadda</span>
+          </span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
       </header>
