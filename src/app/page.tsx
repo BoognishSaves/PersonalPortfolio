@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import LivingCanvas from "./LivingCanvas";
 import siteContent from "../content/siteContent";
 
 export default function Home() {
@@ -9,9 +10,27 @@ export default function Home() {
   const [activePath, setActivePath] = useState("product");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [secretOpen, setSecretOpen] = useState(false);
+  const [maturity, setMaturity] = useState(0);
+  const seen = useRef(new Set<string>());
   const musicFeatureRef = useRef<HTMLElement | null>(null);
 
+  const grow = (key: string, amount = 7) => {
+    if (seen.current.has(key)) return;
+    seen.current.add(key);
+    setMaturity((value) => Math.min(100, value + amount));
+  };
+
+  useEffect(() => {
+    const saved = Number(sessionStorage.getItem("haddad-growth") || 0);
+    if (Number.isFinite(saved)) setMaturity(Math.min(100, saved));
+    const timer = window.setInterval(() => setMaturity((value) => Math.min(100, value + 2)), 60000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => { sessionStorage.setItem("haddad-growth", String(maturity)); }, [maturity]);
+
   const chooseMusic = (name: string) => {
+    grow(`music-${name}`, 5);
     setActiveMusic(name);
     window.requestAnimationFrame(() => {
       musicFeatureRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -21,9 +40,11 @@ export default function Home() {
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
   return (
-    <main className="shell">
+    <main className="shell livingShell">
+      <LivingCanvas maturity={maturity} />
+      <div className="livingContent">
       <header className="topbar">
-        <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => setBrandOpen((open) => !open)}>
+        <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); grow("brand", 4); }}>
           <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
@@ -51,7 +72,7 @@ export default function Home() {
 
         <div className="pathTabs" role="tablist" aria-label="Explore John Paul's work">
           {paths.map((path, index) => (
-            <button key={path.id} type="button" role="tab" aria-selected={activePath === path.id} className={`pathTab ${activePath === path.id ? "isActive" : ""}`} onClick={() => setActivePath(path.id)}>
+            <button key={path.id} type="button" role="tab" aria-selected={activePath === path.id} className={`pathTab ${activePath === path.id ? "isActive" : ""}`} onClick={() => { setActivePath(path.id); grow(`path-${path.id}`, 9); }}>
               <span>0{index + 1}</span><strong>{path.label}</strong>
             </button>
           ))}
@@ -160,7 +181,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <button className="secretSeed" type="button" aria-expanded={secretOpen} onClick={() => setSecretOpen((open) => !open)}>
+        <button className="secretSeed" type="button" aria-expanded={secretOpen} onClick={() => { setSecretOpen((open) => !open); grow("secret", 8); }}>
           <span>HaddadaddaH</span>
           <i aria-hidden="true">·</i>
         </button>
@@ -172,6 +193,6 @@ export default function Home() {
           <strong>Reverse it. Spin it. Walk all four paths.</strong>
         </aside>
       )}
-    </main>
+      </div>\n    </main>
   );
 }
