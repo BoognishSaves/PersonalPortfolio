@@ -2396,3 +2396,18 @@ body{transition:background-color .28s ease,color .28s ease}
     margin-right:auto !important;
   }
 }
+
+
+/* Connect: prominent action, zero page-length cost. */
+.connectButton{border:1px solid var(--blue);border-radius:999px;padding:10px 15px;background:var(--blue);color:#0c1416;font:inherit;font-size:12px;font-weight:800;letter-spacing:.02em;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
+.connectButton:hover,.connectButton:focus-visible{transform:translateY(-2px);box-shadow:0 8px 24px rgba(64,184,238,.22);background:color-mix(in srgb,var(--blue) 86%,white)}
+.connectModal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;background:rgba(5,10,12,.68);backdrop-filter:blur(10px);animation:connectFade .18s ease-out}
+.connectDialog{position:relative;width:min(880px,100%);max-height:calc(100dvh - 48px);overflow:auto;display:grid;grid-template-columns:minmax(220px,.72fr) minmax(0,1.28fr);gap:clamp(36px,6vw,72px);padding:clamp(32px,5vw,64px);border:1px solid var(--line);background:var(--paper);box-shadow:0 30px 90px rgba(0,0,0,.28);animation:connectRise .22s cubic-bezier(.2,.8,.2,1)}
+.connectDialog .connectIntro h2{font-size:clamp(46px,6vw,78px)}
+.connectDialog .connectIntro>p:last-child{font-size:16px;margin-top:22px}
+.connectClose{position:absolute;right:16px;top:14px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);font:300 25px/1 Arial,sans-serif;cursor:pointer;z-index:2;transition:border-color .2s ease,color .2s ease,transform .2s ease}
+.connectClose:hover,.connectClose:focus-visible{border-color:var(--blue);color:var(--blue);transform:rotate(6deg)}
+@keyframes connectFade{from{opacity:0}to{opacity:1}}
+@keyframes connectRise{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
+@media(max-width:760px){.connectButton{padding:9px 13px}.connectModal{padding:12px}.connectDialog{grid-template-columns:1fr;gap:30px;max-height:calc(100dvh - 24px);padding:36px 24px 28px}.connectDialog .connectIntro h2{font-size:52px}.connectDialog .connectIntro>p:last-child{margin-top:16px}.connectClose{right:10px;top:10px}}
+@media(prefers-reduced-motion:reduce){.connectModal,.connectDialog,.connectButton,.connectClose{animation:none!important;transition:none!important}}
