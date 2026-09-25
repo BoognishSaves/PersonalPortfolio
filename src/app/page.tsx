@@ -92,12 +92,17 @@ export default function Home() {
             onPointerMove={(event) => {
               if (!brandDragging || brandOpen) return;
               const width = Math.max(1, event.currentTarget.getBoundingClientRect().width);
-              setBrandDrag(Math.max(0, Math.min(1, (brandStartX.current - event.clientX) / (width * 1.9))));
+              setBrandDrag(Math.max(0, Math.min(1, (brandStartX.current - event.clientX) / width)));
             }}
             onPointerUp={(event) => {
               if (!brandDragging || brandOpen) return;
               event.stopPropagation(); event.currentTarget.releasePointerCapture(event.pointerId); setBrandDragging(false);
-              if (brandDrag >= .88) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
+              const leaf = event.currentTarget.getBoundingClientRect();
+              const root = event.currentTarget.parentElement?.getBoundingClientRect();
+              const targetX = root?.left ?? leaf.left;
+              const foldedH = leaf.left + leaf.width * (1 - brandDrag);
+              const registered = Math.abs(foldedH - targetX) <= Math.max(14, leaf.width * .16);
+              if (registered || brandDrag >= .82) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
               else setBrandDrag(0);
             }}
             onPointerCancel={() => { setBrandDragging(false); if (!brandOpen) setBrandDrag(0); }}>
