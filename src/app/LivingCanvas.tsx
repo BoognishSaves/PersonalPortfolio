@@ -15,7 +15,9 @@ export default function LivingCanvas({ maturity }: Props) {
     const mobile=matchMedia("(max-width: 760px)").matches;
     const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr=Math.min(devicePixelRatio||1,mobile?1.2:1.5);
-    let w=0,h=0,raf=0;
+    let w=0,h=0,raf=0,ambientRaf=0;
+    type Spore={x:number;y:number;vx:number;vy:number;r:number;phase:number};
+    let spores:Spore[]=[];
 
     const hash=(n:number)=>{const x=Math.sin(n*91.731)*43758.5453;return x-Math.floor(x)};
     const inside=(x:number,y:number,r:{x:number;y:number;w:number;h:number},pad=0)=>
@@ -37,6 +39,35 @@ export default function LivingCanvas({ maturity }: Props) {
       ctx.beginPath();ctx.arc(x+dx,y+dy,width*1.7,0,Math.PI*2);
       ctx.fillStyle=`rgba(64,184,238,${Math.min(.55,a*1.35)})`;ctx.fill();
       return [x+dx,y+dy] as const;
+    };
+
+    const makeSpores=()=>{
+      const count=mobile?4:8;
+      spores=Array.from({length:count},(_,i)=>({
+        x:hash(8100+i*17)*w,y:hash(8200+i*23)*h,
+        vx:(hash(8300+i*29)-.5)*(mobile?.055:.075),
+        vy:(hash(8400+i*31)-.5)*(mobile?.045:.06),
+        r:(mobile?2.5:3.5)+hash(8500+i*37)*(mobile?4:7),
+        phase:hash(8600+i*41)*Math.PI*2
+      }));
+    };
+
+    const drawSpores=(time:number)=>{
+      const m=maturityRef.current;
+      if(reduced||document.hidden||m<12)return;
+      spores.forEach((p,i)=>{
+        p.x+=p.vx; p.y+=p.vy;
+        p.x+=Math.sin(time*.00035+p.phase)*.018;
+        p.y+=Math.cos(time*.00028+p.phase)*.014;
+        if(p.x<-15)p.x=w+15;if(p.x>w+15)p.x=-15;
+        if(p.y<-15)p.y=h+15;if(p.y>h+15)p.y=-15;
+        const breathe=.78+Math.sin(time*.0011+p.phase)*.22;
+        const a=.045+Math.min(1,m/100)*.085;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r*breathe,0,Math.PI*2);
+        ctx.fillStyle=`rgba(64,184,238,${a})`;ctx.fill();
+        ctx.beginPath();ctx.arc(p.x,p.y,Math.max(.8,p.r*.23),0,Math.PI*2);
+        ctx.fillStyle=`rgba(64,184,238,${a*2.25})`;ctx.fill();
+      });
     };
 
     const draw=()=>{
@@ -98,6 +129,15 @@ export default function LivingCanvas({ maturity }: Props) {
           });
         });
       }
+      drawSpores(performance.now());
+    };
+
+    const ambient=(time:number)=>{
+      if(!reduced&&!document.hidden&&maturityRef.current>=12){
+        draw();
+        drawSpores(time);
+      }
+      ambientRaf=requestAnimationFrame(ambient);
     };
 
     const pulse=()=>{
@@ -118,14 +158,16 @@ export default function LivingCanvas({ maturity }: Props) {
       raf=requestAnimationFrame(animate);
     };
 
-    const resize=()=>{const r=canvas.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()};
+    const resize=()=>{const r=canvas.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);makeSpores();draw()};
     const redraw=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(draw)};
     addEventListener("resize",resize,{passive:true});addEventListener("living-growth",redraw);
     resize();
     // Rare, brief motion only. The page is still most of the time.
     const pulseEvery=mobile?22000:15000;
     const pulseTimer=window.setInterval(pulse,pulseEvery);
-    return()=>{window.clearInterval(pulseTimer);cancelAnimationFrame(raf);removeEventListener("resize",resize);removeEventListener("living-growth",redraw)};
+    // Ambient loop is deliberately tiny: 8 simple spores desktop / 4 mobile.
+    if(!reduced) ambientRaf=requestAnimationFrame(ambient);
+    return()=>{window.clearInterval(pulseTimer);cancelAnimationFrame(ambientRaf);cancelAnimationFrame(raf);removeEventListener("resize",resize);removeEventListener("living-growth",redraw)};
   },[]);
 
   useEffect(()=>{dispatchEvent(new Event("living-growth"))},[maturity]);
