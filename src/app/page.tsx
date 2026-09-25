@@ -10,10 +10,7 @@ export default function Home() {
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [wake, setWake] = useState(0);
   const [secretOpen, setSecretOpen] = useState(false);
-  const [overdrive, setOverdrive] = useState(false);
   const discoveries = useRef(new Set<string>());
-  const fidgetHits = useRef<number[]>([]);
-  const overdriveTimer = useRef<number | null>(null);
   const musicFeatureRef = useRef<HTMLElement | null>(null);
 
   const awaken = (key: string, amount = 1) => {
@@ -31,25 +28,8 @@ export default function Home() {
   }, []);
 
   const fidget = () => {
-    const now = Date.now();
-    fidgetHits.current = [...fidgetHits.current.filter((hit) => now - hit < 3500), now];
     awaken("mark");
-    if (wake >= 4) {
-      setOverdrive(true);
-      if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
-      overdriveTimer.current = window.setTimeout(() => setOverdrive(false), 2200);
-    }
-    if (fidgetHits.current.length >= 4) {
-      setWake((level) => Math.max(level, 4));
-      setOverdrive(true);
-      if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
-      overdriveTimer.current = window.setTimeout(() => setOverdrive(false), 6500);
-    }
   };
-
-  useEffect(() => () => {
-    if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
-  }, []);
 
   const chooseMusic = (name: string) => {
     setActiveMusic(name);
@@ -62,7 +42,7 @@ export default function Home() {
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
   return (
-    <main className={`shell wake wake-${wake} ${overdrive ? "isOverdrive" : ""}`}>
+    <main className={`shell wake wake-${wake}`}>
       <header className="topbar">
         <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); awaken("brand"); }}>
           <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
