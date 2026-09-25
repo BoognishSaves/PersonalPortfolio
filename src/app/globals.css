@@ -1276,3 +1276,41 @@ footer {
   .wake-5 .circuitField { mask-image: linear-gradient(90deg,#000 0 8%,transparent 24% 76%,#000 92% 100%); -webkit-mask-image: linear-gradient(90deg,#000 0 8%,transparent 24% 76%,#000 92% 100%); }
   .wake-5 .heroCopy::before, .wake-5 .pathStatement::before { left: -8px; }
 }
+
+
+/* Wake v5: preserve readable clearings; concentrate growth in negative space. */
+.wake-5 .circuitField {
+  mask-image:
+    linear-gradient(90deg, #000 0 27%, rgba(0,0,0,.28) 36%, transparent 44% 68%, rgba(0,0,0,.32) 76%, #000 86% 100%);
+  -webkit-mask-image:
+    linear-gradient(90deg, #000 0 27%, rgba(0,0,0,.28) 36%, transparent 44% 68%, rgba(0,0,0,.32) 76%, #000 86% 100%);
+}
+.wake-5 .rootNetwork { z-index: -2; }
+.wake-5 .contentVines { z-index: -1; }
+
+/* Local paper clearings keep the organism from visually crossing copy. */
+.wake-5 .heroCopy,
+.wake-5 .explorerIntro,
+.wake-5 .pathStatement,
+.wake-5 .evidenceGrid article,
+.wake-5 .buildCard,
+.wake-5 .storyChapterCopy,
+.wake-5 .storyChapterMeta {
+  background: radial-gradient(ellipse at center, rgba(245,244,239,.96) 0%, rgba(245,244,239,.91) 58%, rgba(245,244,239,0) 100%);
+}
+
+/* Let the margins carry more of the mature growth. */
+.wake-5 .v1, .wake-5 .v3 { left: .5%; }
+.wake-5 .v2, .wake-5 .v4 { right: .5%; }
+.wake-5 .growth { opacity: .42; }
+.wake-5 .g1 { right: -72px; }
+.wake-5 .g2 { left: -88px; }
+.wake-5 .g3 { right: -18px; }
+.wake-5 .g4 { left: -12px; }
+
+@media (max-width:760px) {
+  .wake-5 .circuitField {
+    mask-image: linear-gradient(90deg,#000 0 14%,rgba(0,0,0,.18) 23%,transparent 34% 72%,rgba(0,0,0,.2) 82%,#000 94% 100%);
+    -webkit-mask-image: linear-gradient(90deg,#000 0 14%,rgba(0,0,0,.18) 23%,transparent 34% 72%,rgba(0,0,0,.2) 82%,#000 94% 100%);
+  }
+}
