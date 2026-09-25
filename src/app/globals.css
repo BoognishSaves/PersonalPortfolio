@@ -2038,3 +2038,27 @@ footer {
 @media(max-width:760px){
   .livingContent .heroCopy::after,.livingContent .pathStatement::after{inset:-12px -8px;box-shadow:0 0 18px 12px var(--paper)}
 }
+
+
+/* Hidden puzzle feedback: the living system answers exploration without exposing a progress UI. */
+.livingContent::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:8;opacity:0;
+  box-shadow:inset 0 0 0 1px rgba(64,184,238,0);
+  transition:opacity .7s ease,box-shadow .7s ease
+}
+.puzzleStep-1::before{opacity:.16;box-shadow:inset 0 0 70px rgba(64,184,238,.08)}
+.puzzleStep-2::before{opacity:.25;box-shadow:inset 0 0 95px rgba(64,184,238,.11)}
+.puzzleStep-3::before{opacity:.34;box-shadow:inset 0 0 120px rgba(64,184,238,.14)}
+.puzzleReady::before{opacity:.48;box-shadow:inset 0 0 145px rgba(64,184,238,.18)}
+.puzzleReady .markStage::after{
+  content:"";position:absolute;inset:-16px;border:1px solid rgba(64,184,238,.32);
+  border-radius:50%;pointer-events:none;animation:puzzleOrbit 5.5s ease-in-out infinite
+}
+.puzzleReady .mark{animation:puzzleBreath 4.2s ease-in-out infinite}
+.puzzleSolved .livingContent{animation:puzzleFlash 2.2s ease-out}
+@keyframes puzzleOrbit{0%,100%{transform:scale(.92) rotate(0);opacity:.12}50%{transform:scale(1.08) rotate(180deg);opacity:.55}}
+@keyframes puzzleBreath{0%,100%{transform:scale(1)}50%{transform:scale(1.035)}}
+@keyframes puzzleFlash{0%{filter:none}12%{filter:saturate(1.8) brightness(1.08)}35%{filter:saturate(1.25)}100%{filter:none}}
+@media(prefers-reduced-motion:reduce){
+ .puzzleReady .markStage::after,.puzzleReady .mark,.puzzleSolved .livingContent{animation:none!important}
+}
