@@ -2021,3 +2021,20 @@ footer {
   .wake-5 .botanicalField{opacity:.46}
   .wake-5 .heroCopy,.wake-5 .pathStatement{box-shadow:0 0 34px 20px var(--paper)!important}
 }
+
+
+/* Living system prototype: isolated canvas, no animation loop. */
+.livingShell{position:relative;isolation:isolate}
+.livingCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.livingContent{position:relative;z-index:1}
+.livingContent .heroCopy,.livingContent .pathStatement,.livingContent .musicFeatureCopy,
+.livingContent .buildCard,.livingContent .storyChapterCopy{
+  position:relative;
+}
+.livingContent .heroCopy::after,.livingContent .pathStatement::after{
+  content:"";position:absolute;z-index:-1;inset:-22px -30px;background:var(--paper);
+  box-shadow:0 0 28px 20px var(--paper);border-radius:22px;pointer-events:none
+}
+@media(max-width:760px){
+  .livingContent .heroCopy::after,.livingContent .pathStatement::after{inset:-12px -8px;box-shadow:0 0 18px 12px var(--paper)}
+}
