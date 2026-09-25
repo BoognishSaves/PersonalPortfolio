@@ -11,6 +11,7 @@ export default function Home() {
   const [brandDrag, setBrandDrag] = useState(0);
   const [brandDragging, setBrandDragging] = useState(false);
   const brandStartX = useRef(0);
+  const brandTargetRef = useRef<HTMLSpanElement | null>(null);
   const [activePath, setActivePath] = useState("product");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [secretOpen, setSecretOpen] = useState(false);
@@ -81,7 +82,7 @@ export default function Home() {
         <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset Haddad wordmark" : "Fold the wordmark from its final H"} onClick={() => {
           if (brandOpen) { setBrandOpen(false); setBrandDrag(0); grow("brand-reset", 2); }
         }}>
-          <span className="brandLeft">Haddad</span>
+          <span className="brandLeft" ref={brandTargetRef}><span className="brandTargetH">H</span>addad</span>
           <span className="brandLeaf" style={{ "--fold-progress": brandDrag } as React.CSSProperties}
             onPointerDown={(event) => {
               if (brandOpen) return;
@@ -97,16 +98,15 @@ export default function Home() {
             onPointerUp={(event) => {
               if (!brandDragging || brandOpen) return;
               event.stopPropagation(); event.currentTarget.releasePointerCapture(event.pointerId); setBrandDragging(false);
-              const leaf = event.currentTarget.getBoundingClientRect();
-              const root = event.currentTarget.parentElement?.getBoundingClientRect();
-              const targetX = root?.left ?? leaf.left;
-              const foldedH = leaf.left + leaf.width * (1 - brandDrag);
-              const registered = Math.abs(foldedH - targetX) <= Math.max(14, leaf.width * .16);
-              if (registered || brandDrag >= .82) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
+              const target = brandTargetRef.current?.querySelector(".brandTargetH")?.getBoundingClientRect();
+              const moving = event.currentTarget.querySelector(".brandMovingH")?.getBoundingClientRect();
+              const registered = !!target && !!moving &&
+                Math.abs((moving.left + moving.width / 2) - (target.left + target.width / 2)) <= Math.max(12, target.width * .8);
+              if (registered) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
               else setBrandDrag(0);
             }}
             onPointerCancel={() => { setBrandDragging(false); if (!brandOpen) setBrandDrag(0); }}>
-            <span className="brandLeafFront">addaH</span><span className="brandLeafBack">Hadda</span>
+            <span className="brandLeafFront">dadda<span className="brandMovingH">H</span></span><span className="brandLeafBack">Haddad</span>
           </span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
@@ -289,6 +289,7 @@ export default function Home() {
           <strong>Walk all four paths. Then follow what wakes up.</strong>
         </aside>
       )}
-      </div>\n    </main>
+      </div>
+    </main>
   );
 }
