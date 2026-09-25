@@ -2204,3 +2204,24 @@ footer {
  .brand.isOpen .brandForward{color:var(--blue)}
  .brand.isOpen .brandReverse{left:0;opacity:0;transform:none}
 }
+
+
+/* Tactile palindrome fold: pointer/finger owns the movement; snap only near registration. */
+.brandFold{touch-action:none;user-select:none;-webkit-user-select:none}
+.brand .brandReverse{
+ left:calc(100% * (1 - var(--fold-progress,0)));
+ transform:rotateY(calc(180deg * var(--fold-progress,0)));
+ opacity:calc(1 - max(0,(var(--fold-progress,0) - .78) * 4.55));
+ cursor:grab;
+ will-change:transform,left,opacity;
+ transition:none
+}
+.brand.isDragging .brandReverse{cursor:grabbing}
+.brand:not(.isDragging):not(.isOpen) .brandReverse{
+ transition:left .34s cubic-bezier(.2,.8,.2,1),transform .34s cubic-bezier(.2,.8,.2,1),opacity .2s ease
+}
+.brand.isOpen .brandForward{color:var(--blue);transition:color .18s ease .08s}
+.brand.isOpen .brandReverse{left:0;transform:rotateY(180deg);opacity:0;transition:opacity .16s ease}
+.brand.isOpen{cursor:pointer}
+@media(max-width:760px){.brand .brandReverse{padding:8px 6px;margin:-8px -6px 0 0}}
+@media(prefers-reduced-motion:reduce){.brand .brandReverse{transition:none!important}}
