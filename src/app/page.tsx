@@ -22,21 +22,22 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const timers = [1, 2, 3, 4, 5].map((minute) =>
-      window.setTimeout(() => awaken(`time-${minute}`, 1), minute * 60000)
+    const milestones = [15000, 45000, 90000, 150000, 240000];
+    const timers = milestones.map((delay, index) =>
+      window.setTimeout(() => awaken(`time-${index + 1}`, 1), delay)
     );
     return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, []);
 
   const fidget = () => {
     const now = Date.now();
-    fidgetHits.current = [...fidgetHits.current.filter((hit) => now - hit < 2200), now];
+    fidgetHits.current = [...fidgetHits.current.filter((hit) => now - hit < 3500), now];
     awaken("mark");
-    if (fidgetHits.current.length >= 5) {
+    if (fidgetHits.current.length >= 4) {
       setWake((level) => Math.max(level, 4));
       setOverdrive(true);
       if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
-      overdriveTimer.current = window.setTimeout(() => setOverdrive(false), 4200);
+      overdriveTimer.current = window.setTimeout(() => setOverdrive(false), 6500);
     }
   };
 
@@ -225,6 +226,18 @@ export default function Home() {
           <g className="circuit circuitPulse">
             <path pathLength="1" d="M25 610 C180 610 170 470 330 470 S480 610 610 610 S790 480 930 520 S1050 650 1180 650" />
             <path pathLength="1" d="M80 1640 C230 1540 350 1690 505 1590 S770 1510 910 1610 S1080 1690 1190 1570" />
+          </g>
+          <g className="circuit circuitCanopy">
+            <path d="M20 260 C90 210 120 285 170 240 S250 175 305 235 S385 300 430 245" />
+            <path d="M1180 315 C1115 255 1070 330 1025 275 S945 210 900 270 S820 335 775 285" />
+            <path d="M30 875 C95 815 135 895 185 845 S270 785 320 850 S400 905 455 850" />
+            <path d="M1170 970 C1100 915 1060 985 1010 935 S930 875 880 940 S800 1000 745 945" />
+            <path d="M15 1460 C90 1395 130 1480 185 1425 S280 1360 335 1430 S420 1490 475 1435" />
+            <path d="M1185 1515 C1110 1450 1070 1535 1015 1480 S920 1415 865 1485 S780 1545 725 1490" />
+          </g>
+          <g className="circuit circuitTwigs">
+            <path d="M150 240 l-42 -55 m42 55 l58 -35 m-23 640 l-55 -42 m55 42 l48 -61 m-18 640 l-62 -35 m62 35 l43 -67" />
+            <path d="M1035 275 l45 -58 m-45 58 l-62 -30 m37 690 l58 -45 m-58 45 l-45 -63 m50 608 l62 -36 m-62 36 l-40 -66" />
           </g>
         </svg>
         <i className="growth g1" /><i className="growth g2" /><i className="growth g3" /><i className="growth g4" />
