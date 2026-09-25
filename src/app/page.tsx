@@ -11,6 +11,8 @@ export default function Home() {
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [secretOpen, setSecretOpen] = useState(false);
   const [maturity, setMaturity] = useState(0);
+  const [puzzlePaths, setPuzzlePaths] = useState<string[]>([]);
+  const [puzzlePrimed, setPuzzlePrimed] = useState(false);
   const seen = useRef(new Set<string>());
   const musicFeatureRef = useRef<HTMLElement | null>(null);
 
@@ -37,6 +39,26 @@ export default function Home() {
     });
   };
 
+  const visitPuzzlePath = (id: string) => {
+    setPuzzlePaths((current) => {
+      if (current.includes(id)) return current;
+      const next = [...current, id];
+      sessionStorage.setItem("haddad-puzzle-paths", JSON.stringify(next));
+      if (next.length === paths.length) setPuzzlePrimed(true);
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem("haddad-puzzle-paths") || "[]");
+      if (Array.isArray(saved)) {
+        setPuzzlePaths(saved);
+        if (saved.length === paths.length) setPuzzlePrimed(true);
+      }
+    } catch {}
+  }, [paths.length]);
+
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
   return (
@@ -59,7 +81,15 @@ export default function Home() {
             {socials.map((social) => <a key={social.label} href={social.url} target="_blank" rel="noreferrer">{social.label}</a>)}
           </div>
         </div>
-        <button className="markStage" type="button" aria-label="JP monogram, the J and P combine to form an H">
+        <button className={`markStage ${puzzlePrimed ? "puzzlePrimed" : ""}`} type="button" aria-label="JP monogram, the J and P combine to form an H" onClick={() => {
+          grow("mark-spin", 5);
+          if (puzzlePrimed) {
+            window.dispatchEvent(new CustomEvent("haddad-puzzle-unlock", { detail: { paths: puzzlePaths } }));
+            setPuzzlePrimed(false);
+            sessionStorage.removeItem("haddad-puzzle-paths");
+            setPuzzlePaths([]);
+          }
+        }}>
           <img className="mark" src="/haddadaddah-micro.svg" alt="JP monogram forming an H" />
         </button>
       </section>
@@ -72,7 +102,7 @@ export default function Home() {
 
         <div className="pathTabs" role="tablist" aria-label="Explore John Paul's work">
           {paths.map((path, index) => (
-            <button key={path.id} type="button" role="tab" aria-selected={activePath === path.id} className={`pathTab ${activePath === path.id ? "isActive" : ""}`} onClick={() => { setActivePath(path.id); grow(`path-${path.id}`, 9); }}>
+            <button key={path.id} type="button" role="tab" aria-selected={activePath === path.id} className={`pathTab ${activePath === path.id ? "isActive" : ""}`} onClick={() => { setActivePath(path.id); grow(`path-${path.id}`, 9); visitPuzzlePath(path.id); }}>
               <span>0{index + 1}</span><strong>{path.label}</strong>
             </button>
           ))}
