@@ -2062,3 +2062,30 @@ footer {
 @media(prefers-reduced-motion:reduce){
  .puzzleReady .markStage::after,.puzzleReady .mark,.puzzleSolved .livingContent{animation:none!important}
 }
+
+
+/* Puzzle v2: typographic breadcrumbs. Pure CSS; no additional rendering loop. */
+.puzzleStep-1 .eyebrow{
+  color:color-mix(in srgb,var(--blue) 42%,var(--muted));
+  transition:color 1.1s ease
+}
+.puzzleStep-2 .sectionLabel{
+  color:color-mix(in srgb,var(--blue) 58%,var(--muted));
+  transition:color 1.1s ease
+}
+.puzzleStep-2 .pathTab.isActive strong{color:var(--blue);transition:color .9s ease}
+.puzzleStep-3 .brandAxis{
+  background:var(--blue);box-shadow:0 0 12px rgba(64,184,238,.28);
+  transition:background .9s ease,box-shadow .9s ease
+}
+.puzzleStep-3 .quietLink{color:color-mix(in srgb,var(--blue) 62%,var(--ink));transition:color 1s ease}
+.puzzleReady h1{
+  color:color-mix(in srgb,var(--blue) 24%,var(--ink));
+  transition:color 1.2s ease
+}
+.puzzleReady .pathTab.isActive strong{color:var(--blue)}
+.puzzleReady .markStage{filter:drop-shadow(0 0 10px rgba(64,184,238,.18))}
+@media(prefers-reduced-motion:reduce){
+ .puzzleStep-1 .eyebrow,.puzzleStep-2 .sectionLabel,.puzzleStep-2 .pathTab.isActive strong,
+ .puzzleStep-3 .brandAxis,.puzzleStep-3 .quietLink,.puzzleReady h1{transition:none}
+}
