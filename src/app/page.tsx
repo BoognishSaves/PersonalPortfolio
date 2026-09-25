@@ -81,7 +81,7 @@ export default function Home() {
         <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset Haddad wordmark" : "Fold the wordmark from its final H"} onClick={() => {
           if (brandOpen) { setBrandOpen(false); setBrandDrag(0); grow("brand-reset", 2); }
         }}>
-          <span className="brandLeft">Hadda</span><span className="brandHinge">d</span>
+          <span className="brandLeft">Haddad</span>
           <span className="brandLeaf" style={{ "--fold-progress": brandDrag } as React.CSSProperties}
             onPointerDown={(event) => {
               if (brandOpen) return;
