@@ -10,7 +10,10 @@ export default function Home() {
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [wake, setWake] = useState(0);
   const [secretOpen, setSecretOpen] = useState(false);
+  const [overdrive, setOverdrive] = useState(false);
   const discoveries = useRef(new Set<string>());
+  const fidgetHits = useRef<number[]>([]);
+  const overdriveTimer = useRef<number | null>(null);
 
   const awaken = (key: string, amount = 1) => {
     if (discoveries.current.has(key)) return;
@@ -25,10 +28,26 @@ export default function Home() {
     return () => timers.forEach((timer) => window.clearTimeout(timer));
   }, []);
 
+  const fidget = () => {
+    const now = Date.now();
+    fidgetHits.current = [...fidgetHits.current.filter((hit) => now - hit < 2200), now];
+    awaken("mark");
+    if (fidgetHits.current.length >= 5) {
+      setWake((level) => Math.max(level, 4));
+      setOverdrive(true);
+      if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
+      overdriveTimer.current = window.setTimeout(() => setOverdrive(false), 4200);
+    }
+  };
+
+  useEffect(() => () => {
+    if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
+  }, []);
+
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
   return (
-    <main className={`shell wake wake-${wake}`}>
+    <main className={`shell wake wake-${wake} ${overdrive ? "isOverdrive" : ""}`}>
       <header className="topbar">
         <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); awaken("brand"); }}>
           <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
@@ -45,7 +64,7 @@ export default function Home() {
             {socials.map((social) => <a key={social.label} href={social.url} target="_blank" rel="noreferrer">{social.label}</a>)}
           </div>
         </div>
-        <button className="markStage" type="button" aria-label="JP monogram, the J and P combine to form an H" onClick={() => awaken("mark")}>
+        <button className="markStage" type="button" aria-label="JP monogram, the J and P combine to form an H" onClick={fidget}>
           <img className="mark" src="/haddadaddah-micro.svg" alt="JP monogram forming an H" />
         </button>
       </section>
