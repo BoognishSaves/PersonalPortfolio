@@ -100,10 +100,15 @@ export default function Home() {
               event.stopPropagation(); event.currentTarget.releasePointerCapture(event.pointerId); setBrandDragging(false);
               const target = brandTargetRef.current?.querySelector(".brandTargetH")?.getBoundingClientRect();
               const moving = event.currentTarget.querySelector(".brandMovingH")?.getBoundingClientRect();
-              const registered = !!target && !!moving &&
-                Math.abs((moving.left + moving.width / 2) - (target.left + target.width / 2)) <= Math.max(12, target.width * .8);
-              if (registered) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
-              else setBrandDrag(0);
+              const centerDistance = target && moving
+                ? Math.abs((moving.left + moving.width / 2) - (target.left + target.width / 2))
+                : Number.POSITIVE_INFINITY;
+              const registered = !!target && !!moving && centerDistance <= Math.max(18, target.width * 1.25);
+              if (registered || brandDrag >= .94) {
+                setBrandDrag(1);
+                requestAnimationFrame(() => setBrandOpen(true));
+                grow("brand-fold", 4);
+              } else setBrandDrag(0);
             }}
             onPointerCancel={() => { setBrandDragging(false); if (!brandOpen) setBrandDrag(0); }}>
             <span className="brandLeafFront">dadda<span className="brandMovingH">H</span></span><span className="brandLeafBack">Haddad</span>
