@@ -248,8 +248,16 @@ export default function Home() {
           <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
           <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
         </div>
-        <div className="pcbGrowth pcbLeft" aria-hidden="true">{Array.from({length: 48}).map((_,i)=><i key={i}/>)}</div>
-        <div className="pcbGrowth pcbRight" aria-hidden="true">{Array.from({length: 48}).map((_,i)=><i key={i}/>)}</div>
+        <div className="pcbGrowth pcbLeft" aria-hidden="true">
+          {Array.from({length: 260}).map((_, i) => {
+            const top = ((i * 37) % 97) + 1;
+            const left = ((i * 61 + Math.floor(i / 7) * 13) % 96);
+            const width = 3 + ((i * 29) % 15);
+            const angle = [-18, -11, -6, 0, 5, 10, 16][i % 7];
+            return <i key={i} style={{ top: `${top}%`, left: `${left}%`, width: `${width}%`, transform: `rotate(${angle}deg)` }} />;
+          })}
+        </div>
+        <div className="pcbGrowth pcbRight" aria-hidden="true" />
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
     </main>
