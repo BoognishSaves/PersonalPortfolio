@@ -1831,3 +1831,52 @@ footer {
 @media(prefers-reduced-motion:reduce){
   .pcbGrowth.pcbLeft i,.pcbGrowth.pcbLeft i::after{animation:none!important}
 }
+
+
+/* Wake v16: ordered systems. Replaces hundreds of individual PCB nodes with
+   one lightweight SVG pattern: branching, repetition and hierarchy instead of noise. */
+.pcbGrowth{display:none!important}
+.orderedField{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  overflow:hidden;opacity:0;transition:opacity 1.2s ease;
+}
+.orderedPattern{
+  stroke:rgba(64,184,238,.34);stroke-width:1;fill:none;
+}
+.orderedField circle{fill:var(--paper);stroke:rgba(64,184,238,.52);stroke-width:1}
+.orderedSpine{
+  fill:none;stroke:rgba(64,184,238,.28);stroke-width:1.15;
+  vector-effect:non-scaling-stroke;
+}
+.wake-1 .orderedField{opacity:.025}
+.wake-2 .orderedField{opacity:.09}
+.wake-3 .orderedField{opacity:.18}
+.wake-4 .orderedField{opacity:.3}
+.wake-5 .orderedField{opacity:.44}
+
+/* Let the system become denser by contrast, not by adding more DOM or motion. */
+.wake-5 .orderedPattern{stroke:rgba(64,184,238,.5)}
+.wake-5 .orderedSpine{stroke:rgba(64,184,238,.44)}
+.wake-5 .orderedField circle{stroke:rgba(64,184,238,.68)}
+
+/* Remove the chaotic secondary fauna/branches from the mature state. */
+.wake-4 .digitalLife,.wake-5 .digitalLife{opacity:.12!important}
+.wake-4 .thicket,.wake-5 .thicket,.wake-4 .vine,.wake-5 .vine{opacity:.025!important}
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD,
+.wake-5 .circuitCanopy,.wake-5 .circuitTwigs{opacity:.1!important}
+
+/* Content is protected by broad, soft clearings rather than little white islands. */
+.wake-3 .heroCopy::before,.wake-3 .pathStatement::before,.wake-3 .storyChapterCopy::before{opacity:.5!important}
+.wake-4 .heroCopy::before,.wake-4 .pathStatement::before,.wake-4 .storyChapterCopy::before,
+.wake-5 .heroCopy::before,.wake-5 .pathStatement::before,.wake-5 .storyChapterCopy::before{
+  opacity:.86!important;
+  background:radial-gradient(ellipse at center,var(--paper) 0%,rgba(245,244,239,.98) 58%,rgba(245,244,239,.68) 78%,rgba(245,244,239,0) 100%)!important;
+  border-radius:0;
+}
+
+/* No continuous background animation: interaction stays cheap. */
+.orderedField,.orderedPattern,.orderedSpine{animation:none!important}
+@media(max-width:760px){
+  .wake-5 .orderedField{opacity:.34}
+  .orderedPattern{stroke-width:.9}
+}
