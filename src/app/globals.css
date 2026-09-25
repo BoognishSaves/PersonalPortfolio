@@ -2379,3 +2379,20 @@ body{transition:background-color .28s ease,color .28s ease}
   .brandLeaf{margin-left:0}
   .markStage{transform:translateX(-18px)}
 }
+
+
+/* Locked mobile hero mark: true center within its circle and viewport column. */
+@media(max-width:760px){
+  .markStage{
+    transform:none !important;
+    justify-items:center !important;
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  .mark,
+  .markStage::before{
+    justify-self:center !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+}
