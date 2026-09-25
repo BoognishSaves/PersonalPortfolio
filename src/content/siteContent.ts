@@ -282,6 +282,12 @@ export const siteContent: SiteContent = {
       thread: "Connection",
       description: "Then an opportunity brought me back to insurance technology. The industry I had spent years inside collided with the technical and product skills I had built after leaving it. What had looked like a collection of career detours became the exact combination I needed. Today, I lead product in the space I once worked in from the field.",
     },
+    {
+      era: "11 · Building a place",
+      title: "Dream → Haddad Hollow",
+      thread: "Persistence",
+      description: "My wife and I spent years chasing a mountain-home dream, then changed our careers and finances to make it possible. Haddad Hollow became both our home and a business — another experiment in building something people can experience.",
+    },
   ],
 
   socials: [
