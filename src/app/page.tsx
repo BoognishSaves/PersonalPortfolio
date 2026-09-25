@@ -76,7 +76,7 @@ export default function Home() {
       {partyMode && <div className="partySignal" aria-live="polite"><span>SYSTEM WIDE OPEN</span><i>HaddadaddaH</i></div>}
       <header className="topbar">
         <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); grow("brand", 4); }}>
-          <span className="brandFold" aria-hidden="true"><span className="brandForward">Haddad</span><span className="brandReverse">daddaH</span></span><span className="brandDirection">{brandOpen ? "backward" : "forward"}</span>
+          <span className="brandFold" aria-hidden="true"><span className="brandForward">Haddad</span><span className="brandReverse">daddaH</span></span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
       </header>
