@@ -2248,3 +2248,23 @@ footer {
 .brand.isOpen .brandFold{min-width:58px}
 @media(max-width:760px){.brandFold{min-width:116px}.brand.isOpen .brandFold{min-width:54px}.brand .brandReverse{padding:0;margin:0}}
 @media(prefers-reduced-motion:reduce){.brand .brandReverse{transition:none!important}}
+
+
+/* Wordmark reset: preserve the original fluid fold; add only its resolved blue state. */
+.brand{perspective:none;align-items:center}
+.brandFold,.brandFace,.brandDirection{display:contents}
+.brandForward,.brandReverse{position:static;width:auto;height:auto;opacity:1!important;padding:0;margin:0;will-change:auto}
+.brandForward{z-index:auto;color:var(--ink)!important}
+.brandReverse{
+ color:var(--ink)!important;transform-origin:left center!important;transform:rotateY(0)!important;
+ transition:transform .42s cubic-bezier(.2,.8,.2,1),color .25s ease!important;cursor:pointer
+}
+.brandAxis{display:block}
+.brand:hover .brandReverse,.brand:focus-visible .brandReverse{transform:rotateY(180deg)!important;color:var(--blue)!important}
+.brand:hover .brandAxis,.brand:focus-visible .brandAxis{width:10px;margin:0 4px;border-color:var(--blue)}
+.brand.isOpen .brandForward{color:var(--blue)!important;transition:color .18s ease .32s}
+.brand.isOpen .brandReverse{position:absolute;left:0;top:8px;transform:rotateY(180deg)!important;color:var(--blue)!important;opacity:0!important;transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .16s ease .34s!important}
+.brand.isOpen .brandAxis{display:none}
+.brand.isOpen{min-width:58px}
+.brand::after{content:none!important}
+@media(max-width:760px){.brand.isOpen{min-width:54px}}
