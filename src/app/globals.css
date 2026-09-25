@@ -2021,3 +2021,43 @@ footer {
   .wake-5 .botanicalField{opacity:.46}
   .wake-5 .heroCopy,.wake-5 .pathStatement{box-shadow:0 0 34px 20px var(--paper)!important}
 }
+
+
+/* Wake v21: progressive cellular organism.
+   A single SVG texture matures through navigation/time without continuous rendering. */
+.botanicalField{display:none!important}
+.cellularField{
+ position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;
+ opacity:0;transition:opacity 2.4s cubic-bezier(.2,.65,.2,1)
+}
+.cellWall,.cellTrace,.cellSpine{fill:none;stroke:rgba(64,184,238,.72);stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.cellWall{stroke-width:1.05}.cellTrace{stroke-width:.68;opacity:.72}
+.cellNode{fill:var(--paper);stroke:rgba(64,184,238,.86);stroke-width:.8;vector-effect:non-scaling-stroke}
+.cellularTexture{opacity:.9}
+.growthReveal{transform-box:fill-box;transform-origin:center;scale:0;opacity:0;transition:scale 4.8s cubic-bezier(.18,.7,.18,1),opacity 2s ease}
+.r1{transform-origin:12% 18%}.r2{transform-origin:88% 45%}.r3{transform-origin:30% 82%}
+.cellSpine{stroke-width:1.15;stroke-dasharray:1;stroke-dashoffset:1;opacity:.72;transition:stroke-dashoffset 4.5s cubic-bezier(.2,.7,.2,1)}
+.wake-1 .cellularField{opacity:.035}.wake-1 .r1{scale:.3;opacity:1}.wake-1 .spine1{stroke-dashoffset:.72}
+.wake-2 .cellularField{opacity:.09}.wake-2 .r1{scale:.62;opacity:1}.wake-2 .r2{scale:.18;opacity:1}.wake-2 .spine1{stroke-dashoffset:.35}
+.wake-3 .cellularField{opacity:.18}.wake-3 .r1{scale:.9;opacity:1}.wake-3 .r2{scale:.48;opacity:1}.wake-3 .r3{scale:.16;opacity:1}.wake-3 .spine1{stroke-dashoffset:0}.wake-3 .spine2{stroke-dashoffset:.52}
+.wake-4 .cellularField{opacity:.31}.wake-4 .r1{scale:1.15;opacity:1}.wake-4 .r2{scale:.78;opacity:1}.wake-4 .r3{scale:.52;opacity:1}.wake-4 .spine1,.wake-4 .spine2{stroke-dashoffset:0}.wake-4 .spine3{stroke-dashoffset:.46}
+.wake-5 .cellularField{opacity:.5}.wake-5 .growthReveal{scale:1.35;opacity:1}.wake-5 .cellSpine{stroke-dashoffset:0}
+.wake-5 .cellWall{stroke:rgba(64,184,238,.88)}.wake-5 .cellTrace{stroke:rgba(64,184,238,.8)}.wake-5 .cellNode{stroke:rgba(64,184,238,.95)}
+.cellBloom{opacity:0;transform-box:fill-box;transform-origin:center}
+.cellBloom path{fill:rgba(64,184,238,.08);stroke:rgba(64,184,238,.9);stroke-width:.85;vector-effect:non-scaling-stroke}
+.cellBloom circle{fill:var(--blue);stroke:none}
+.wake-5 .cellBloom{animation:cellBloom 13s ease-in-out infinite}
+.wake-5 .cb1{animation-delay:-2s}.wake-5 .cb2{animation-delay:-7s}.wake-5 .cb3{animation-delay:-11s}
+@keyframes cellBloom{0%,18%,100%{opacity:0;scale:.15}26%{opacity:.7;scale:1}48%{opacity:.5;scale:.82}58%{opacity:0;scale:.18}}
+/* Reading plane stays pristine while the organism occupies the page around it. */
+.wake-3 .heroCopy,.wake-3 .pathStatement,.wake-4 .heroCopy,.wake-4 .pathStatement,.wake-5 .heroCopy,.wake-5 .pathStatement{
+ background:var(--paper)!important;box-shadow:0 0 64px 42px var(--paper)!important
+}
+@media(max-width:760px){
+ .wake-5 .cellularField{opacity:.4}
+ .wake-5 .heroCopy,.wake-5 .pathStatement{box-shadow:0 0 38px 22px var(--paper)!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .cellularField,.growthReveal,.cellSpine{transition:none!important}
+ .wake-5 .cellBloom{animation:none!important;opacity:.22;scale:.7}
+}
