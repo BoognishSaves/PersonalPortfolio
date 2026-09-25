@@ -272,12 +272,22 @@ export default function Home() {
               <circle className="botanicalNode" cx="221" cy="207" r="3"/><circle className="botanicalNode" cx="116" cy="314" r="3"/>
             </pattern>
           </defs>
-          <rect className="botanicalLayer botanicalBase" width="1200" height="1800" fill="url(#botanicalPattern)" />
+          <rect className="botanicalLayer botanicalBase botanicalGrowth1" width="1200" height="620" fill="url(#botanicalPattern)" />
+          <rect className="botanicalLayer botanicalBase botanicalGrowth2" y="430" width="1200" height="720" fill="url(#botanicalPattern)" />
+          <rect className="botanicalLayer botanicalBase botanicalGrowth3" y="950" width="1200" height="850" fill="url(#botanicalPattern)" />
           <g className="botanicalLayer botanicalBranches">
-            <path d="M0 360 C180 315 236 410 350 468 C470 528 545 464 612 382" />
-            <path d="M1200 670 C1038 620 952 706 864 790 C778 872 705 842 642 776" />
-            <path d="M0 1120 C154 1068 254 1118 334 1200 C421 1288 514 1260 575 1182" />
-            <path d="M1200 1435 C1068 1390 970 1432 892 1510 C814 1588 735 1580 670 1524" />
+            <path className="branch bA" pathLength="1" d="M0 360 C180 315 236 410 350 468 C470 528 545 464 612 382" />
+            <path className="branch bB" pathLength="1" d="M1200 670 C1038 620 952 706 864 790 C778 872 705 842 642 776" />
+            <path className="branch bC" pathLength="1" d="M0 1120 C154 1068 254 1118 334 1200 C421 1288 514 1260 575 1182" />
+            <path className="branch bD" pathLength="1" d="M1200 1435 C1068 1390 970 1432 892 1510 C814 1588 735 1580 670 1524" />
+          </g>
+          <g className="digitalBlooms">
+            <g className="bloom f1" transform="translate(1035 300)"><circle r="4"/><path d="M0-4 C-15-25-30-8-10 2 C-28 12-13 28 1 9 C14 28 30 12 10 2 C29-9 14-25 0-4Z"/></g>
+            <g className="bloom f2" transform="translate(730 520)"><circle r="3"/><path d="M0-3 C-12-20-25-7-8 2 C-23 10-11 23 1 7 C12 23 25 10 8 2 C24-7 12-20 0-3Z"/></g>
+            <g className="bloom f3" transform="translate(1080 900)"><circle r="4"/><path d="M0-4 C-15-25-30-8-10 2 C-28 12-13 28 1 9 C14 28 30 12 10 2 C29-9 14-25 0-4Z"/></g>
+            <g className="bloom f4" transform="translate(150 980)"><circle r="3"/><path d="M0-3 C-12-20-25-7-8 2 C-23 10-11 23 1 7 C12 23 25 10 8 2 C24-7 12-20 0-3Z"/></g>
+            <g className="bloom f5" transform="translate(950 1320)"><circle r="4"/><path d="M0-4 C-15-25-30-8-10 2 C-28 12-13 28 1 9 C14 28 30 12 10 2 C29-9 14-25 0-4Z"/></g>
+            <g className="bloom f6" transform="translate(260 1510)"><circle r="3"/><path d="M0-3 C-12-20-25-7-8 2 C-23 10-11 23 1 7 C12 23 25 10 8 2 C24-7 12-20 0-3Z"/></g>
           </g>
         </svg>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
