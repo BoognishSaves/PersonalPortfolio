@@ -248,32 +248,54 @@ export default function Home() {
           <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
           <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
         </div>
-        <svg className="cellularField" viewBox="0 0 1200 1800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <svg className="botanicalField" viewBox="0 0 1200 1800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
-            <pattern id="cellularPattern" width="190" height="170" patternUnits="userSpaceOnUse">
-              <path className="cellWall" d="M-18 34 C12 4 53 3 78 26 C101 47 95 77 68 94 C41 111 4 103-13 78" />
-              <path className="cellWall" d="M72 27 C103 1 145 7 164 35 C181 61 169 89 141 101 C112 113 84 96 68 76" />
-              <path className="cellWall" d="M-8 118 C17 91 54 91 77 112 C99 132 94 158 72 176" />
-              <path className="cellWall" d="M78 112 C106 86 145 91 169 116 C188 136 185 160 165 179" />
-              <path className="cellTrace" d="M18 53 C34 43 49 45 61 56 M118 45 C132 36 146 40 153 52 M24 137 C38 126 52 128 63 139 M119 133 C133 123 147 127 156 140" />
-              <circle className="cellNode" cx="61" cy="56" r="2.2"/><circle className="cellNode" cx="153" cy="52" r="2.2"/><circle className="cellNode" cx="63" cy="139" r="2.2"/><circle className="cellNode" cx="156" cy="140" r="2.2"/>
+            <g id="digitalLeaf">
+              <path className="botanicalStem" d="M0 92 C34 78 54 48 72 0" />
+              <path className="botanicalOuter" d="M18 76 C24 28 72 6 112 24 C146 40 148 82 118 108 C86 136 40 120 18 76 Z" />
+              <path className="botanicalInner" d="M38 76 C45 45 76 29 101 39 C121 48 123 72 106 88 C86 106 57 101 38 76 Z" />
+              <path className="botanicalTrace" d="M39 76 H63 Q71 76 71 68 V51 M71 76 H94 Q103 76 103 67 V51" />
+              <circle cx="71" cy="51" r="2.8" /><circle cx="103" cy="51" r="2.8" />
+            </g>
+            <g id="digitalCurl">
+              <path className="botanicalStem" d="M0 112 C34 100 49 72 54 44 C60 12 96 2 119 21 C142 40 130 73 104 77 C85 80 73 67 78 54 C82 43 95 40 103 47" />
+              <path className="botanicalTrace" d="M17 103 H39 M54 44 V25 M119 21 H140" />
+              <circle cx="39" cy="103" r="2.6" /><circle cx="54" cy="25" r="2.6" /><circle cx="140" cy="21" r="2.6" />
+            </g>
+            <g id="digitalSeed">
+              <path className="botanicalOuter" d="M2 32 C7 9 31 0 49 10 C65 19 64 39 49 50 C31 63 10 53 2 32Z" />
+              <path className="botanicalTrace" d="M11 34 C22 29 31 20 38 9 M22 29 H43" />
+              <circle cx="43" cy="29" r="2"/>
+            </g>
+            <pattern id="botanicalPattern" width="240" height="220" patternUnits="userSpaceOnUse">
+              <g transform="translate(8 8) rotate(-12) scale(.72)"><use href="#digitalLeaf"/></g>
+              <g transform="translate(118 4) rotate(24) scale(.56)"><use href="#digitalCurl"/></g>
+              <g transform="translate(166 74) rotate(148) scale(.58)"><use href="#digitalLeaf"/></g>
+              <g transform="translate(26 126) rotate(207) scale(.48)"><use href="#digitalCurl"/></g>
+              <g transform="translate(103 116) rotate(36) scale(.62)"><use href="#digitalSeed"/></g>
+              <g transform="translate(184 162) rotate(188) scale(.48)"><use href="#digitalSeed"/></g>
+              <path className="botanicalConnector" d="M78 73 C103 82 111 104 130 112 C151 121 174 113 191 97" />
+              <path className="botanicalConnector" d="M2 177 C30 166 52 173 69 194 C86 211 108 210 124 196" />
+              <path className="botanicalConnector" d="M146 22 C157 44 181 49 204 43 C222 39 233 47 240 57" />
+              <circle className="botanicalNode" cx="130" cy="112" r="2.3"/><circle className="botanicalNode" cx="69" cy="194" r="2.3"/><circle className="botanicalNode" cx="204" cy="43" r="2"/>
             </pattern>
-            <mask id="growthMask">
-              <rect className="growthReveal r1" width="1200" height="1800" fill="white"/>
-              <rect className="growthReveal r2" width="1200" height="1800" fill="white"/>
-              <rect className="growthReveal r3" width="1200" height="1800" fill="white"/>
-            </mask>
           </defs>
-          <g mask="url(#growthMask)">
-            <rect className="cellularTexture" width="1200" height="1800" fill="url(#cellularPattern)"/>
-            <path className="cellSpine spine1" pathLength="1" d="M-40 210 C150 120 260 300 390 240 S610 80 745 205 S945 365 1240 225"/>
-            <path className="cellSpine spine2" pathLength="1" d="M1240 720 C1020 590 890 820 735 735 S475 565 330 720 S125 865-40 790"/>
-            <path className="cellSpine spine3" pathLength="1" d="M-40 1260 C170 1110 315 1340 485 1230 S765 1085 905 1240 S1080 1430 1240 1340"/>
+          <rect className="botanicalLayer botanicalBase botanicalGrowth1" width="1200" height="620" fill="url(#botanicalPattern)" />
+          <rect className="botanicalLayer botanicalBase botanicalGrowth2" y="430" width="1200" height="720" fill="url(#botanicalPattern)" />
+          <rect className="botanicalLayer botanicalBase botanicalGrowth3" y="950" width="1200" height="850" fill="url(#botanicalPattern)" />
+          <g className="botanicalLayer botanicalBranches">
+            <path className="branch bA" pathLength="1" d="M0 360 C180 315 236 410 350 468 C470 528 545 464 612 382" />
+            <path className="branch bB" pathLength="1" d="M1200 670 C1038 620 952 706 864 790 C778 872 705 842 642 776" />
+            <path className="branch bC" pathLength="1" d="M0 1120 C154 1068 254 1118 334 1200 C421 1288 514 1260 575 1182" />
+            <path className="branch bD" pathLength="1" d="M1200 1435 C1068 1390 970 1432 892 1510 C814 1588 735 1580 670 1524" />
           </g>
-          <g className="cellBlooms">
-            <g className="cellBloom cb1" transform="translate(1035 330)"><circle r="3"/><path d="M0-3 C-12-18-25-6-8 2 C-22 10-10 22 1 7 C12 22 24 9 8 2 C23-7 11-18 0-3Z"/></g>
-            <g className="cellBloom cb2" transform="translate(770 875)"><circle r="3"/><path d="M0-3 C-12-18-25-6-8 2 C-22 10-10 22 1 7 C12 22 24 9 8 2 C23-7 11-18 0-3Z"/></g>
-            <g className="cellBloom cb3" transform="translate(190 1450)"><circle r="3"/><path d="M0-3 C-12-18-25-6-8 2 C-22 10-10 22 1 7 C12 22 24 9 8 2 C23-7 11-18 0-3Z"/></g>
+          <g className="digitalBlooms">
+            <g className="bloom f1" transform="translate(1035 300)"><circle r="4"/><path d="M0-4 C-15-25-30-8-10 2 C-28 12-13 28 1 9 C14 28 30 12 10 2 C29-9 14-25 0-4Z"/></g>
+            <g className="bloom f2" transform="translate(730 520)"><circle r="3"/><path d="M0-3 C-12-20-25-7-8 2 C-23 10-11 23 1 7 C12 23 25 10 8 2 C24-7 12-20 0-3Z"/></g>
+            <g className="bloom f3" transform="translate(1080 900)"><circle r="4"/><path d="M0-4 C-15-25-30-8-10 2 C-28 12-13 28 1 9 C14 28 30 12 10 2 C29-9 14-25 0-4Z"/></g>
+            <g className="bloom f4" transform="translate(150 980)"><circle r="3"/><path d="M0-3 C-12-20-25-7-8 2 C-23 10-11 23 1 7 C12 23 25 10 8 2 C24-7 12-20 0-3Z"/></g>
+            <g className="bloom f5" transform="translate(950 1320)"><circle r="4"/><path d="M0-4 C-15-25-30-8-10 2 C-28 12-13 28 1 9 C14 28 30 12 10 2 C29-9 14-25 0-4Z"/></g>
+            <g className="bloom f6" transform="translate(260 1510)"><circle r="3"/><path d="M0-3 C-12-20-25-7-8 2 C-23 10-11 23 1 7 C12 23 25 10 8 2 C24-7 12-20 0-3Z"/></g>
           </g>
         </svg>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
