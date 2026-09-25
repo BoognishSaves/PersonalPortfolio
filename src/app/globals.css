@@ -1343,3 +1343,59 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .isOverdrive .mark, .isOverdrive .markStage::before { animation: none; }
 }
+
+
+/* Wake v6: silence first, then a genuinely dense living circuit garden. */
+.circuitCanopy, .circuitTwigs { opacity: 0; }
+.wake-2 .circuitCanopy { opacity: .10; }
+.wake-3 .circuitCanopy { opacity: .22; }
+.wake-4 .circuitCanopy { opacity: .38; }
+.wake-4 .circuitTwigs { opacity: .22; }
+.wake-5 .circuitCanopy { opacity: .62; }
+.wake-5 .circuitTwigs { opacity: .48; }
+.circuitCanopy path, .circuitTwigs path { vector-effect: non-scaling-stroke; }
+
+/* Mature growth is intentionally concentrated in the gutters and open fields. */
+.wake-4 .rootNetwork,
+.wake-5 .rootNetwork { background:
+  radial-gradient(circle at 7% 24%, rgba(64,184,238,.07) 0 2px, transparent 3px),
+  radial-gradient(circle at 94% 41%, rgba(64,184,238,.07) 0 2px, transparent 3px),
+  radial-gradient(circle at 11% 72%, rgba(64,184,238,.06) 0 2px, transparent 3px);
+  background-size: 42px 42px, 58px 58px, 67px 67px;
+}
+
+/* Fidget overdrive is the theatrical payoff: brighter, denser, heaving, sparking. */
+.isOverdrive .circuitCanopy,
+.isOverdrive .circuitTwigs { opacity: .9; }
+.isOverdrive .circuitField { filter: drop-shadow(0 0 7px rgba(64,184,238,.42)); }
+.isOverdrive .rootNetwork { animation: organismHeave 1.35s ease-in-out infinite; }
+.isOverdrive .growth { animation: growthHeave 1.7s ease-in-out infinite alternate; }
+.isOverdrive .contentVines { filter: drop-shadow(0 0 9px rgba(64,184,238,.34)); }
+.isOverdrive .wakeSpore::after {
+  content: "";
+  position: absolute;
+  inset: -9px;
+  border: 1px solid rgba(64,184,238,.7);
+  border-radius: 50%;
+  animation: sparkPop .72s ease-out infinite;
+}
+.isOverdrive .wakeSpore:nth-child(even)::after { animation-delay: .28s; }
+.isOverdrive .heroCopy::before,
+.isOverdrive .pathStatement::before { border-color: rgba(64,184,238,.72); box-shadow: -5px 0 14px rgba(64,184,238,.16); }
+
+@keyframes organismHeave {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.006); }
+}
+@keyframes growthHeave {
+  from { filter: drop-shadow(0 0 1px rgba(64,184,238,.08)); }
+  to { filter: drop-shadow(0 0 13px rgba(64,184,238,.34)); }
+}
+@keyframes sparkPop {
+  0% { transform: scale(.35); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .isOverdrive .rootNetwork, .isOverdrive .growth, .isOverdrive .wakeSpore::after { animation: none; }
+}
