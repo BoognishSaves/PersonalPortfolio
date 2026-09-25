@@ -1443,3 +1443,23 @@ footer {
 @media(prefers-reduced-motion:reduce){
  .isOverdrive .thicket,.isOverdrive .markStage::after,.isOverdrive .contentVines{animation:none}
 }
+
+
+/* Wake v8: linework only, with a visible logo battery. */
+.wake-4 .rootNetwork,.wake-5 .rootNetwork{background:none!important}
+.growth,.growth::before,.growth::after,.thicket i,.thicket i::before,.thicket i::after{background:transparent!important;box-shadow:none}
+.wakeSpore{display:none!important}
+.wake-5 .thicket{opacity:.58}
+.wake-5 .circuitCanopy{opacity:.76}
+.wake-5 .circuitTwigs{opacity:.62}
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD{opacity:.7}
+.markStage{position:relative;z-index:2;overflow:visible}
+.isOverdrive .markStage::after{
+ content:"";position:absolute;z-index:-1;inset:8%;border-radius:50%;opacity:1!important;
+ background:radial-gradient(circle,rgba(64,184,238,.62) 0%,rgba(64,184,238,.3) 34%,rgba(64,184,238,.1) 58%,transparent 78%);
+ box-shadow:0 0 36px 20px rgba(64,184,238,.3),0 0 92px 42px rgba(64,184,238,.18);
+ animation:batteryBloom .58s ease-in-out infinite alternate!important;pointer-events:none
+}
+.isOverdrive .mark{filter:drop-shadow(0 0 10px rgba(64,184,238,.95)) drop-shadow(0 0 26px rgba(64,184,238,.72))!important}
+@keyframes batteryBloom{from{transform:scale(.96);opacity:.72}to{transform:scale(1.28);opacity:1}}
+@media(prefers-reduced-motion:reduce){.isOverdrive .markStage::after{animation:none!important}}
