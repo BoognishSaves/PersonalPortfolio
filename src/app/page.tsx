@@ -248,16 +248,26 @@ export default function Home() {
           <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
           <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
         </div>
-        <div className="pcbGrowth pcbLeft" aria-hidden="true">
-          {Array.from({length: 260}).map((_, i) => {
-            const top = ((i * 37) % 97) + 1;
-            const left = ((i * 61 + Math.floor(i / 7) * 13) % 96);
-            const width = 3 + ((i * 29) % 15);
-            const angle = [-18, -11, -6, 0, 5, 10, 16][i % 7];
-            return <i key={i} style={{ top: `${top}%`, left: `${left}%`, width: `${width}%`, transform: `rotate(${angle}deg)` }} />;
-          })}
-        </div>
-        <div className="pcbGrowth pcbRight" aria-hidden="true" />
+        <svg className="orderedField" viewBox="0 0 1200 1800" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <pattern id="systemPattern" width="240" height="180" patternUnits="userSpaceOnUse">
+              <path d="M0 90 H52 Q68 90 68 74 V46 Q68 30 84 30 H126" />
+              <path d="M68 90 V126 Q68 142 84 142 H154 Q170 142 170 126 V108 Q170 92 186 92 H240" />
+              <path d="M126 30 H170 Q186 30 186 46 V62" />
+              <circle cx="68" cy="90" r="3" /><circle cx="126" cy="30" r="3" /><circle cx="170" cy="142" r="3" /><circle cx="186" cy="92" r="3" />
+            </pattern>
+          </defs>
+          <rect className="orderedPattern" width="1200" height="1800" fill="url(#systemPattern)" />
+          <g className="orderedSpine">
+            <path d="M600 0 V1800" />
+            <path d="M600 250 C520 250 500 330 430 330 H300" />
+            <path d="M600 520 C690 520 710 610 790 610 H930" />
+            <path d="M600 850 C505 850 485 940 395 940 H250" />
+            <path d="M600 1180 C700 1180 720 1270 815 1270 H970" />
+            <path d="M600 1490 C520 1490 500 1570 420 1570 H285" />
+            <circle cx="600" cy="250" r="5" /><circle cx="600" cy="520" r="5" /><circle cx="600" cy="850" r="5" /><circle cx="600" cy="1180" r="5" /><circle cx="600" cy="1490" r="5" />
+          </g>
+        </svg>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
     </main>
