@@ -16,7 +16,9 @@ export default function LivingCanvas({ maturity }: Props) {
     const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr=Math.min(devicePixelRatio||1,mobile?1.2:1.5);
     let w=0,h=0,raf=0,ambientRaf=0;
-    type Spore={x:number;y:number;vx:number;vy:number;r:number;phase:number};
+    type Spore={x:number;y:number;vx:number;vy:number;r:number;phase:number;age:number;life:number;absorbing:number;tx:number;ty:number};
+    type Burst={x:number;y:number;born:number;seed:number};
+    let bursts:Burst[]=[];
     let spores:Spore[]=[];
 
     const hash=(n:number)=>{const x=Math.sin(n*91.731)*43758.5453;return x-Math.floor(x)};
@@ -48,37 +50,75 @@ export default function LivingCanvas({ maturity }: Props) {
         vx:(hash(8300+i*29)-.5)*(mobile?.055:.075),
         vy:(hash(8400+i*31)-.5)*(mobile?.045:.06),
         r:(mobile?2.5:3.5)+hash(8500+i*37)*(mobile?4:7),
-        phase:hash(8600+i*41)*Math.PI*2
+        phase:hash(8600+i*41)*Math.PI*2,
+        age:0,life:(mobile?18000:14000)+hash(8700+i*43)*18000,
+        absorbing:0,tx:0,ty:0
       }));
+    };
+
+    const respawn=(p:Spore,i:number,time:number)=>{
+      const seed=Math.floor(time*.01)+i*211;
+      p.x=hash(seed)*w;p.y=hash(seed+1)*h;
+      p.vx=(hash(seed+2)-.5)*(mobile?.055:.075);
+      p.vy=(hash(seed+3)-.5)*(mobile?.045:.06);
+      p.age=0;p.life=(mobile?19000:15000)+hash(seed+4)*20000;p.absorbing=0;
     };
 
     const drawSpores=(time:number)=>{
       const m=maturityRef.current;
       if(reduced||document.hidden||m<12)return;
       spores.forEach((p,i)=>{
-        p.x+=p.vx; p.y+=p.vy;
-        p.x+=Math.sin(time*.00035+p.phase)*.018;
-        p.y+=Math.cos(time*.00028+p.phase)*.014;
+        p.age+=16.67;
+        // Mature organisms occasionally sense a nearby network-like anchor and get absorbed.
+        if(!p.absorbing && m>38 && p.age>p.life){
+          const grid=mobile?34:28;
+          p.tx=Math.max(8,Math.min(w-8,Math.round(p.x/grid)*grid));
+          p.ty=Math.max(8,Math.min(h-8,Math.round(p.y/grid)*grid));
+          p.absorbing=time;
+        }
+        let absorbT=0;
+        if(p.absorbing){
+          absorbT=Math.min(1,(time-p.absorbing)/1250);
+          const ease=1-Math.pow(1-absorbT,3);
+          p.x+=(p.tx-p.x)*(.025+ease*.12);p.y+=(p.ty-p.y)*(.025+ease*.12);
+          if(absorbT>=1){
+            bursts.push({x:p.tx,y:p.ty,born:time,seed:i*317+Math.floor(time)});
+            respawn(p,i,time);return;
+          }
+        } else {
+          p.x+=p.vx;p.y+=p.vy;
+          p.x+=Math.sin(time*.00035+p.phase)*.018;
+          p.y+=Math.cos(time*.00028+p.phase)*.014;
+        }
         if(p.x<-15)p.x=w+15;if(p.x>w+15)p.x=-15;
         if(p.y<-15)p.y=h+15;if(p.y>h+15)p.y=-15;
         const breathe=.82+Math.sin(time*.0011+p.phase)*.18;
         const wobble=Math.sin(time*.0008+p.phase);
-        const a=.045+Math.min(1,m/100)*.085;
-        // A tiny multi-lobed organism rather than a perfect particle.
+        const fade=p.absorbing?1-absorbT*.72:1;
+        const a=(.045+Math.min(1,m/100)*.085)*fade;
         ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.phase+time*.000035);
         const lobes=3+(i%3);
         for(let l=0;l<lobes;l++){
           const ang=(l/lobes)*Math.PI*2;
-          const orbit=p.r*(.28+.10*Math.sin(time*.001+l+p.phase));
-          const lr=p.r*breathe*(.48+.10*Math.sin(time*.0013+l*1.7+p.phase));
-          ctx.beginPath();
-          ctx.ellipse(Math.cos(ang)*orbit,Math.sin(ang)*orbit,lr*(1+.12*wobble),lr*(.72-.08*wobble),ang,0,Math.PI*2);
+          const orbit=p.r*(.28+.10*Math.sin(time*.001+l+p.phase))*(1-absorbT*.45);
+          const lr=p.r*breathe*(.48+.10*Math.sin(time*.0013+l*1.7+p.phase))*(1-absorbT*.52);
+          ctx.beginPath();ctx.ellipse(Math.cos(ang)*orbit,Math.sin(ang)*orbit,lr*(1+.12*wobble),lr*(.72-.08*wobble),ang,0,Math.PI*2);
           ctx.fillStyle=`rgba(64,184,238,${a*.72})`;ctx.fill();
         }
-        // Brighter nucleus makes the spore read as a digital cell up close.
-        ctx.beginPath();ctx.arc(0,0,Math.max(.75,p.r*.20),0,Math.PI*2);
-        ctx.fillStyle=`rgba(64,184,238,${Math.min(.5,a*2.8)})`;ctx.fill();
-        ctx.restore();
+        ctx.beginPath();ctx.arc(0,0,Math.max(.65,p.r*.20*(1-absorbT*.45)),0,Math.PI*2);
+        ctx.fillStyle=`rgba(64,184,238,${Math.min(.58,a*2.8)})`;ctx.fill();ctx.restore();
+      });
+
+      // Absorption briefly seeds a tiny ordered burst into the established system.
+      bursts=bursts.filter(b=>time-b.born<1800);
+      bursts.forEach(b=>{
+        const t=(time-b.born)/1800, strength=1-t;
+        for(let q=0;q<4;q++){
+          const ang=(Math.floor(hash(b.seed+q)*8)*Math.PI)/4;
+          segment(b.x,b.y,(10+hash(b.seed+q+9)*22)*Math.min(1,t*5),ang,.26*strength,.65);
+        }
+        ctx.beginPath();ctx.arc(b.x,b.y,2.8*strength,0,Math.PI*2);
+        ctx.fillStyle=`rgba(64,184,238,${.42*strength})`;ctx.fill();
       });
     };
 
