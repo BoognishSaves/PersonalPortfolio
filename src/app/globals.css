@@ -2162,3 +2162,25 @@ footer {
 .partyMode .heroCopy::after,.partyMode .pathStatement::after{box-shadow:0 0 36px 22px rgba(245,244,239,.9)}
 @media(max-width:760px){.partyCanvas{opacity:.82}}
 @media(prefers-reduced-motion:reduce){.partyCanvas{display:none}}
+
+
+/* Foldable Haddad wordmark: deliberate forward/backward states. */
+.brand{perspective:700px;align-items:flex-start}
+.brandFold{position:relative;display:inline-block;min-width:58px;line-height:1}
+.brandForward{position:relative;z-index:1}
+.brandReverse{
+ position:absolute;z-index:2;left:100%;top:0;color:var(--blue);
+ transform-origin:left center;transform:rotateY(0deg);backface-visibility:visible;
+ transition:transform .55s cubic-bezier(.2,.8,.2,1),left .55s cubic-bezier(.2,.8,.2,1),color .25s ease
+}
+.brand.isOpen .brandReverse{left:100%;transform:rotateY(180deg);color:var(--blue)}
+.brandAxis{display:none}
+.brandDirection{
+ position:absolute;left:0;top:calc(100% + 3px);white-space:nowrap;color:var(--muted);
+ font-size:9px;font-weight:500;letter-spacing:.08em;opacity:.72;transition:color .25s ease
+}
+.brand.isOpen .brandDirection{color:var(--blue)}
+.brand::after{content:none!important}
+.brand:hover .brandReverse,.brand:focus-visible .brandReverse{color:var(--blue)}
+@media(max-width:760px){.brandFold{min-width:54px}}
+@media(prefers-reduced-motion:reduce){.brandReverse{transition:none}}
