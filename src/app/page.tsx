@@ -19,6 +19,7 @@ export default function Home() {
   const [puzzlePing, setPuzzlePing] = useState(0);
   const seen = useRef(new Set<string>());
   const musicFeatureRef = useRef<HTMLElement | null>(null);
+  const partyAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const grow = (key: string, amount = 7) => {
     if (seen.current.has(key)) return;
@@ -94,8 +95,29 @@ export default function Home() {
           if (puzzlePrimed) {
             window.dispatchEvent(new CustomEvent("haddad-puzzle-unlock", { detail: { paths: puzzlePaths } }));
             setPartyMode(true);
+            const audio = new Audio("/If%20I%20had%20a%20boat.mp3");
+            partyAudioRef.current?.pause();
+            partyAudioRef.current = audio;
+            audio.currentTime = 3;
+            audio.volume = 0;
+            audio.play().then(() => {
+              const fadeIn = window.setInterval(() => {
+                audio.volume = Math.min(1, audio.volume + 0.1);
+                if (audio.volume >= 1) window.clearInterval(fadeIn);
+              }, 50);
+            }).catch(() => {});
             sessionStorage.setItem("haddad-party-unlocked", "1");
-            window.setTimeout(() => setPartyMode(false), 15000);
+            window.setTimeout(() => {
+              const fadeOut = window.setInterval(() => {
+                audio.volume = Math.max(0, audio.volume - 0.1);
+                if (audio.volume <= 0) {
+                  window.clearInterval(fadeOut);
+                  audio.pause();
+                  partyAudioRef.current = null;
+                }
+              }, 50);
+            }, 36500);
+            window.setTimeout(() => setPartyMode(false), 37000);
             document.documentElement.classList.add("puzzleSolved");
             window.setTimeout(() => document.documentElement.classList.remove("puzzleSolved"), 2200);
             setPuzzlePrimed(false);
