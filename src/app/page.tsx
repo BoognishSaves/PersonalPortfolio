@@ -15,7 +15,7 @@ export default function Home() {
   const [activePath, setActivePath] = useState("product");
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
-  const [secretOpen, setSecretOpen] = useState(false);
+  const [secretOpen, setSecretOpen] = useState(false);\n  const [connectOpen, setConnectOpen] = useState(false);
   const [maturity, setMaturity] = useState(0);
   const [puzzlePaths, setPuzzlePaths] = useState<string[]>([]);
   const [puzzlePrimed, setPuzzlePrimed] = useState(false);
@@ -131,7 +131,7 @@ export default function Home() {
             <span className="brandLeafFront">dadda<span className="brandMovingH">H</span></span><span className="brandLeafBack">Haddad</span>
           </span>
         </button>
-        <div className="topbarActions"><button className="themeToggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☀" : "◐"}</span></button><a className="quietLink" href="#connect">Connect</a></div>
+        <div className="topbarActions"><button className="themeToggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☀" : "◐"}</span></button><button className="connectButton" type="button" onClick={() => setConnectOpen(true)}>Connect <span aria-hidden="true">↗</span></button></div>
       </header>
 
       <section className="hero" id="top">
@@ -304,20 +304,27 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="connectSection" id="connect" aria-labelledby="connect-title">
-        <div className="connectIntro">
-          <p className="sectionLabel">Connect</p>
-          <h2 id="connect-title">Say hello.</h2>
-          <p>Employment, collaboration, a project, or just a good conversation — I’d love to hear from you.</p>
+      {connectOpen && (
+        <div className="connectModal" role="presentation" onMouseDown={(event) => {
+          if (event.target === event.currentTarget) setConnectOpen(false);
+        }}>
+          <section className="connectDialog" role="dialog" aria-modal="true" aria-labelledby="connect-title">
+            <button className="connectClose" type="button" aria-label="Close contact form" onClick={() => setConnectOpen(false)}>×</button>
+            <div className="connectIntro">
+              <p className="sectionLabel">Connect</p>
+              <h2 id="connect-title">Say hello.</h2>
+              <p>Employment, collaboration, a project, or just a good conversation — I’d love to hear from you.</p>
+            </div>
+            <form className="connectForm" action="https://formspree.io/f/xkneqgqb" method="POST">
+              <label><span>Name</span><input type="text" name="firstname" autoComplete="name" required autoFocus /></label>
+              <label><span>Email</span><input type="email" name="Email" autoComplete="email" required /></label>
+              <label className="connectWide"><span>Subject</span><input type="text" name="Subject" required /></label>
+              <label className="connectWide"><span>Message</span><textarea name="message" rows={5} required /></label>
+              <div className="connectSubmit"><button type="submit">Send message <span aria-hidden="true">↗</span></button></div>
+            </form>
+          </section>
         </div>
-        <form className="connectForm" action="https://formspree.io/f/xkneqgqb" method="POST">
-          <label><span>Name</span><input type="text" name="firstname" autoComplete="name" required /></label>
-          <label><span>Email</span><input type="email" name="Email" autoComplete="email" required /></label>
-          <label className="connectWide"><span>Subject</span><input type="text" name="Subject" required /></label>
-          <label className="connectWide"><span>Message</span><textarea name="message" rows={5} required /></label>
-          <div className="connectSubmit"><button type="submit">Send message <span aria-hidden="true">↗</span></button></div>
-        </form>
-      </section>
+      )}
 
       <footer>
         <button className="secretSeed" type="button" aria-expanded={secretOpen} onClick={() => { setSecretOpen((open) => !open); grow("secret", 8); }}>
