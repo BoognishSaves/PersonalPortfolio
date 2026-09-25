@@ -15,7 +15,8 @@ export default function Home() {
   const [activePath, setActivePath] = useState("product");
   const [theme, setTheme] = useState<"light" | "dark">("light");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
-  const [secretOpen, setSecretOpen] = useState(false);\n  const [connectOpen, setConnectOpen] = useState(false);
+  const [secretOpen, setSecretOpen] = useState(false);
+  const [connectOpen, setConnectOpen] = useState(false);
   const [maturity, setMaturity] = useState(0);
   const [puzzlePaths, setPuzzlePaths] = useState<string[]>([]);
   const [puzzlePrimed, setPuzzlePrimed] = useState(false);
