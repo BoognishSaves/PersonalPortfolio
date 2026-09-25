@@ -14,6 +14,7 @@ export default function Home() {
   const discoveries = useRef(new Set<string>());
   const fidgetHits = useRef<number[]>([]);
   const overdriveTimer = useRef<number | null>(null);
+  const musicFeatureRef = useRef<HTMLElement | null>(null);
 
   const awaken = (key: string, amount = 1) => {
     if (discoveries.current.has(key)) return;
@@ -44,6 +45,14 @@ export default function Home() {
   useEffect(() => () => {
     if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
   }, []);
+
+  const chooseMusic = (name: string) => {
+    setActiveMusic(name);
+    awaken(`music-${name}`);
+    window.requestAnimationFrame(() => {
+      musicFeatureRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
 
   const active = paths.find((path) => path.id === activePath) ?? paths[0];
 
@@ -119,7 +128,7 @@ export default function Home() {
 
           {active.id === "music" && <div className="musicExperience">
             {music.filter((project) => project.name === activeMusic).map((project) => (
-              <article className={`musicFeature ${project.name === "The High Desert" ? "isHighDesert" : project.name === "Them Mules" ? "isThemMules" : project.name === "The Barefoot Boys" ? "isBarefootBoys" : project.name === "JoJa of the Hill People" ? "isJoJa" : ""}`} key={project.name}>
+              <article ref={musicFeatureRef} className={`musicFeature ${project.name === "The High Desert" ? "isHighDesert" : project.name === "Them Mules" ? "isThemMules" : project.name === "The Barefoot Boys" ? "isBarefootBoys" : project.name === "JoJa of the Hill People" ? "isJoJa" : ""}`} key={project.name}>
                 <div className="musicPoster">
                   {project.artwork ? <img src={project.artwork} alt={`${project.name} artwork`} /> : <span className="musicPlaceholder">More to come.</span>}
                 </div>
@@ -142,7 +151,7 @@ export default function Home() {
             <div className="musicArchive">
               <p className="sectionLabel">The music story</p>
               {music.filter((project) => project.name !== activeMusic).map((project) => (
-                <button type="button" key={project.name} onClick={() => { setActiveMusic(project.name); awaken(`music-${project.name}`); }}>
+                <button type="button" key={project.name} onClick={() => chooseMusic(project.name)}>
                   <span>{project.relationship}</span><strong>{project.name}</strong><b aria-hidden="true">↗</b>
                 </button>
               ))}
