@@ -221,23 +221,24 @@ export const siteContent: SiteContent = {
 
   storyChapters: [
     {
-      era: "01 · The first leap",
+      era: "01 · Behind the bar",
+      title: "Wisconsin → bartending",
+      thread: "Craft → opportunity",
+      description: "I started bartending at 17 at a place where my mom worked in Wisconsin. What began as a teenage job became a craft I returned to throughout my life. Years later, it landed me on Hot Mixology. The show's lead bartender and I turned that exposure into a business of our own, providing professional bartenders and tailor-made cocktail menus for private events. It was another early lesson in recognizing an opportunity and building something around it.",
+    },
+    {
+      era: "02 · The first leap",
       title: "Art school → entrepreneurship",
       thread: "Risk",
       description: "I wasn't a great student, and art school never quite fit. An early mentor saw something in me that I didn't yet know how to use and brought me into a business serving the hotel industry through lead generation, training, secret shopping, and other services. I dropped out of college to help build it. The experience taught me how to sell an idea, operate in business circles, and accept that risk carries both reward and consequence.",
     },
     {
-      era: "02 · Building businesses",
+      era: "03 · Building businesses",
       title: "Hotels → restaurants",
       thread: "Entrepreneurship",
       description: "The hotel business grew beyond lead generation into training, secret shopping, consulting, and other services. That work eventually led us into launching a restaurant, which we helped open and staff in less than 90 days. Growth came fast, then capital disappeared faster. It was an early education in execution, scale, and what happens when a business gets stretched too thin.",
     },
-    {
-      era: "03 · Behind the bar",
-      title: "Wisconsin → bartending",
-      thread: "Craft → opportunity",
-      description: "I started bartending at 17 at a place where my mom worked in Wisconsin. What began as a teenage job became a craft I returned to throughout my life. Years later, it landed me on Hot Mixology. The show's lead bartender and I turned that exposure into a business of our own, providing professional bartenders and tailor-made cocktail menus for private events. It was another early lesson in recognizing an opportunity and building something around it.",
-    },
+
     {
       era: "04 · A guitar changes the path",
       title: "Music → catastrophe adjusting",
