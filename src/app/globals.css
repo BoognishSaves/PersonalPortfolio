@@ -1314,3 +1314,32 @@ footer {
     -webkit-mask-image: linear-gradient(90deg,#000 0 14%,rgba(0,0,0,.18) 23%,transparent 34% 72%,rgba(0,0,0,.2) 82%,#000 94% 100%);
   }
 }
+
+
+/* Logo battery: rapid fidgeting temporarily drives the organism into overdrive. */
+.isOverdrive .circuit,
+.isOverdrive .circuitD,
+.isOverdrive .circuitPulse { opacity: .82; }
+.isOverdrive .growth { opacity: .58; }
+.isOverdrive .wakeSpore { opacity: .9; transform: scale(1.35); }
+.isOverdrive .vine { opacity: .58; transform: rotate(0deg) scaleY(1.08); }
+.isOverdrive .markStage::before { animation: batterySurge .7s ease-in-out infinite; border-color: rgba(64,184,238,.72); }
+.isOverdrive .mark { animation: batterySpin .95s cubic-bezier(.2,.8,.2,1) infinite; filter: drop-shadow(0 0 30px rgba(64,184,238,.48)); }
+.isOverdrive .circuitPulse path:first-child { animation-duration: 1.8s; }
+.isOverdrive .circuitPulse path:last-child { animation-duration: 2.4s; }
+.isOverdrive .rootNetwork { filter: drop-shadow(0 0 5px rgba(64,184,238,.18)); }
+.isOverdrive .hero,
+.isOverdrive .explorer,
+.isOverdrive footer { border-color: rgba(64,184,238,.52); }
+
+@keyframes batterySurge {
+  0%,100% { transform: scale(.9); opacity: .55; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+@keyframes batterySpin {
+  0% { transform: rotate(0deg) scale(.96); }
+  100% { transform: rotate(360deg) scale(.96); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .isOverdrive .mark, .isOverdrive .markStage::before { animation: none; }
+}
