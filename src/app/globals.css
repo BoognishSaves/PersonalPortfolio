@@ -1399,3 +1399,47 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .isOverdrive .rootNetwork, .isOverdrive .growth, .isOverdrive .wakeSpore::after { animation: none; }
 }
+
+
+/* Wake v7: dense overgrown circuitry occupies the clearings and margins. */
+.thicket { position:absolute; width:30%; height:100%; top:0; opacity:0; transition:opacity 1.2s ease; }
+.thicketLeft { left:-2%; }
+.thicketRight { right:-2%; transform:scaleX(-1); }
+.thicket i { position:absolute; display:block; width:210px; height:360px; border-left:1px solid rgba(64,184,238,.34); border-top:1px solid rgba(64,184,238,.26); border-radius:70% 30% 65% 35% / 55% 45% 58% 42%; }
+.thicket i::before,.thicket i::after { content:""; position:absolute; width:95px; height:150px; border:1px solid rgba(64,184,238,.28); border-left:0; border-bottom:0; border-radius:0 100% 0 100%; }
+.thicket i::before { left:32px; top:58px; transform:rotate(28deg); }
+.thicket i::after { left:78px; top:170px; transform:rotate(-18deg) scale(.8); }
+.thicket i:nth-child(1){top:4%;left:2%;transform:rotate(14deg)}
+.thicket i:nth-child(2){top:19%;left:18%;transform:rotate(-17deg) scale(.85)}
+.thicket i:nth-child(3){top:37%;left:-4%;transform:rotate(23deg) scale(1.08)}
+.thicket i:nth-child(4){top:54%;left:20%;transform:rotate(-11deg) scale(.92)}
+.thicket i:nth-child(5){top:70%;left:0;transform:rotate(19deg) scale(1.12)}
+.thicket i:nth-child(6){top:85%;left:22%;transform:rotate(-22deg) scale(.82)}
+.wake-2 .thicket{opacity:.06}.wake-3 .thicket{opacity:.13}.wake-4 .thicket{opacity:.23}.wake-5 .thicket{opacity:.42}
+
+/* Overdrive is visibly different from ordinary full wake. */
+.isOverdrive .thicket { opacity:.78; filter:drop-shadow(0 0 8px rgba(64,184,238,.38)); animation:thicketBreath 1.15s ease-in-out infinite alternate; }
+.isOverdrive .markStage { filter:drop-shadow(0 0 10px rgba(64,184,238,.5)) drop-shadow(0 0 34px rgba(64,184,238,.42)); }
+.isOverdrive .markStage::after {
+  content:""; position:absolute; inset:7%; border-radius:50%;
+  box-shadow:0 0 22px 8px rgba(64,184,238,.3),0 0 70px 18px rgba(64,184,238,.14);
+  animation:batteryArc .62s ease-in-out infinite alternate; pointer-events:none;
+}
+.isOverdrive .mark { animation:batterySpin .62s linear infinite; }
+.isOverdrive .circuitField { filter:drop-shadow(0 0 4px rgba(64,184,238,.65)) drop-shadow(0 0 14px rgba(64,184,238,.24)); }
+.isOverdrive .circuit { stroke-width:1.8; }
+.isOverdrive .circuitPulse path { stroke-width:3.2; }
+.isOverdrive .contentVines { animation:vineHeave 1.05s ease-in-out infinite alternate; }
+
+@keyframes thicketBreath { from{transform:scaleX(var(--sx,1)) scaleY(.985)} to{transform:scaleX(var(--sx,1)) scaleY(1.018)} }
+.thicketRight{--sx:-1}.thicketLeft{--sx:1}
+@keyframes batteryArc { from{transform:scale(.93);opacity:.55} to{transform:scale(1.06);opacity:1} }
+@keyframes vineHeave { from{transform:translateY(3px) scaleY(.99)} to{transform:translateY(-4px) scaleY(1.02)} }
+
+@media(max-width:760px){
+ .thicket{width:42%;opacity:0}.thicket i{width:130px;height:250px}
+ .wake-5 .thicket{opacity:.3}.isOverdrive .thicket{opacity:.62}
+}
+@media(prefers-reduced-motion:reduce){
+ .isOverdrive .thicket,.isOverdrive .markStage::after,.isOverdrive .contentVines{animation:none}
+}
