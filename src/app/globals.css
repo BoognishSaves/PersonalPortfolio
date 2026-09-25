@@ -1929,3 +1929,35 @@ footer {
   .wake-5 .paisleyField{opacity:.31}
 }
 @media(prefers-reduced-motion:reduce){.paisleyField{transition:none}}
+
+
+/* Wake v18: digital botanical paisley. Hierarchy: stems -> leaves/curls -> traces/nodes. */
+.paisleyField{display:none!important}
+.botanicalField{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.4s ease}
+.botanicalField use,.botanicalField path,.botanicalField circle{vector-effect:non-scaling-stroke}
+.botanicalStem,.botanicalOuter,.botanicalInner,.botanicalTrace,.botanicalConnector,.botanicalBranches path{
+  fill:none;stroke:rgba(64,184,238,.72);stroke-linecap:round;stroke-linejoin:round
+}
+.botanicalStem{stroke-width:1.25}.botanicalOuter{stroke-width:1.05}.botanicalInner{stroke-width:.8}
+.botanicalTrace,.botanicalConnector{stroke-width:.72}
+.botanicalField circle,.botanicalNode{fill:var(--paper);stroke:rgba(64,184,238,.88);stroke-width:.85}
+.botanicalBranches{fill:none;stroke:rgba(64,184,238,.38);stroke-width:1.1}
+.botanicalBase,.botanicalBranches{opacity:.35;transition:opacity 1.4s ease}
+.wake-1 .botanicalField{opacity:.025}.wake-1 .botanicalBase{opacity:.12}.wake-1 .botanicalBranches{opacity:.7}
+.wake-2 .botanicalField{opacity:.085}.wake-2 .botanicalBase{opacity:.25}.wake-2 .botanicalBranches{opacity:.82}
+.wake-3 .botanicalField{opacity:.17}.wake-3 .botanicalBase{opacity:.5}.wake-3 .botanicalBranches{opacity:.9}
+.wake-4 .botanicalField{opacity:.28}.wake-4 .botanicalBase{opacity:.78}.wake-4 .botanicalBranches{opacity:1}
+.wake-5 .botanicalField{opacity:.42}.wake-5 .botanicalBase{opacity:1}.wake-5 .botanicalBranches{opacity:1}
+
+/* Content remains a clearing; growth belongs to the surrounding negative space. */
+.wake-3 .heroCopy,.wake-3 .pathIntro,.wake-3 .pathStatement,
+.wake-4 .heroCopy,.wake-4 .pathIntro,.wake-4 .pathStatement,
+.wake-5 .heroCopy,.wake-5 .pathIntro,.wake-5 .pathStatement{
+  background:var(--paper)!important;
+  box-shadow:0 0 50px 34px var(--paper)!important;
+}
+@media(max-width:760px){
+  .wake-5 .botanicalField{opacity:.34}
+  .botanicalField{transform:none}
+}
+@media(prefers-reduced-motion:reduce){.botanicalField,.botanicalBase,.botanicalBranches{transition:none}}
