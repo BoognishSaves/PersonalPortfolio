@@ -34,6 +34,11 @@ export default function Home() {
     const now = Date.now();
     fidgetHits.current = [...fidgetHits.current.filter((hit) => now - hit < 3500), now];
     awaken("mark");
+    if (wake >= 4) {
+      setOverdrive(true);
+      if (overdriveTimer.current) window.clearTimeout(overdriveTimer.current);
+      overdriveTimer.current = window.setTimeout(() => setOverdrive(false), 2200);
+    }
     if (fidgetHits.current.length >= 4) {
       setWake((level) => Math.max(level, 4));
       setOverdrive(true);
@@ -127,6 +132,13 @@ export default function Home() {
           </div>}
 
           {active.id === "music" && <div className="musicExperience">
+            <div className="musicSwitcher" aria-label="Choose a music project">
+              {music.map((project) => (
+                <button type="button" key={project.name} className={project.name === activeMusic ? "isActive" : ""} onClick={() => chooseMusic(project.name)}>
+                  {project.name}
+                </button>
+              ))}
+            </div>
             {music.filter((project) => project.name === activeMusic).map((project) => (
               <article ref={musicFeatureRef} className={`musicFeature ${project.name === "The High Desert" ? "isHighDesert" : project.name === "Them Mules" ? "isThemMules" : project.name === "The Barefoot Boys" ? "isBarefootBoys" : project.name === "JoJa of the Hill People" ? "isJoJa" : ""}`} key={project.name}>
                 <div className="musicPoster">
