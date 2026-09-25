@@ -2292,3 +2292,10 @@ footer {
 .brandForward,.brandReverse,.brandAxis,.brandFold,.brandFace,.brandDirection{display:none!important}
 @media(max-width:760px){.brandLeaf{padding:7px 5px;margin:-7px -5px -7px 0}.brandLeafFront,.brandLeafBack{padding:7px 5px}}
 @media(prefers-reduced-motion:reduce){.brandLeaf{transition:none!important}}
+
+
+/* Symmetry correction: daddaH is the six-letter folding leaf over Haddad. */
+.brandLeft{color:var(--ink);position:relative;z-index:2}
+.brandHinge{display:none!important}
+.brand.isOpen .brandLeft{color:var(--blue);transition:color .14s ease .08s}
+.brand.isOpen .brandLeft::after{content:none}
