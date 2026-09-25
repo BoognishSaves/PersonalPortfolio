@@ -2299,3 +2299,11 @@ footer {
 .brandHinge{display:none!important}
 .brand.isOpen .brandLeft{color:var(--blue);transition:color .14s ease .08s}
 .brand.isOpen .brandLeft::after{content:none}
+
+
+/* Carry the folding leaf across the seam as it turns; rotation alone cannot register the Hs. */
+.brandLeaf{
+ transform:translateX(calc(-100% * var(--fold-progress,0))) rotateY(calc(-180deg * var(--fold-progress,0)))!important;
+ transform-origin:left center!important
+}
+.brand.isOpen .brandLeaf{transform:translateX(-100%) rotateY(-180deg)!important}
