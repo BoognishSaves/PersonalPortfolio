@@ -1576,3 +1576,36 @@ footer {
  .bug{width:6px;height:6px}.worm{width:28px}
 }
 @media(prefers-reduced-motion:reduce){.bug,.worm{animation:none}}
+
+
+/* Wake v12: organic PCB density — many fine traces, pads and branching routes. */
+.pcbGrowth{position:absolute;top:0;width:34%;height:100%;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.4s ease}
+.pcbLeft{left:-1%}.pcbRight{right:-1%;transform:scaleX(-1)}
+.pcbGrowth i{position:absolute;display:block;width:72%;height:1px;background:rgba(64,184,238,.22);transform-origin:left center}
+.pcbGrowth i::before{content:"";position:absolute;left:28%;top:-1px;width:42%;height:18px;border-top:1px solid rgba(64,184,238,.22);border-right:1px solid rgba(64,184,238,.22);border-radius:0 11px 0 0}
+.pcbGrowth i::after{content:"";position:absolute;right:-3px;top:-3px;width:6px;height:6px;border:1px solid rgba(64,184,238,.34);border-radius:50%;background:var(--paper)}
+.pcbGrowth i:nth-child(1){top:6%;left:2%;transform:rotate(8deg)}.pcbGrowth i:nth-child(2){top:10%;left:8%;transform:rotate(-5deg)}
+.pcbGrowth i:nth-child(3){top:15%;left:-4%;transform:rotate(13deg)}.pcbGrowth i:nth-child(4){top:21%;left:12%;transform:rotate(-9deg)}
+.pcbGrowth i:nth-child(5){top:27%;left:1%;transform:rotate(5deg)}.pcbGrowth i:nth-child(6){top:32%;left:17%;transform:rotate(-14deg)}
+.pcbGrowth i:nth-child(7){top:39%;left:-3%;transform:rotate(10deg)}.pcbGrowth i:nth-child(8){top:44%;left:9%;transform:rotate(-6deg)}
+.pcbGrowth i:nth-child(9){top:50%;left:3%;transform:rotate(15deg)}.pcbGrowth i:nth-child(10){top:56%;left:15%;transform:rotate(-11deg)}
+.pcbGrowth i:nth-child(11){top:62%;left:-5%;transform:rotate(7deg)}.pcbGrowth i:nth-child(12){top:67%;left:7%;transform:rotate(-16deg)}
+.pcbGrowth i:nth-child(13){top:73%;left:13%;transform:rotate(9deg)}.pcbGrowth i:nth-child(14){top:79%;left:-2%;transform:rotate(-7deg)}
+.pcbGrowth i:nth-child(15){top:84%;left:18%;transform:rotate(13deg)}.pcbGrowth i:nth-child(16){top:89%;left:3%;transform:rotate(-10deg)}
+.pcbGrowth i:nth-child(17){top:94%;left:11%;transform:rotate(6deg)}.pcbGrowth i:nth-child(18){top:98%;left:-3%;transform:rotate(-13deg)}
+.wake-2 .pcbGrowth{opacity:.08}.wake-3 .pcbGrowth{opacity:.2}.wake-4 .pcbGrowth{opacity:.42}.wake-5 .pcbGrowth{opacity:.72}
+
+/* At maturity, traces gain secondary hairline routing and the open substrate becomes populated. */
+.wake-5 .pcbGrowth i{box-shadow:0 5px 0 rgba(64,184,238,.08),0 -7px 0 rgba(64,184,238,.07)}
+.wake-5 .pcbGrowth i:nth-child(3n)::after{box-shadow:12px 8px 0 -2px rgba(64,184,238,.32),25px -5px 0 -2px rgba(64,184,238,.24)}
+.wake-5 .digitalLife{opacity:.5}
+
+/* Keep circuitry present but restrained through content zones. */
+@media(min-width:761px){
+ .pcbGrowth{width:39%}
+}
+@media(max-width:760px){
+ .pcbGrowth{width:30%}
+ .wake-5 .pcbGrowth{opacity:.58}
+ .pcbGrowth i{width:88%}
+}
