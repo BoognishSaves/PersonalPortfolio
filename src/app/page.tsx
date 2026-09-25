@@ -302,6 +302,21 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="connectSection" id="connect" aria-labelledby="connect-title">
+        <div className="connectIntro">
+          <p className="sectionLabel">Connect</p>
+          <h2 id="connect-title">Say hello.</h2>
+          <p>Employment, collaboration, a project, or just a good conversation — I’d love to hear from you.</p>
+        </div>
+        <form className="connectForm" action="https://formspree.io/f/xkneqgqb" method="POST">
+          <label><span>Name</span><input type="text" name="firstname" autoComplete="name" required /></label>
+          <label><span>Email</span><input type="email" name="Email" autoComplete="email" required /></label>
+          <label className="connectWide"><span>Subject</span><input type="text" name="Subject" required /></label>
+          <label className="connectWide"><span>Message</span><textarea name="message" rows={5} required /></label>
+          <div className="connectSubmit"><button type="submit">Send message <span aria-hidden="true">↗</span></button></div>
+        </form>
+      </section>
+
       <footer>
         <button className="secretSeed" type="button" aria-expanded={secretOpen} onClick={() => { setSecretOpen((open) => !open); grow("secret", 8); }}>
           <span>HaddadaddaH</span>
