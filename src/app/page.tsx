@@ -268,7 +268,9 @@ export default function Home() {
                   </div>
                   <div className="storyChapterCopy">
                     <h3>{chapter.title}</h3>
-                    <p>{chapter.description}</p>
+                    <p>{chapter.title === "Insurance → Drone Note Media" ? (
+                      <>Near the end of my time as a field adjuster, I was sent to drone flight school and earned my FAA Part 107 certification. I came home and started <a href="https://www.dronenotemedia.com" target="_blank" rel="noreferrer">Drone Note Media</a>, initially using aerial technology for property inspections, commercial work, and real estate. When COVID changed how insurance inspections could be performed, the business adapted to meet that need. It has continued evolving with me ever since, becoming a home for occasional technology, media, and engineering projects.</>
+                    ) : chapter.description}</p>
                   </div>
                 </article>
               ))}
