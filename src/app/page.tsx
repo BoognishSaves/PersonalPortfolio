@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import LivingCanvas from "./LivingCanvas";
+import PartyCanvas from "./PartyCanvas";
 import siteContent from "../content/siteContent";
 
 export default function Home() {
@@ -69,6 +70,7 @@ export default function Home() {
   return (
     <main className="shell livingShell">
       <LivingCanvas maturity={maturity} />
+      {partyMode && <PartyCanvas />}
       <div key={`puzzle-${puzzlePing}`} className={`livingContent puzzleStep-${puzzlePulse} ${puzzlePrimed ? "puzzleReady" : ""} ${partyMode ? "partyMode" : ""}`}>
       {partyMode && <div className="partySignal" aria-live="polite"><span>SYSTEM WIDE OPEN</span><i>HaddadaddaH</i></div>}
       <header className="topbar">
@@ -93,7 +95,7 @@ export default function Home() {
             window.dispatchEvent(new CustomEvent("haddad-puzzle-unlock", { detail: { paths: puzzlePaths } }));
             setPartyMode(true);
             sessionStorage.setItem("haddad-party-unlocked", "1");
-            window.setTimeout(() => setPartyMode(false), 12000);
+            window.setTimeout(() => setPartyMode(false), 15000);
             document.documentElement.classList.add("puzzleSolved");
             window.setTimeout(() => document.documentElement.classList.remove("puzzleSolved"), 2200);
             setPuzzlePrimed(false);
