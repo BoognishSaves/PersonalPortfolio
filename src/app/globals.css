@@ -2268,3 +2268,27 @@ footer {
 .brand.isOpen{min-width:58px}
 .brand::after{content:none!important}
 @media(max-width:760px){.brand.isOpen{min-width:54px}}
+
+
+/* Center-d physical fold. The final H drives the gesture; click only resets resolved state. */
+.brand{display:inline-flex;align-items:baseline;perspective:520px;position:relative;white-space:nowrap}
+.brandLeft,.brandHinge{color:var(--ink);position:relative;z-index:2}
+.brandHinge{transform-origin:center center}
+.brandLeaf{
+ position:relative;display:inline-block;transform-origin:left center;transform-style:preserve-3d;
+ transform:rotateY(calc(-180deg * var(--fold-progress,0)));touch-action:none;cursor:grab;
+ will-change:transform;transition:none
+}
+.brandLeafFront,.brandLeafBack{display:block;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.brandLeafFront{color:var(--ink)}
+.brandLeafBack{position:absolute;inset:0;color:var(--blue);transform:rotateY(180deg)}
+.brand.isDragging .brandLeaf{cursor:grabbing}
+.brand:not(.isDragging):not(.isOpen) .brandLeaf{transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.brand.isOpen .brandLeft,.brand.isOpen .brandHinge{color:var(--blue);transition:color .14s ease .08s}
+.brand.isOpen .brandLeaf{transform:rotateY(-180deg);opacity:0;transition:opacity .15s ease .08s}
+.brand.isOpen{cursor:pointer}
+.brand.isOpen .brandLeft::after{content:"d";color:var(--blue)}
+.brand.isOpen .brandHinge{display:none}
+.brandForward,.brandReverse,.brandAxis,.brandFold,.brandFace,.brandDirection{display:none!important}
+@media(max-width:760px){.brandLeaf{padding:7px 5px;margin:-7px -5px -7px 0}.brandLeafFront,.brandLeafBack{padding:7px 5px}}
+@media(prefers-reduced-motion:reduce){.brandLeaf{transition:none!important}}
