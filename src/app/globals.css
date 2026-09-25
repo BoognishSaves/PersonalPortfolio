@@ -1537,3 +1537,42 @@ footer {
   .musicFeatureCopy .musicKicker{opacity:1}
   .isHighDesert .musicFeatureCopy,.isBarefootBoys .musicFeatureCopy,.isThemMules .musicFeatureCopy,.isJoJa .musicFeatureCopy{background:#0b0c0c!important}
 }
+
+
+/* Wake v11: populate negative space while keeping copy in a quiet clearing. */
+.thicket i:nth-child(7){top:11%;left:42%;transform:rotate(-31deg) scale(.68)}
+.thicket i:nth-child(8){top:46%;left:43%;transform:rotate(34deg) scale(.72)}
+.thicket i:nth-child(9){top:78%;left:39%;transform:rotate(-28deg) scale(.7)}
+.wake-3 .thicket{opacity:.18}.wake-4 .thicket{opacity:.36}.wake-5 .thicket{opacity:.68}
+
+/* Digital fauna: tiny signals that only become apparent as the page matures. */
+.digitalLife{position:absolute;inset:0;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.2s ease}
+.wake-3 .digitalLife{opacity:.18}.wake-4 .digitalLife{opacity:.42}.wake-5 .digitalLife{opacity:.72}
+.bug,.worm{position:absolute;display:block;color:rgba(64,184,238,.72)}
+.bug{width:8px;height:8px;border:1px solid currentColor;border-radius:50%;animation:bugCrawl 9s ease-in-out infinite alternate}
+.bug::before,.bug::after{content:"";position:absolute;top:2px;width:5px;border-top:1px solid currentColor}
+.bug::before{right:6px;transform:rotate(28deg)}.bug::after{left:6px;transform:rotate(-28deg)}
+.b1{top:16%;left:7%}.b2{top:34%;right:8%;animation-delay:-3s}.b3{top:66%;left:10%;animation-delay:-5s}.b4{top:83%;right:11%;animation-delay:-7s}
+.worm{width:38px;height:15px;border-top:1px solid currentColor;border-radius:50%;animation:wormDrift 12s ease-in-out infinite alternate}
+.worm::after{content:"";position:absolute;right:-3px;top:-3px;width:5px;height:5px;border:1px solid currentColor;border-radius:50%}
+.w1{top:25%;right:4%;transform:rotate(32deg)}.w2{top:58%;left:3%;transform:rotate(-24deg);animation-delay:-4s}.w3{top:75%;right:5%;transform:rotate(18deg);animation-delay:-8s}
+@keyframes bugCrawl{0%{translate:0 0;rotate:0deg}45%{translate:18px -8px;rotate:35deg}100%{translate:5px 18px;rotate:-20deg}}
+@keyframes wormDrift{from{translate:0 0;scale:.92}to{translate:24px -12px;scale:1.08}}
+
+/* Text gets only a trace of circuitry; open space gets the density. */
+.wake-5 .circuitField{
+ -webkit-mask-image:linear-gradient(90deg,#000 0 31%,rgba(0,0,0,.18) 39%,rgba(0,0,0,.08) 46% 67%,rgba(0,0,0,.3) 76%,#000 88% 100%)!important;
+ mask-image:linear-gradient(90deg,#000 0 31%,rgba(0,0,0,.18) 39%,rgba(0,0,0,.08) 46% 67%,rgba(0,0,0,.3) 76%,#000 88% 100%)!important
+}
+.wake-5 .heroCopy,.wake-5 .pathStatement,.wake-5 .storyChapterCopy{position:relative;z-index:2}
+
+@media(max-width:760px){
+ .wake-5 .thicket{opacity:.5}
+ .wake-5 .digitalLife{opacity:.58}
+ .wake-5 .circuitField{
+  -webkit-mask-image:linear-gradient(90deg,#000 0 23%,rgba(0,0,0,.14) 31%,rgba(0,0,0,.06) 40% 70%,rgba(0,0,0,.18) 80%,#000 94% 100%)!important;
+  mask-image:linear-gradient(90deg,#000 0 23%,rgba(0,0,0,.14) 31%,rgba(0,0,0,.06) 40% 70%,rgba(0,0,0,.18) 80%,#000 94% 100%)!important
+ }
+ .bug{width:6px;height:6px}.worm{width:28px}
+}
+@media(prefers-reduced-motion:reduce){.bug,.worm{animation:none}}
