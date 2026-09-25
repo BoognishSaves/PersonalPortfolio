@@ -1998,3 +1998,26 @@ footer {
   .botanicalGrowth1,.botanicalGrowth2,.botanicalGrowth3,.botanicalBranches .branch{transition:none!important}
   .wake-5 .bloom{animation:none!important;opacity:.28;scale:.72}
 }
+
+
+/* Wake v20: cellular canopy. Smaller interlocking motifs make the mature field
+   read as blue biological texture at distance and circuitry up close. */
+.botanicalField{opacity:0;filter:none}
+.botanicalStem{stroke-width:1.05}.botanicalOuter{stroke-width:.92}.botanicalInner{stroke-width:.68}
+.botanicalTrace,.botanicalConnector{stroke-width:.62}
+.botanicalField circle,.botanicalNode{stroke-width:.72}
+.wake-1 .botanicalField{opacity:.04}
+.wake-2 .botanicalField{opacity:.13}
+.wake-3 .botanicalField{opacity:.25}
+.wake-4 .botanicalField{opacity:.4}
+.wake-5 .botanicalField{opacity:.56}
+.wake-4 .botanicalGrowth1,.wake-4 .botanicalGrowth2,.wake-4 .botanicalGrowth3{filter:saturate(1.05)}
+.wake-5 .botanicalGrowth1,.wake-5 .botanicalGrowth2,.wake-5 .botanicalGrowth3{filter:saturate(1.12)}
+/* Keep the dense canopy out of the reading plane. */
+.wake-4 .heroCopy,.wake-4 .pathStatement,.wake-5 .heroCopy,.wake-5 .pathStatement{
+  background:var(--paper)!important;box-shadow:0 0 58px 38px var(--paper)!important
+}
+@media(max-width:760px){
+  .wake-5 .botanicalField{opacity:.46}
+  .wake-5 .heroCopy,.wake-5 .pathStatement{box-shadow:0 0 34px 20px var(--paper)!important}
+}
