@@ -262,14 +262,22 @@ export default function Home() {
               <path className="botanicalTrace" d="M17 103 H39 M54 44 V25 M119 21 H140" />
               <circle cx="39" cy="103" r="2.6" /><circle cx="54" cy="25" r="2.6" /><circle cx="140" cy="21" r="2.6" />
             </g>
-            <pattern id="botanicalPattern" width="360" height="360" patternUnits="userSpaceOnUse">
-              <g transform="translate(18 20) rotate(-12)"><use href="#digitalLeaf"/></g>
-              <g transform="translate(198 42) rotate(28) scale(.78)"><use href="#digitalCurl"/></g>
-              <g transform="translate(255 205) rotate(164) scale(.9)"><use href="#digitalLeaf"/></g>
-              <g transform="translate(68 245) rotate(205) scale(.65)"><use href="#digitalCurl"/></g>
-              <path className="botanicalConnector" d="M128 118 C174 138 187 186 221 207 C249 225 286 219 314 196" />
-              <path className="botanicalConnector" d="M10 284 C53 271 89 282 116 314" />
-              <circle className="botanicalNode" cx="221" cy="207" r="3"/><circle className="botanicalNode" cx="116" cy="314" r="3"/>
+            <g id="digitalSeed">
+              <path className="botanicalOuter" d="M2 32 C7 9 31 0 49 10 C65 19 64 39 49 50 C31 63 10 53 2 32Z" />
+              <path className="botanicalTrace" d="M11 34 C22 29 31 20 38 9 M22 29 H43" />
+              <circle cx="43" cy="29" r="2"/>
+            </g>
+            <pattern id="botanicalPattern" width="240" height="220" patternUnits="userSpaceOnUse">
+              <g transform="translate(8 8) rotate(-12) scale(.72)"><use href="#digitalLeaf"/></g>
+              <g transform="translate(118 4) rotate(24) scale(.56)"><use href="#digitalCurl"/></g>
+              <g transform="translate(166 74) rotate(148) scale(.58)"><use href="#digitalLeaf"/></g>
+              <g transform="translate(26 126) rotate(207) scale(.48)"><use href="#digitalCurl"/></g>
+              <g transform="translate(103 116) rotate(36) scale(.62)"><use href="#digitalSeed"/></g>
+              <g transform="translate(184 162) rotate(188) scale(.48)"><use href="#digitalSeed"/></g>
+              <path className="botanicalConnector" d="M78 73 C103 82 111 104 130 112 C151 121 174 113 191 97" />
+              <path className="botanicalConnector" d="M2 177 C30 166 52 173 69 194 C86 211 108 210 124 196" />
+              <path className="botanicalConnector" d="M146 22 C157 44 181 49 204 43 C222 39 233 47 240 57" />
+              <circle className="botanicalNode" cx="130" cy="112" r="2.3"/><circle className="botanicalNode" cx="69" cy="194" r="2.3"/><circle className="botanicalNode" cx="204" cy="43" r="2"/>
             </pattern>
           </defs>
           <rect className="botanicalLayer botanicalBase botanicalGrowth1" width="1200" height="620" fill="url(#botanicalPattern)" />
