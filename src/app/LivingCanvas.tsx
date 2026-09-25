@@ -13,6 +13,7 @@ export default function LivingCanvas({ maturity }: Props) {
     const canvas=ref.current; if(!canvas) return;
     const ctx=canvas.getContext("2d",{alpha:true}); if(!ctx) return;
     const mobile=matchMedia("(max-width: 760px)").matches;
+    const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const dpr=Math.min(devicePixelRatio||1,mobile?1.2:1.5);
     let w=0,h=0,raf=0;
 
@@ -42,8 +43,11 @@ export default function LivingCanvas({ maturity }: Props) {
       ctx.clearRect(0,0,w,h);
       const m=Math.max(0,Math.min(100,maturityRef.current)); if(m<3)return;
       const protectedZones=zones();
-      const branches=Math.floor((mobile?20:36)+(m/100)*(mobile?55:115));
-      const steps=Math.floor(2+(m/100)*7);
+      // Mature states gain hierarchy, not just more lines: trunks, secondary routes,
+      // then fine capillaries that make dense regions read blue from a distance.
+      const stage=m/100;
+      const branches=Math.floor((mobile?18:32)+stage*(mobile?62:138));
+      const steps=Math.floor(2+stage*8);
       const alpha=.07+(m/100)*.25;
 
       // Mycelial macro-growth with circuit-board routing rules.
@@ -62,6 +66,12 @@ export default function LivingCanvas({ maturity }: Props) {
           const hit=protectedZones.some(z=>inside(nx,ny,z,z.logo?8:14));
           if(hit){dir+=(hash(seed+s*53)>.5?1:-1)*Math.PI/2;continue}
           [x,y]=segment(x,y,len,dir,alpha*(.72+hash(seed+s)*.5),hash(seed+s+9)>.88?1.35:.8);
+          // Secondary capillaries emerge late and stay short/ordered.
+          if(m>62 && hash(seed+s*67)<((m-62)/38)*.48){
+            const twigDir=dir+(hash(seed+s*71)>.5?1:-1)*Math.PI/4;
+            const twigLen=len*(.28+hash(seed+s*73)*.38);
+            segment(x,y,twigLen,twigDir,alpha*.72,.55);
+          }
           if(x<0||x>w||y<0||y>h)break;
         }
       }
@@ -90,11 +100,32 @@ export default function LivingCanvas({ maturity }: Props) {
       }
     };
 
+    const pulse=()=>{
+      if(reduced || document.hidden || maturityRef.current<35) return;
+      const root=canvas.getBoundingClientRect();
+      const seed=Date.now()%100000;
+      const y=hash(seed)*h, fromLeft=hash(seed+1)>.5;
+      const x0=fromLeft?0:w, x1=fromLeft?w:0;
+      const duration=1100+hash(seed+2)*1100, start=performance.now();
+      const animate=(now:number)=>{
+        const t=Math.min(1,(now-start)/duration);
+        draw();
+        const x=x0+(x1-x0)*t;
+        ctx.beginPath();ctx.arc(x,y,1.6+hash(seed+3)*1.8,0,Math.PI*2);
+        ctx.fillStyle=`rgba(64,184,238,${.25+.35*Math.sin(Math.PI*t)})`;ctx.fill();
+        if(t<1&&!document.hidden) raf=requestAnimationFrame(animate);
+      };
+      raf=requestAnimationFrame(animate);
+    };
+
     const resize=()=>{const r=canvas.getBoundingClientRect();w=Math.max(1,r.width);h=Math.max(1,r.height);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);draw()};
     const redraw=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(draw)};
     addEventListener("resize",resize,{passive:true});addEventListener("living-growth",redraw);
     resize();
-    return()=>{cancelAnimationFrame(raf);removeEventListener("resize",resize);removeEventListener("living-growth",redraw)};
+    // Rare, brief motion only. The page is still most of the time.
+    const pulseEvery=mobile?22000:15000;
+    const pulseTimer=window.setInterval(pulse,pulseEvery);
+    return()=>{window.clearInterval(pulseTimer);cancelAnimationFrame(raf);removeEventListener("resize",resize);removeEventListener("living-growth",redraw)};
   },[]);
 
   useEffect(()=>{dispatchEvent(new Event("living-growth"))},[maturity]);
