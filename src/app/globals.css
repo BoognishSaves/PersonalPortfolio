@@ -1880,3 +1880,52 @@ footer {
   .wake-5 .orderedField{opacity:.34}
   .orderedPattern{stroke-width:.9}
 }
+
+
+/* Wake v17: one digital-paisley wallpaper. Density comes from the pattern itself,
+   while content surfaces stay clean above it. */
+.orderedField{display:none!important}
+.paisleyField{
+  position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+  opacity:0;transition:opacity 1.4s ease;z-index:0;
+}
+.paisleyCell{
+  fill:none;stroke:rgba(64,184,238,.72);stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+.paisleyCell circle{fill:var(--paper);stroke:rgba(64,184,238,.82);stroke-width:1}
+.wake-1 .paisleyField{opacity:.018}
+.wake-2 .paisleyField{opacity:.065}
+.wake-3 .paisleyField{opacity:.14}
+.wake-4 .paisleyField{opacity:.25}
+.wake-5 .paisleyField{opacity:.38}
+
+/* Treat readable UI as paper laid over the growing system. */
+.heroCopy,.pathIntro,.pathStatement,.pathTabs,.musicExperience,.buildingExperience,
+.storyExperience,.siteHeader,.siteFooter{position:relative;z-index:2}
+.wake-2 .heroCopy,.wake-2 .pathIntro,.wake-2 .pathStatement{
+  background:rgba(245,244,239,.94);
+  box-shadow:0 0 28px 18px rgba(245,244,239,.94);
+}
+.wake-3 .heroCopy,.wake-3 .pathIntro,.wake-3 .pathStatement,
+.wake-4 .heroCopy,.wake-4 .pathIntro,.wake-4 .pathStatement,
+.wake-5 .heroCopy,.wake-5 .pathIntro,.wake-5 .pathStatement{
+  background:var(--paper);
+  box-shadow:0 0 42px 28px var(--paper);
+}
+/* Disable old line systems so the negative space has one coherent visual language. */
+.wake-1 .circuitA,.wake-1 .circuitB,.wake-1 .circuitC,.wake-1 .circuitD,
+.wake-2 .circuitA,.wake-2 .circuitB,.wake-2 .circuitC,.wake-2 .circuitD,
+.wake-3 .circuitA,.wake-3 .circuitB,.wake-3 .circuitC,.wake-3 .circuitD,
+.wake-4 .circuitA,.wake-4 .circuitB,.wake-4 .circuitC,.wake-4 .circuitD,
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD,
+.wake-1 .circuitCanopy,.wake-2 .circuitCanopy,.wake-3 .circuitCanopy,.wake-4 .circuitCanopy,.wake-5 .circuitCanopy,
+.wake-1 .circuitTwigs,.wake-2 .circuitTwigs,.wake-3 .circuitTwigs,.wake-4 .circuitTwigs,.wake-5 .circuitTwigs,
+.wake-1 .digitalLife,.wake-2 .digitalLife,.wake-3 .digitalLife,.wake-4 .digitalLife,.wake-5 .digitalLife,
+.wake-1 .thicket,.wake-2 .thicket,.wake-3 .thicket,.wake-4 .thicket,.wake-5 .thicket,
+.wake-1 .vine,.wake-2 .vine,.wake-3 .vine,.wake-4 .vine,.wake-5 .vine{opacity:0!important}
+@media(max-width:760px){
+  .paisleyField{width:100%;height:100%}
+  .wake-5 .paisleyField{opacity:.31}
+}
+@media(prefers-reduced-motion:reduce){.paisleyField{transition:none}}
