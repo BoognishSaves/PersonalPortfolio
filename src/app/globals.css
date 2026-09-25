@@ -2354,3 +2354,19 @@ body{transition:background-color .28s ease,color .28s ease}
 :root[data-theme="dark"] .brandLeafBack,
 :root[data-theme="dark"] .brand.isOpen .brandLeft{color:var(--blue)!important}
 :root[data-theme="dark"] .brandLeaf{pointer-events:auto!important}
+
+
+/* Mobile release polish: tighten the palindrome seam and anchor the mark to the hero grid. */
+@media(max-width:760px){
+  .brandLeft{margin-right:-.055em}
+  .brandLeaf{padding:7px 0;margin:-7px 0 -7px 0}
+  .brandLeafFront,.brandLeafBack{padding:7px 0}
+  .markStage{
+    min-height:230px;
+    justify-items:center;
+    align-items:end;
+    padding:0 3vw 10px 0;
+  }
+  .mark{width:158px}
+  .markStage::before{width:174px}
+}
