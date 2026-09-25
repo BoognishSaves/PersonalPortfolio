@@ -14,6 +14,7 @@ export default function Home() {
   const [puzzlePaths, setPuzzlePaths] = useState<string[]>([]);
   const [puzzlePrimed, setPuzzlePrimed] = useState(false);
   const [puzzlePulse, setPuzzlePulse] = useState(0);
+  const [partyMode, setPartyMode] = useState(false);
   const seen = useRef(new Set<string>());
   const musicFeatureRef = useRef<HTMLElement | null>(null);
 
@@ -66,7 +67,8 @@ export default function Home() {
   return (
     <main className="shell livingShell">
       <LivingCanvas maturity={maturity} />
-      <div className={`livingContent puzzleStep-${puzzlePulse} ${puzzlePrimed ? "puzzleReady" : ""}`}>
+      <div className={`livingContent puzzleStep-${puzzlePulse} ${puzzlePrimed ? "puzzleReady" : ""} ${partyMode ? "partyMode" : ""}`}>
+      {partyMode && <div className="partySignal" aria-live="polite"><span>SYSTEM WIDE OPEN</span><i>HaddadaddaH</i></div>}
       <header className="topbar">
         <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); grow("brand", 4); }}>
           <span className="brandForward">Haddad</span><span className="brandAxis" aria-hidden="true" /><span className="brandReverse">addaH</span>
@@ -87,6 +89,9 @@ export default function Home() {
           grow("mark-spin", 5);
           if (puzzlePrimed) {
             window.dispatchEvent(new CustomEvent("haddad-puzzle-unlock", { detail: { paths: puzzlePaths } }));
+            setPartyMode(true);
+            sessionStorage.setItem("haddad-party-unlocked", "1");
+            window.setTimeout(() => setPartyMode(false), 12000);
             document.documentElement.classList.add("puzzleSolved");
             window.setTimeout(() => document.documentElement.classList.remove("puzzleSolved"), 2200);
             setPuzzlePrimed(false);
