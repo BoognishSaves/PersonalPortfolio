@@ -99,7 +99,7 @@ export default function Home() {
         <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset Haddad wordmark" : "Fold the wordmark from its final H"} onClick={() => {
           if (brandOpen) { setBrandOpen(false); setBrandDrag(0); grow("brand-reset", 2); }
         }}>
-          <span className="brandLeft" ref={brandTargetRef}><span className="brandTargetH">H</span>addad</span>
+          <span className="brandLeft" ref={brandTargetRef}><span className="brandTargetH">H</span>adda</span>
           <span className="brandLeaf" style={{ "--fold-progress": brandDrag } as React.CSSProperties}
             onPointerDown={(event) => {
               if (brandOpen) return;
@@ -289,6 +289,8 @@ export default function Home() {
                       <>Near the end of my time as a field adjuster, I was sent to drone flight school and earned my FAA Part 107 certification. I came home and started <a href="https://www.dronenotemedia.com" target="_blank" rel="noreferrer">Drone Note Media</a>, initially using aerial technology for property inspections, commercial work, and real estate. When COVID changed how insurance inspections could be performed, the business adapted to meet that need. It has continued evolving with me ever since, becoming a home for occasional technology, media, and engineering projects.</>
                     ) : chapter.title === "Wisconsin → bartending" ? (
                       <>I started bartending at 17 at a place where my mom worked in Wisconsin. What began as a teenage job became a craft I returned to throughout my life. Years later, it landed me on <a href="https://youtube.com/playlist?list=PLqnTw__THC4MrlBxGZ0vGjXhclfNHU5YV&si=hHKBwVw7W--9BqXB" target="_blank" rel="noreferrer">Hot Mixology</a>. The show's lead bartender and I turned that exposure into a business of our own, providing professional bartenders and tailor-made cocktail menus for private events. It was another early lesson in recognizing an opportunity and building something around it.</>
+                    ) : chapter.title === "Dream → Haddad Hollow" ? (
+                      <>My wife and I spent years chasing a mountain-home dream, then changed our careers and finances to make it possible. Haddad Hollow became both our home and a business — another experiment in building something people can experience. See it on <a href="https://www.tiktok.com/@haddad.hollow?_r=1&_t=ZT-9A2Ff8tUlP4" target="_blank" rel="noreferrer">TikTok</a> or <a href="https://www.airbnb.com/rooms/1409631417764580109?unique_share_id=c0dbdbea-2a12-48ec-962d-d45c6d599083&viralityEntryPoint=1&s=76" target="_blank" rel="noreferrer">Airbnb</a>.</>
                     ) : chapter.description}</p>
                   </div>
                 </article>
