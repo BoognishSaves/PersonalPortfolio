@@ -2370,3 +2370,12 @@ body{transition:background-color .28s ease,color .28s ease}
   .mark{width:158px}
   .markStage::before{width:174px}
 }
+
+
+/* Final mobile alignment: the center d belongs to the folding leaf. */
+.brand.isOpen .brandLeft::after{content:"d";color:var(--blue)}
+@media(max-width:760px){
+  .brandLeft{margin-right:0}
+  .brandLeaf{margin-left:0}
+  .markStage{transform:translateX(-18px)}
+}
