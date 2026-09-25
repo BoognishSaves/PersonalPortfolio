@@ -248,25 +248,21 @@ export default function Home() {
           <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
           <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
         </div>
-        <svg className="orderedField" viewBox="0 0 1200 1800" preserveAspectRatio="none" aria-hidden="true">
+        <svg className="paisleyField" viewBox="0 0 1200 1800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
-            <pattern id="systemPattern" width="240" height="180" patternUnits="userSpaceOnUse">
-              <path d="M0 90 H52 Q68 90 68 74 V46 Q68 30 84 30 H126" />
-              <path d="M68 90 V126 Q68 142 84 142 H154 Q170 142 170 126 V108 Q170 92 186 92 H240" />
-              <path d="M126 30 H170 Q186 30 186 46 V62" />
-              <circle cx="68" cy="90" r="3" /><circle cx="126" cy="30" r="3" /><circle cx="170" cy="142" r="3" /><circle cx="186" cy="92" r="3" />
+            <pattern id="paisleyPattern" width="230" height="260" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+              <g className="paisleyCell">
+                <path d="M42 198 C16 158 26 104 72 76 C108 54 123 22 112 0 C158 24 190 66 186 112 C182 166 142 208 92 214 C72 216 54 210 42 198 Z" />
+                <path d="M64 181 C47 151 55 116 84 98 C111 82 130 61 130 38 C153 59 165 84 162 111 C159 145 135 174 103 181 C87 185 74 185 64 181 Z" />
+                <path d="M91 157 C80 139 85 121 101 111 C117 101 128 89 130 76 C142 90 146 107 142 123 C137 143 119 158 100 161" />
+                <path d="M185 112 H216 Q224 112 224 120 V146" />
+                <path d="M43 198 H18 Q10 198 10 206 V232" />
+                <circle cx="186" cy="112" r="3" /><circle cx="42" cy="198" r="3" />
+                <circle cx="130" cy="76" r="2.5" />
+              </g>
             </pattern>
           </defs>
-          <rect className="orderedPattern" width="1200" height="1800" fill="url(#systemPattern)" />
-          <g className="orderedSpine">
-            <path d="M600 0 V1800" />
-            <path d="M600 250 C520 250 500 330 430 330 H300" />
-            <path d="M600 520 C690 520 710 610 790 610 H930" />
-            <path d="M600 850 C505 850 485 940 395 940 H250" />
-            <path d="M600 1180 C700 1180 720 1270 815 1270 H970" />
-            <path d="M600 1490 C520 1490 500 1570 420 1570 H285" />
-            <circle cx="600" cy="250" r="5" /><circle cx="600" cy="520" r="5" /><circle cx="600" cy="850" r="5" /><circle cx="600" cy="1180" r="5" /><circle cx="600" cy="1490" r="5" />
-          </g>
+          <rect width="1200" height="1800" fill="url(#paisleyPattern)" />
         </svg>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
