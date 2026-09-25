@@ -248,21 +248,37 @@ export default function Home() {
           <i className="bug b1"/><i className="bug b2"/><i className="bug b3"/><i className="bug b4"/>
           <i className="worm w1"/><i className="worm w2"/><i className="worm w3"/>
         </div>
-        <svg className="paisleyField" viewBox="0 0 1200 1800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <svg className="botanicalField" viewBox="0 0 1200 1800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
           <defs>
-            <pattern id="paisleyPattern" width="230" height="260" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
-              <g className="paisleyCell">
-                <path d="M42 198 C16 158 26 104 72 76 C108 54 123 22 112 0 C158 24 190 66 186 112 C182 166 142 208 92 214 C72 216 54 210 42 198 Z" />
-                <path d="M64 181 C47 151 55 116 84 98 C111 82 130 61 130 38 C153 59 165 84 162 111 C159 145 135 174 103 181 C87 185 74 185 64 181 Z" />
-                <path d="M91 157 C80 139 85 121 101 111 C117 101 128 89 130 76 C142 90 146 107 142 123 C137 143 119 158 100 161" />
-                <path d="M185 112 H216 Q224 112 224 120 V146" />
-                <path d="M43 198 H18 Q10 198 10 206 V232" />
-                <circle cx="186" cy="112" r="3" /><circle cx="42" cy="198" r="3" />
-                <circle cx="130" cy="76" r="2.5" />
-              </g>
+            <g id="digitalLeaf">
+              <path className="botanicalStem" d="M0 92 C34 78 54 48 72 0" />
+              <path className="botanicalOuter" d="M18 76 C24 28 72 6 112 24 C146 40 148 82 118 108 C86 136 40 120 18 76 Z" />
+              <path className="botanicalInner" d="M38 76 C45 45 76 29 101 39 C121 48 123 72 106 88 C86 106 57 101 38 76 Z" />
+              <path className="botanicalTrace" d="M39 76 H63 Q71 76 71 68 V51 M71 76 H94 Q103 76 103 67 V51" />
+              <circle cx="71" cy="51" r="2.8" /><circle cx="103" cy="51" r="2.8" />
+            </g>
+            <g id="digitalCurl">
+              <path className="botanicalStem" d="M0 112 C34 100 49 72 54 44 C60 12 96 2 119 21 C142 40 130 73 104 77 C85 80 73 67 78 54 C82 43 95 40 103 47" />
+              <path className="botanicalTrace" d="M17 103 H39 M54 44 V25 M119 21 H140" />
+              <circle cx="39" cy="103" r="2.6" /><circle cx="54" cy="25" r="2.6" /><circle cx="140" cy="21" r="2.6" />
+            </g>
+            <pattern id="botanicalPattern" width="360" height="360" patternUnits="userSpaceOnUse">
+              <g transform="translate(18 20) rotate(-12)"><use href="#digitalLeaf"/></g>
+              <g transform="translate(198 42) rotate(28) scale(.78)"><use href="#digitalCurl"/></g>
+              <g transform="translate(255 205) rotate(164) scale(.9)"><use href="#digitalLeaf"/></g>
+              <g transform="translate(68 245) rotate(205) scale(.65)"><use href="#digitalCurl"/></g>
+              <path className="botanicalConnector" d="M128 118 C174 138 187 186 221 207 C249 225 286 219 314 196" />
+              <path className="botanicalConnector" d="M10 284 C53 271 89 282 116 314" />
+              <circle className="botanicalNode" cx="221" cy="207" r="3"/><circle className="botanicalNode" cx="116" cy="314" r="3"/>
             </pattern>
           </defs>
-          <rect width="1200" height="1800" fill="url(#paisleyPattern)" />
+          <rect className="botanicalLayer botanicalBase" width="1200" height="1800" fill="url(#botanicalPattern)" />
+          <g className="botanicalLayer botanicalBranches">
+            <path d="M0 360 C180 315 236 410 350 468 C470 528 545 464 612 382" />
+            <path d="M1200 670 C1038 620 952 706 864 790 C778 872 705 842 642 776" />
+            <path d="M0 1120 C154 1068 254 1118 334 1200 C421 1288 514 1260 575 1182" />
+            <path d="M1200 1435 C1068 1390 970 1432 892 1510 C814 1588 735 1580 670 1524" />
+          </g>
         </svg>
         <span className="wakeSpore s1" /><span className="wakeSpore s2" /><span className="wakeSpore s3" /><span className="wakeSpore s4" /><span className="wakeSpore s5" />
       </div>
