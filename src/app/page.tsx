@@ -132,7 +132,7 @@ export default function Home() {
             <span className="brandLeafFront">dadda<span className="brandMovingH">H</span></span><span className="brandLeafBack">Haddad</span>
           </span>
         </button>
-        <div className="topbarActions"><button className="themeToggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☀" : "◐"}</span></button><button className="connectButton" type="button" onClick={() => setConnectOpen(true)}>Connect <span aria-hidden="true">↗</span></button></div>
+        <div className="topbarActions"><button className="themeToggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☀" : "◐"}</span></button><button className="connectButton" type="button" onClick={() => setConnectOpen(true)}>Connect</button></div>
       </header>
 
       <section className="hero" id="top">
