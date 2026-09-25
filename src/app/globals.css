@@ -2307,3 +2307,12 @@ footer {
  transform-origin:left center!important
 }
 .brand.isOpen .brandLeaf{transform:translateX(-100%) rotateY(-180deg)!important}
+
+
+/* Actual H-to-H registration. Keep the seam fixed and let perspective create the fold. */
+.brandTargetH,.brandMovingH{display:inline}
+.brandLeaf{
+ transform:perspective(520px) rotateY(calc(-180deg * var(--fold-progress,0)))!important;
+ transform-origin:left center!important
+}
+.brand.isOpen .brandLeaf{transform:perspective(520px) rotateY(-180deg)!important;opacity:0!important}
