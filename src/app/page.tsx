@@ -8,6 +8,9 @@ import siteContent from "../content/siteContent";
 export default function Home() {
   const { identity, paths, socials, music, engineeringProjects, storyChapters } = siteContent;
   const [brandOpen, setBrandOpen] = useState(false);
+  const [brandDrag, setBrandDrag] = useState(0);
+  const [brandDragging, setBrandDragging] = useState(false);
+  const brandStartX = useRef(0);
   const [activePath, setActivePath] = useState("product");
   const [activeMusic, setActiveMusic] = useState("Gentleman Deluxe");
   const [secretOpen, setSecretOpen] = useState(false);
@@ -75,8 +78,35 @@ export default function Home() {
       <div key={`puzzle-${puzzlePing}`} className={`livingContent puzzleStep-${puzzlePulse} ${puzzlePrimed ? "puzzleReady" : ""} ${partyMode ? "partyMode" : ""}`}>
       {partyMode && <div className="partySignal" aria-live="polite"><span>SYSTEM WIDE OPEN</span><i>HaddadaddaH</i></div>}
       <header className="topbar">
-        <button className={`brand ${brandOpen ? "isOpen" : ""}`} type="button" aria-expanded={brandOpen} aria-label="Reveal the HaddadaddaH wordmark" onClick={() => { setBrandOpen((open) => !open); grow("brand", 4); }}>
-          <span className="brandFold" aria-hidden="true"><span className="brandForward">Haddad</span><span className="brandReverse">daddaH</span></span>
+        <button className={`brand ${brandOpen ? "isOpen" : ""} ${brandDragging ? "isDragging" : ""}`} type="button" aria-expanded={brandOpen} aria-label={brandOpen ? "Reset the folded Haddad wordmark" : "Fold the reversed half of Haddad over the first half"} onClick={() => {
+          if (brandDragging) return;
+          if (brandOpen) { setBrandOpen(false); setBrandDrag(0); grow("brand-reset", 2); }
+        }}>
+          <span className="brandFold" aria-hidden="true">
+            <span className="brandForward">Haddad</span>
+            <span className="brandReverse" style={{ "--fold-progress": brandDrag } as React.CSSProperties}
+              onPointerDown={(event) => {
+                if (brandOpen) return;
+                event.preventDefault();
+                event.currentTarget.setPointerCapture(event.pointerId);
+                brandStartX.current = event.clientX;
+                setBrandDragging(true);
+              }}
+              onPointerMove={(event) => {
+                if (!brandDragging || brandOpen) return;
+                const width = Math.max(1, event.currentTarget.getBoundingClientRect().width);
+                setBrandDrag(Math.max(0, Math.min(1, (brandStartX.current - event.clientX) / width)));
+              }}
+              onPointerUp={(event) => {
+                if (!brandDragging || brandOpen) return;
+                event.currentTarget.releasePointerCapture(event.pointerId);
+                setBrandDragging(false);
+                if (brandDrag >= .72) { setBrandDrag(1); setBrandOpen(true); grow("brand-fold", 4); }
+                else setBrandDrag(0);
+              }}
+              onPointerCancel={() => { setBrandDragging(false); if (!brandOpen) setBrandDrag(0); }}
+            >addaH</span>
+          </span>
         </button>
         <a className="quietLink" href="#connect">Connect</a>
       </header>
