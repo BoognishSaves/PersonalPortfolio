@@ -270,6 +270,8 @@ export default function Home() {
                     <h3>{chapter.title}</h3>
                     <p>{chapter.title === "Insurance → Drone Note Media" ? (
                       <>Near the end of my time as a field adjuster, I was sent to drone flight school and earned my FAA Part 107 certification. I came home and started <a href="https://www.dronenotemedia.com" target="_blank" rel="noreferrer">Drone Note Media</a>, initially using aerial technology for property inspections, commercial work, and real estate. When COVID changed how insurance inspections could be performed, the business adapted to meet that need. It has continued evolving with me ever since, becoming a home for occasional technology, media, and engineering projects.</>
+                    ) : chapter.title === "Wisconsin → bartending" ? (
+                      <>I started bartending at 17 at a place where my mom worked in Wisconsin. What began as a teenage job became a craft I returned to throughout my life. Years later, it landed me on <a href="https://youtube.com/playlist?list=PLqnTw__THC4MrlBxGZ0vGjXhclfNHU5YV&si=hHKBwVw7W--9BqXB" target="_blank" rel="noreferrer">Hot Mixology</a>. The show's lead bartender and I turned that exposure into a business of our own, providing professional bartenders and tailor-made cocktail menus for private events. It was another early lesson in recognizing an opportunity and building something around it.</>
                     ) : chapter.description}</p>
                   </div>
                 </article>
