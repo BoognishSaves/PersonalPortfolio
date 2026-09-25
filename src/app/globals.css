@@ -1507,3 +1507,33 @@ footer {
     mask-image:linear-gradient(90deg,#000 0 18%,transparent 34% 72%,#000 90% 100%)
   }
 }
+
+
+/* Wake v10: return to circuitry. No battery orb, no crosshatch, no content wash. */
+.rootNetwork::before{display:none!important}
+.isOverdrive .markStage::after{display:none!important}
+.wake-5 .heroCopy,.wake-5 .pathStatement,.wake-5 .musicFeatureCopy,.wake-5 .storyChapterCopy{background:none!important}
+
+/* Mature state = denser circuit growth in margins/clearings. */
+.wake-5 .thicket{opacity:.72}
+.wake-5 .circuitCanopy{opacity:.88}
+.wake-5 .circuitTwigs{opacity:.78}
+.wake-5 .circuitA,.wake-5 .circuitB,.wake-5 .circuitC,.wake-5 .circuitD{opacity:.82}
+.wake-5 .vine{opacity:.52}
+.wake-5 .circuitPulse{opacity:.9}
+
+/* Music cards own their readability; the wake field never bleaches them. */
+.musicFeatureCopy{position:relative;z-index:3;background:#0b0c0c!important}
+.musicFeatureCopy h3{color:#f5f4ef!important}
+.musicFeatureCopy .musicDescription{color:rgba(245,244,239,.78)!important}
+.musicFeatureCopy .musicRole{color:#e9b928}
+.isHighDesert .musicFeatureCopy,.isBarefootBoys .musicFeatureCopy,.isThemMules .musicFeatureCopy,.isJoJa .musicFeatureCopy{background:inherit!important}
+
+@media(max-width:760px){
+  .musicFeatureCopy{background:#0b0c0c!important;color:#f5f4ef!important}
+  .musicFeatureCopy h3{color:#f5f4ef!important;text-shadow:none!important}
+  .musicFeatureCopy .musicDescription{color:rgba(245,244,239,.82)!important;text-shadow:none!important}
+  .musicFeatureCopy .musicRole{color:rgba(245,244,239,.68)!important}
+  .musicFeatureCopy .musicKicker{opacity:1}
+  .isHighDesert .musicFeatureCopy,.isBarefootBoys .musicFeatureCopy,.isThemMules .musicFeatureCopy,.isJoJa .musicFeatureCopy{background:#0b0c0c!important}
+}
