@@ -2117,3 +2117,42 @@ footer {
  .partySignal,.partyMode .mark,.partyMode::after{animation:none!important}
  .partySignal{opacity:1}.partyMode::after{display:none}
 }
+
+
+/* Puzzle v3: escalating cause-and-effect. One-shot CSS only; no new render loop. */
+.puzzleStep-2 .pathPanel::before,.puzzleStep-3 .pathPanel::before,.puzzleReady .pathPanel::before{
+ content:"";position:absolute;left:0;right:0;top:-12px;height:1px;pointer-events:none;
+ background:linear-gradient(90deg,transparent,var(--blue) 28%,rgba(64,184,238,.18) 72%,transparent);
+ transform-origin:left;animation:puzzleTrace 1.15s ease-out both
+}
+.puzzleStep-2 .pathTab.isActive,.puzzleStep-3 .pathTab.isActive,.puzzleReady .pathTab.isActive{
+ box-shadow:inset 0 -2px 0 rgba(64,184,238,.42)
+}
+.puzzleStep-3 .storyMarker:nth-child(odd),.puzzleStep-3 .evidenceGrid article:first-child{
+ filter:drop-shadow(0 0 7px rgba(64,184,238,.16))
+}
+.puzzleStep-3 .markStage::before,.puzzleReady .markStage::before{
+ content:"";position:absolute;inset:50%;width:1px;height:1px;border-radius:50%;pointer-events:none;
+ box-shadow:0 0 0 0 rgba(64,184,238,.24);animation:puzzleRemotePing 1.7s ease-out 1
+}
+.puzzleReady .markStage{animation:puzzleSummon 3.6s ease-in-out infinite}
+.puzzleReady .markStage::before{animation:puzzleBeacon 2.2s ease-out infinite}
+.puzzleReady .markStage::after{border-width:1px;border-style:dashed;animation:puzzleOrbit 4.4s linear infinite}
+.puzzleReady .hero::after{
+ content:"";position:absolute;right:9%;top:49%;width:32%;height:1px;pointer-events:none;
+ background:linear-gradient(90deg,transparent,rgba(64,184,238,.18),var(--blue));
+ transform-origin:left;animation:puzzleRouteToMark 1.8s ease-out both
+}
+@keyframes puzzleTrace{0%{transform:scaleX(0);opacity:0}18%{opacity:1}100%{transform:scaleX(1);opacity:.42}}
+@keyframes puzzleRemotePing{0%{box-shadow:0 0 0 0 rgba(64,184,238,.38);opacity:1}100%{box-shadow:0 0 0 38px rgba(64,184,238,0);opacity:0}}
+@keyframes puzzleBeacon{0%{box-shadow:0 0 0 0 rgba(64,184,238,.3)}100%{box-shadow:0 0 0 54px rgba(64,184,238,0)}}
+@keyframes puzzleSummon{0%,100%{transform:rotate(0deg)}45%{transform:rotate(2.4deg)}58%{transform:rotate(-1.2deg)}}
+@keyframes puzzleRouteToMark{0%{transform:scaleX(0);opacity:0}25%{opacity:.85}100%{transform:scaleX(1);opacity:.38}}
+@media(max-width:760px){
+ .puzzleReady .hero::after{right:13%;top:58%;width:46%}
+ .puzzleReady .markStage{animation-duration:4.5s}
+}
+@media(prefers-reduced-motion:reduce){
+ .puzzleStep-2 .pathPanel::before,.puzzleStep-3 .pathPanel::before,.puzzleReady .pathPanel::before,
+ .puzzleStep-3 .markStage::before,.puzzleReady .markStage,.puzzleReady .markStage::before,.puzzleReady .hero::after{animation:none!important}
+}
