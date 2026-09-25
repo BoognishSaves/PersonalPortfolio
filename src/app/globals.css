@@ -2184,3 +2184,23 @@ footer {
 .brand:hover .brandReverse,.brand:focus-visible .brandReverse{color:var(--blue)}
 @media(max-width:760px){.brandFold{min-width:54px}}
 @media(prefers-reduced-motion:reduce){.brandReverse{transition:none}}
+
+
+/* Fold resolve: the mirrored half completes the hinge, then visually fuses into Haddad. */
+.brandDirection{display:none!important}
+.brand.isOpen .brandForward{color:var(--blue);transition:color .18s ease .5s}
+.brand.isOpen .brandReverse{
+ left:0;
+ transform:rotateY(180deg);
+ opacity:0;
+ transition:left .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),opacity .16s ease .48s
+}
+.brand:not(.isOpen) .brandForward{color:var(--ink);transition:color .22s ease}
+.brand:not(.isOpen) .brandReverse{
+ left:100%;transform:rotateY(0deg);opacity:1;
+ transition:left .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1),opacity .12s ease
+}
+@media(prefers-reduced-motion:reduce){
+ .brand.isOpen .brandForward{color:var(--blue)}
+ .brand.isOpen .brandReverse{left:0;opacity:0;transform:none}
+}
