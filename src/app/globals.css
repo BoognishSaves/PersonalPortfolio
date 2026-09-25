@@ -1463,3 +1463,47 @@ footer {
 .isOverdrive .mark{filter:drop-shadow(0 0 10px rgba(64,184,238,.95)) drop-shadow(0 0 26px rgba(64,184,238,.72))!important}
 @keyframes batteryBloom{from{transform:scale(.96);opacity:.72}to{transform:scale(1.28);opacity:1}}
 @media(prefers-reduced-motion:reduce){.isOverdrive .markStage::after{animation:none!important}}
+
+
+/* Wake v9: depth comes from hatched "soil" in unused space; vines rise out of it. */
+.rootNetwork::before{
+  content:"";position:absolute;inset:0;opacity:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(24deg,rgba(20,58,72,.13) 0 1px,transparent 1px 13px),
+    repeating-linear-gradient(156deg,rgba(64,184,238,.10) 0 1px,transparent 1px 17px);
+  -webkit-mask-image:linear-gradient(90deg,#000 0 25%,transparent 39% 67%,#000 84% 100%);
+  mask-image:linear-gradient(90deg,#000 0 25%,transparent 39% 67%,#000 84% 100%);
+  transition:opacity 1.4s ease
+}
+.wake-2 .rootNetwork::before{opacity:.08}
+.wake-3 .rootNetwork::before{opacity:.16}
+.wake-4 .rootNetwork::before{opacity:.28}
+.wake-5 .rootNetwork::before{opacity:.42}
+.isOverdrive .rootNetwork::before{opacity:.58;animation:hatchSurge 1.05s ease-in-out infinite alternate}
+@keyframes hatchSurge{from{filter:contrast(1);transform:scale(1)}to{filter:contrast(1.25);transform:scale(1.004)}}
+
+/* Preserve a readable foreground while the margins become visually deep. */
+.wake-5 .heroCopy,.wake-5 .pathStatement,.wake-5 .musicFeatureCopy,.wake-5 .storyChapterCopy{
+  background:radial-gradient(ellipse at center,rgba(245,244,239,.985) 0%,rgba(245,244,239,.94) 68%,rgba(245,244,239,0) 100%)
+}
+
+/* Mobile music is a selector + immediate feature, not an archive that sends you backward. */
+.musicSwitcher{display:none}
+@media(max-width:760px){
+  .musicSwitcher{
+    display:flex;gap:7px;overflow-x:auto;padding:0 0 14px;margin:0 0 6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch
+  }
+  .musicSwitcher::-webkit-scrollbar{display:none}
+  .musicSwitcher button{
+    flex:0 0 auto;border:1px solid var(--line);border-radius:999px;background:transparent;
+    color:var(--ink);padding:9px 12px;font:inherit;font-size:12px;white-space:nowrap
+  }
+  .musicSwitcher button.isActive{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .musicArchive{display:none}
+  .musicFeature{scroll-margin-top:18px}
+  .rootNetwork::before{
+    -webkit-mask-image:linear-gradient(90deg,#000 0 18%,transparent 34% 72%,#000 90% 100%);
+    mask-image:linear-gradient(90deg,#000 0 18%,transparent 34% 72%,#000 90% 100%)
+  }
+}
