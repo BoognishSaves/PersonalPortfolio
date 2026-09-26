@@ -2411,3 +2411,10 @@ body{transition:background-color .28s ease,color .28s ease}
 @keyframes connectRise{from{opacity:0;transform:translateY(12px) scale(.99)}to{opacity:1;transform:none}}
 @media(max-width:760px){.connectButton{padding:9px 13px}.connectModal{padding:12px}.connectDialog{grid-template-columns:1fr;gap:30px;max-height:calc(100dvh - 24px);padding:36px 24px 28px}.connectDialog .connectIntro h2{font-size:52px}.connectDialog .connectIntro>p:last-child{margin-top:16px}.connectClose{right:10px;top:10px}}
 @media(prefers-reduced-motion:reduce){.connectModal,.connectDialog,.connectButton,.connectClose{animation:none!important;transition:none!important}}
+
+
+/* Mobile hero optical centering: lift the complete JP/H stage within the negative space.
+   The mark, ring, and puzzle effects move together; horizontal centering remains locked. */
+@media(max-width:760px){
+  .markStage{transform:translateY(-50px) !important}
+}
