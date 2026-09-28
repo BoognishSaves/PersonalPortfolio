@@ -135,6 +135,8 @@ export default function Home() {
         <div className="topbarActions"><button className="themeToggle" type="button" onClick={toggleTheme} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}><span aria-hidden="true">{theme === "dark" ? "☀" : "◐"}</span></button><button className="connectButton" type="button" onClick={() => setConnectOpen(true)}>Connect</button></div>
       </header>
 
+      <div className="desktopLeftCircuit" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
       <section className="hero" id="top">
         <div className="heroCopy">
           <p className="eyebrow">{identity.eyebrow}</p>
