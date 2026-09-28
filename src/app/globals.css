@@ -2396,3 +2396,29 @@ body{transition:background-color .28s ease,color .28s ease}
     margin-right:auto !important;
   }
 }
+
+
+/* Desktop wordmark compositing fix.
+   Chromium can leak both faces of the 3D folding leaf at rest, which makes
+   daddaH look clipped/overprinted. Give each face its own composited plane
+   without changing the mobile sizing or the drag/fold behavior. */
+@media(min-width:761px){
+  .brandLeaf{
+    isolation:isolate;
+    -webkit-transform-style:preserve-3d;
+    transform-style:preserve-3d;
+  }
+  .brandLeafFront{
+    position:relative;
+    z-index:2;
+    transform:translateZ(.1px);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+  }
+  .brandLeafBack{
+    z-index:1;
+    transform:rotateY(180deg) translateZ(.1px);
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+  }
+}
