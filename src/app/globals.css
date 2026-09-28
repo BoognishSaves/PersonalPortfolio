@@ -2451,3 +2451,26 @@ body{transition:background-color .28s ease,color .28s ease}
   .hero{gap:clamp(80px,8vw,150px)}
   .markStage{min-height:460px}
 }
+
+
+/* Short, wide desktop correction.
+   Preserve the expanded horizontal canvas while tightening vertical rhythm on
+   workstation displays that are wide but do not have much viewport height. */
+@media (min-width:1180px) and (max-height:900px){
+  .topbar{min-height:60px}
+  .hero{
+    min-height:500px;
+    gap:clamp(52px,6vw,96px);
+  }
+  .hero h1{font-size:clamp(72px,6.1vw,104px)}
+  .lead{
+    margin-top:24px;
+    font-size:clamp(20px,2.25vw,31px);
+  }
+  .actions{margin-top:24px}
+  .markStage{min-height:330px}
+  .mark{width:min(68%,285px)}
+  .markStage::before{width:min(73%,310px)}
+  .explorerIntro{padding:52px 0 38px}
+  .explorerIntro>p:last-child{font-size:clamp(28px,3.35vw,46px)}
+}
