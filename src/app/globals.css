@@ -2510,3 +2510,68 @@ body{transition:background-color .28s ease,color .28s ease}
   .mark{max-width:300px}
   .markStage::before{max-width:326px}
 }
+
+
+/* Left composition return.
+   The living canvas already creates a strong right-hand territory around the
+   monogram. This sparse return gives the copy its own visual boundary without
+   boxing the hero or forcing artificial symmetry. */
+.desktopLeftCircuit{display:none}
+@media (min-width:1180px){
+  .livingContent{--content-frame:clamp(18px,1.7vw,30px)}
+  .desktopLeftCircuit{
+    display:block;
+    position:absolute;
+    z-index:0;
+    pointer-events:none;
+    left:calc(var(--content-frame) * -1);
+    top:clamp(118px,11vh,172px);
+    width:clamp(72px,6vw,108px);
+    height:clamp(470px,58vh,650px);
+    opacity:.42;
+    border-left:1px solid rgba(64,184,238,.38);
+    border-top:1px solid rgba(64,184,238,.2);
+    border-bottom:1px solid rgba(64,184,238,.2);
+    background:
+      linear-gradient(90deg,rgba(64,184,238,.16),transparent 68%) top left/100% 1px no-repeat,
+      radial-gradient(circle at 0 18%,rgba(64,184,238,.7) 0 2px,transparent 3px),
+      radial-gradient(circle at 0 57%,rgba(64,184,238,.55) 0 2px,transparent 3px),
+      radial-gradient(circle at 0 88%,rgba(64,184,238,.65) 0 2px,transparent 3px);
+  }
+  .desktopLeftCircuit::before,
+  .desktopLeftCircuit::after{
+    content:"";
+    position:absolute;
+    left:0;
+    width:72%;
+    height:1px;
+    background:linear-gradient(90deg,rgba(64,184,238,.62),rgba(64,184,238,.16),transparent);
+  }
+  .desktopLeftCircuit::before{top:31%}
+  .desktopLeftCircuit::after{top:72%;width:88%}
+  .desktopLeftCircuit span{
+    position:absolute;
+    left:0;
+    width:clamp(18px,2vw,34px);
+    height:clamp(18px,2vw,34px);
+    border-left:1px solid rgba(64,184,238,.34);
+    border-bottom:1px solid rgba(64,184,238,.34);
+    transform:skewY(-38deg);
+  }
+  .desktopLeftCircuit span:nth-child(1){top:13%}
+  .desktopLeftCircuit span:nth-child(2){top:39%;left:18px}
+  .desktopLeftCircuit span:nth-child(3){top:64%}
+  .desktopLeftCircuit span:nth-child(4){top:84%;left:12px}
+  .heroCopy,.explorerIntro{margin-left:var(--content-frame)}
+}
+
+/* Once the screen is genuinely large, content stops scaling and the extra
+   viewport becomes atmosphere instead of oversized typography. */
+@media (min-width:1600px){
+  .hero h1{font-size:104px}
+  .heroCopy{max-width:740px}
+  .lead{max-width:660px}
+  .mark{width:min(66%,300px)}
+  .markStage::before{width:min(72%,326px)}
+  .desktopLeftCircuit{left:-36px}
+}
