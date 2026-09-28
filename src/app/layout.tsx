@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./desktop-canvas.css";
 
 export const metadata: Metadata = {
   title: "John Paul Haddad | HaddadaddaH",
