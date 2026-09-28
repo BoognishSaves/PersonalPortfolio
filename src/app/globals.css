@@ -2474,3 +2474,39 @@ body{transition:background-color .28s ease,color .28s ease}
   .explorerIntro{padding:52px 0 38px}
   .explorerIntro>p:last-child{font-size:clamp(28px,3.35vw,46px)}
 }
+
+
+/* Desktop composition safe area.
+   Keep primary content visibly framed while allowing the living network to
+   occupy the outer band. This prevents medium desktop displays from reading
+   as cropped at either edge. */
+@media (min-width:1180px){
+  .shell{
+    width:min(1520px,calc(100% - clamp(112px,10vw,176px)));
+  }
+  .hero{
+    padding-inline:clamp(12px,1.2vw,24px);
+  }
+  .heroCopy{
+    padding-left:clamp(8px,.8vw,16px);
+  }
+  .markStage{
+    padding-right:clamp(18px,2vw,36px);
+  }
+}
+
+/* Medium/short workstations need a stronger frame than large desktop panels.
+   Preserve scale and horizontal use, but protect both hero anchors. */
+@media (min-width:1180px) and (max-width:1599px){
+  .shell{
+    width:calc(100% - clamp(128px,11vw,168px));
+  }
+  .hero{
+    grid-template-columns:minmax(500px,1.04fr) minmax(330px,.96fr);
+    gap:clamp(48px,5vw,82px);
+  }
+  .heroCopy{max-width:720px}
+  .markStage{justify-items:center}
+  .mark{max-width:300px}
+  .markStage::before{max-width:326px}
+}
