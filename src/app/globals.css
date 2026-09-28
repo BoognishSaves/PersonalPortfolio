@@ -2422,3 +2422,26 @@ body{transition:background-color .28s ease,color .28s ease}
     backface-visibility:hidden;
   }
 }
+
+
+/* Active path tab contrast fix.
+   The generic hover/focus highlight was declared after the active state and
+   could wash the selected label out, especially in dark mode. Keep the
+   selected tab on its high-contrast surface across mouse, keyboard and touch. */
+.pathTab.isActive,
+.pathTab.isActive:hover,
+.pathTab.isActive:focus,
+.pathTab.isActive:focus-visible{
+  background:var(--ink);
+  color:var(--paper);
+}
+.pathTab.isActive strong{color:var(--paper)}
+.pathTab.isActive span{color:var(--blue)}
+:root[data-theme="dark"] .pathTab.isActive,
+:root[data-theme="dark"] .pathTab.isActive:hover,
+:root[data-theme="dark"] .pathTab.isActive:focus,
+:root[data-theme="dark"] .pathTab.isActive:focus-visible{
+  background:var(--ink);
+  color:var(--paper);
+}
+:root[data-theme="dark"] .pathTab.isActive strong{color:var(--paper)}
