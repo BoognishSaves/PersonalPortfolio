@@ -2445,3 +2445,38 @@ body{transition:background-color .28s ease,color .28s ease}
   color:var(--paper);
 }
 :root[data-theme="dark"] .pathTab.isActive strong{color:var(--paper)}
+
+
+/* Desktop canvas expansion.
+   Keep readable copy constrained, but let the composition and visual system
+   use the display instead of collapsing into a narrow centered strip. */
+@media(min-width:1180px){
+  .shell{
+    width:min(1520px,calc(100% - clamp(64px,8vw,144px)));
+  }
+  .hero{
+    grid-template-columns:minmax(560px,1.05fr) minmax(360px,.95fr);
+    gap:clamp(64px,7vw,120px);
+  }
+  .heroCopy{max-width:780px}
+  .hero h1{font-size:clamp(84px,7vw,126px)}
+  .lead{max-width:680px}
+  .markStage{min-height:430px}
+  .mark{width:min(72%,340px)}
+  .markStage::before{width:min(78%,370px)}
+  .explorerIntro{max-width:1040px}
+  .pathStatement{
+    grid-template-columns:minmax(150px,.32fr) minmax(480px,1.05fr) minmax(360px,.78fr);
+    gap:clamp(36px,4vw,72px);
+  }
+  .pathStatement h2{max-width:720px}
+  .pathStatement>p:last-child{max-width:560px}
+}
+
+/* On genuinely wide screens the ambient network can breathe into the larger
+   canvas while the reading measure above remains controlled. */
+@media(min-width:1600px){
+  .shell{width:min(1600px,calc(100% - 128px))}
+  .hero{gap:clamp(80px,8vw,150px)}
+  .markStage{min-height:460px}
+}
