@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import "./desktop-hero-fix.css";
 
 export const metadata: Metadata = {
   title: "John Paul Haddad | HaddadaddaH",
